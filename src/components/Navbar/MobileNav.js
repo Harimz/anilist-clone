@@ -37,58 +37,40 @@ export const MobileNav = () => {
           bottom="2rem"
           size="lg"
           onClick={onOpen}
+          zIndex={999}
         />
       )}
 
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalContent
-          bgColor="blue.400"
+          bgColor={isDark ? "blue.400" : "white"}
           position="fixed"
           right="2rem"
           bottom="-1.5rem"
-          w="18rem"
+          w="15rem"
         >
           <SimpleGrid columns={3} spacing={6} p="1.5rem">
-            <Link>
-              <MobileNavItem
-                icon={<BsFillChatFill size={24} style={{ color: "#748899" }} />}
-                text="forum"
-              />
+            <Link to="/forum">
+              <MobileNavItem icon={BsFillChatFill} text="forum" />
             </Link>
 
-            <Link>
-              <MobileNavItem
-                icon={<FaUsers size={24} style={{ color: "#748899" }} />}
-                text="social"
-              />
+            <Link to="/social">
+              <MobileNavItem icon={FaUsers} text="social" />
             </Link>
 
-            <Link>
-              <MobileNavItem
-                icon={<FaSearch size={24} style={{ color: "#748899" }} />}
-                text="search"
-              />
+            <Link to="/anime/search">
+              <MobileNavItem icon={FaSearch} text="search" />
             </Link>
 
-            <Link>
-              <MobileNavItem
-                icon={<FaUserPlus size={24} style={{ color: "#748899" }} />}
-                text="sign up"
-              />
+            <Link to="/signup">
+              <MobileNavItem icon={FaUserPlus} text="sign up" />
             </Link>
 
-            <Link>
-              <MobileNavItem
-                icon={<FaSignInAlt size={24} style={{ color: "#748899" }} />}
-                text="login"
-              />
+            <Link to="/login">
+              <MobileNavItem icon={FaSignInAlt} text="login" />
             </Link>
 
-            <Link>
-              <MobileNavItem
-                icon={<FaTimes size={24} style={{ color: "#748899" }} />}
-              />
-            </Link>
+            <MobileNavItem icon={FaTimes} onClick={onClose} cursor="pointer" />
           </SimpleGrid>
         </ModalContent>
       </Modal>

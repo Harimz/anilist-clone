@@ -10,6 +10,13 @@ export const ButtonStyles = {
         boxShadow: "1px 3px 10px #3577FFAA",
       },
     }),
+    headerPrimary: (props) => ({
+      bg: "blue.200",
+      color: "white",
+      _hover: {
+        boxShadow: "1px 3px 15px #3577FFAA",
+      },
+    }),
   },
   defaultProps: {},
 };
