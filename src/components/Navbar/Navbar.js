@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -17,13 +17,28 @@ import { Link } from "react-router-dom";
 
 import logo from "../../assets/images/icon.svg";
 import MenuHoverBox from "./MenuHoverBox";
+import { useScrollDirection } from "../../hooks";
 
 export const Navbar = () => {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
 
+  const { scrollDirection } = useScrollDirection();
+
+  const scrollingUp = scrollDirection === "UP";
+
   return (
-    <Box as="nav" bg={isDark ? "blue.300" : "darkPurple"}>
+    <Box
+      position="sticky"
+      left="0"
+      right="0"
+      top="0"
+      as="nav"
+      bg={isDark ? "blue.300" : "darkPurple"}
+      transform={scrollingUp ? "translateY(0)" : "translateY(-10rem)"}
+      transition="transform 0.3s ease-in-out"
+      zIndex="999"
+    >
       <Container
         maxW="container.xl"
         display="flex"
