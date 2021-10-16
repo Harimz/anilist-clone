@@ -17,6 +17,12 @@ export const ButtonStyles = {
         boxShadow: "1px 3px 15px #3577FFAA",
       },
     }),
+    form: (props) => ({
+      bg: "blue.150",
+      color: "white",
+      fontWeight: "bold",
+      padding: "1rem 2rem",
+    }),
   },
   defaultProps: {},
 };

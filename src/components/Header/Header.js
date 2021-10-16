@@ -27,6 +27,7 @@ export const Header = () => {
       borderRadius={{ base: "0", lg: "1.5rem" }}
       display="flex"
       flexDirection="column"
+      alignItems="center"
     >
       <Box textAlign="center" mb="5rem">
         <Heading color="white" mb="2rem">
@@ -36,7 +37,7 @@ export const Header = () => {
           color="blue.100"
           fontSize="1.5rem"
           margin="auto"
-          w={{ base: "100%", lg: "50%" }}
+          w={{ base: "100%", lg: "80%" }}
         >
           Track, share and discover your favorite anime and manga with AniClone.
         </Text>
@@ -64,18 +65,18 @@ export const Header = () => {
           text="Customize your scoring system, title format, color shceme, and much more! Also, we have a dark mode."
         />
       </SimpleGrid>
-      <Button
-        rightIcon={<FaChevronCircleRight size={28} />}
-        variant="headerPrimary"
-        size="lg"
-        borderRadius="2rem"
-        transform={{ base: "translateY(2.25rem)", lg: "translateY(6.5rem)" }}
-        p="1rem 3rem"
-        alignSelf="center"
-        justifySelf="center"
-      >
-        <Link to="signup">Join Now</Link>
-      </Button>
+      <Link to="/signup">
+        <Button
+          rightIcon={<FaChevronCircleRight size={28} />}
+          variant="headerPrimary"
+          size="lg"
+          borderRadius="2rem"
+          transform={{ base: "translateY(2.25rem)", lg: "translateY(6.5rem)" }}
+          p="1rem 3rem"
+        >
+          Join Now
+        </Button>
+      </Link>
     </Container>
   );
 };

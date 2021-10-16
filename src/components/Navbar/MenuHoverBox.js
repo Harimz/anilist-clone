@@ -1,12 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Flex,
-  SimpleGrid,
-  Text,
-  useColorMode,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
 import {
   FaPlay,
   FaBookOpen,
@@ -17,9 +11,6 @@ import {
 import { BsJoystick } from "react-icons/bs";
 
 const MenuHoverBox = () => {
-  const { colorMode } = useMediaQuery();
-  const isDark = colorMode === "dark";
-
   return (
     <Flex direction="column">
       <Flex align="center" p="1rem 1rem 0 1rem">

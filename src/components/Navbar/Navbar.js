@@ -80,9 +80,11 @@ export const Navbar = () => {
             <Text variant="link">
               <Link to="/login">Login</Link>
             </Text>
-            <Button variant="primary" ml="2rem">
-              Sign Up
-            </Button>
+            <Link to="/signup">
+              <Button variant="primary" ml="2rem">
+                Sign Up
+              </Button>
+            </Link>
           </Flex>
         </Flex>
       </Container>
