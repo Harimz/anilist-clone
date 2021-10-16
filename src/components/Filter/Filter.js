@@ -7,6 +7,9 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Menu,
+  MenuButton,
+  MenuList,
   SimpleGrid,
   Text,
   useColorMode,
@@ -32,8 +35,10 @@ export const Filter = () => {
             />
             <Input
               variant="filled"
-              bgColor="#FBFBFB"
-              boxShadow=" 0 14px 30px #C9D7E3AA,0 4px 4px #C9D7E3AA"
+              bgColor={isDark ? "blue.400" : "#FBFBFB"}
+              boxShadow={
+                isDark ? "" : " 0 14px 30px #C9D7E3AA,0 4px 4px #C9D7E3AA"
+              }
             />
           </InputGroup>
         </Box>
@@ -43,11 +48,24 @@ export const Filter = () => {
         <FilterSelect title="Format" options={formats} />
         <Flex justify="space-between">
           <Box></Box>
-          <IconButton
-            icon={<FaSlidersH size={20} style={{ color: "#C9D7E3AA" }} />}
-            bgColor="white"
-            boxShadow=" 0 14px 30px #C9D7E3AA,0 4px 4px #C9D7E3AA"
-          />
+          <Menu>
+            <MenuButton>
+              <IconButton
+                icon={<FaSlidersH size={20} style={{ color: "#C9D7E3AA" }} />}
+                bgColor={isDark ? "blue.400" : "white"}
+                boxShadow={
+                  isDark ? "" : " 0 14px 30px #C9D7E3AA,0 4px 4px #C9D7E3AA"
+                }
+              />
+            </MenuButton>
+            <MenuList
+              bgColor={isDark ? "blue.400" : "white"}
+              border="0"
+              mt="0.5rem"
+            >
+              yooo
+            </MenuList>
+          </Menu>
         </Flex>
       </SimpleGrid>
     </Container>

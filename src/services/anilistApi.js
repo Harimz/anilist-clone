@@ -1,22 +1,29 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const anilistHeaders = {
-  "x-rapidapi-host": "jikan1.p.rapidapi.com",
-  "x-rapidapi-key": `${process.env.API_KEY}`,
-};
-
-const baseUrl = "https://jikan1.p.rapidapi.com";
-
-const createRequest = (url) => ({ url, headers: anilistHeaders });
+const baseUrl = "https://api.jikan.moe/";
 
 export const anilistApi = createApi({
   reducerPath: "anilistApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
-    getTopAnime: builder.query({
-      query: () => createRequest("/top/anime/1/upcoming"),
+    getUpcomingAnime: builder.query({
+      query: () => `/v3/top/anime/1/upcoming`,
     }),
+    getTopAnime: builder.query({
+      query: () => `/v3/top/anime`,
+    }),
+    getTopManga: builder.query({
+      query: () => "/v3/top/manga",
+    }),
+    getAnimeById: builder.query({
+      query: (id) => `/v3/anime/${id}`,
+    }),
+    getAnime: builder.query({}),
   }),
 });
 
-export const { useGetTopAnimeQuery } = anilistApi;
+export const {
+  useGetUpcomingAnimeQuery,
+  useGetTopAnimeQuery,
+  useGetAnimeByIdQuery,
+} = anilistApi;

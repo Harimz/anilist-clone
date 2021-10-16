@@ -4,9 +4,7 @@ import {
   Box,
   Button,
   Container,
-  Flex,
   Heading,
-  Image,
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
@@ -40,7 +38,7 @@ export const Header = () => {
           margin="auto"
           w={{ base: "100%", lg: "50%" }}
         >
-          Track, share and discover your favorite anime and manga with AniList.
+          Track, share and discover your favorite anime and manga with AniClone.
         </Text>
       </Box>
 

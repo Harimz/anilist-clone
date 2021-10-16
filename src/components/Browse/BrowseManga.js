@@ -1,28 +1,26 @@
-import { Container, Grid, Heading, Text } from "@chakra-ui/layout";
+import { Container, Grid, Text } from "@chakra-ui/layout";
 import React from "react";
 import { useGetTopAnimeQuery } from "../../services/anilistApi";
-import { AnimeCard } from "./AnimeCard";
-import { Filter } from "./Filter";
+import { ContentCard } from "./ContentCard";
 
-export const Browse = () => {
-  const { data, isFetching } = useGetTopAnimeQuery();
+export const BrowseManga = ({ type = "", title, amount = 100 }) => {
+  const { data, isFetching } = useGetTopAnimeQuery(type);
 
   if (isFetching) return "Loading...";
 
   return (
     <>
-      <Filter />
       <Container maxW="container.xl" mt="3rem">
         <Text color="gray.500" fontSize="1.25rem" fontWeight="bold" mb="2rem">
-          UPCOMING NEXT SEASON
+          {title}
         </Text>
 
         <Grid templateColumns="repeat(auto-fill, minmax(196px, 1fr))" gap={6}>
-          {data.top.slice(0, 10).map((anime) => (
-            <AnimeCard
-              imgUrl={anime.image_url}
-              title={anime.title}
-              id={anime.mal_id}
+          {data.top.slice(0, amount).map((manga) => (
+            <ContentCard
+              imgUrl={manga.image_url}
+              title={manga.title}
+              id={manga.mal_id}
             />
           ))}
         </Grid>

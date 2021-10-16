@@ -3,10 +3,10 @@ import {
   Box,
   Container,
   Flex,
+  Grid,
   IconButton,
   List,
   ListItem,
-  SimpleGrid,
   Text,
   useColorMode,
 } from "@chakra-ui/react";
@@ -18,9 +18,9 @@ export const Footer = () => {
 
   return (
     <Box as="footer" bgColor="blue.600" mt="5rem">
-      <Container maxW="container.xl" p="5rem">
-        <Flex justify="space-between">
-          <Box>
+      <Container maxW="container.xl" p={{ base: "2rem", lg: "5rem" }}>
+        <Flex justify="space-between" direction={{ base: "column", lg: "row" }}>
+          <Box mb="2rem">
             <Text
               color="#3DB4F2"
               mb="1rem"
@@ -40,7 +40,10 @@ export const Footer = () => {
               onClick={toggleColorMode}
             />
           </Box>
-          <SimpleGrid gridAutoFlow="column" gap="6rem">
+          <Grid
+            gridAutoFlow={{ base: "row", lg: "column" }}
+            gap={{ base: "2rem", lg: "6rem" }}
+          >
             <List color="gray.300" spacing={3}>
               <ListItem>Donate</ListItem>
               <ListItem>AniList.co</ListItem>
@@ -65,7 +68,7 @@ export const Footer = () => {
               <ListItem>Terms & Privacy</ListItem>
               <ListItem>Site Map</ListItem>
             </List>
-          </SimpleGrid>
+          </Grid>
         </Flex>
       </Container>
     </Box>
