@@ -43,6 +43,7 @@ const theme = extendTheme({
     red: {
       100: "#FEF0F0",
       200: "#F56C6C",
+      300: "#EC294B",
     },
   },
   components: {

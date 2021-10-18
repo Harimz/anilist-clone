@@ -14,14 +14,20 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { useScrollDirection } from "../../hooks";
+import { FaChevronDown, FaSearch } from "react-icons/fa";
+import { User } from "../Profile/User";
+import { useSelector } from "react-redux";
 
 import logo from "../../assets/images/icon.svg";
 import MenuHoverBox from "./MenuHoverBox";
-import { useScrollDirection } from "../../hooks";
 
 export const Navbar = () => {
+  const { firebase } = useSelector((state) => state.firebase);
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
+  const user = firebase.auth().currentUser || {};
+  const loggedIn = Object.keys(user).length !== 0;
 
   const { scrollDirection } = useScrollDirection();
 
@@ -68,23 +74,32 @@ export const Navbar = () => {
                 <MenuHoverBox />
               </MenuList>
             </Menu>
-
-            <Text variant="link">
-              <Link to="/social">Social</Link>
-            </Text>
-            <Text variant="link">
-              <Link to="/forum">Forum</Link>
-            </Text>
+            {loggedIn && (
+              <Link>
+                <Text variant="link">Profile</Text>
+              </Link>
+            )}
           </SimpleGrid>
           <Flex align="center">
-            <Text variant="link">
-              <Link to="/login">Login</Link>
-            </Text>
-            <Link to="/signup">
-              <Button variant="primary" ml="2rem">
-                Sign Up
-              </Button>
-            </Link>
+            {!loggedIn && (
+              <>
+                <Text variant="link">
+                  <Link to="/login">Login</Link>
+                </Text>
+                <Link to="/signup">
+                  <Button variant="primary" ml="2rem">
+                    Sign Up
+                  </Button>
+                </Link>
+              </>
+            )}
+            {loggedIn && (
+              <>
+                <FaSearch style={{ color: "gray" }} size={22} />
+                <User />
+                <FaChevronDown style={{ color: "gray" }} />
+              </>
+            )}
           </Flex>
         </Flex>
       </Container>
