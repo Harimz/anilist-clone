@@ -21,6 +21,7 @@ export const BrowseAnime = ({ type = "", title, amount = 100 }) => {
               imgUrl={anime.image_url}
               title={anime.title}
               id={anime.mal_id}
+              type="anime"
             />
           ))}
         </Grid>

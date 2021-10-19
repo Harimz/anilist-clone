@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseUrl = "https://api.jikan.moe/";
+const baseUrl = "https://api.jikan.moe";
 
 export const anilistApi = createApi({
   reducerPath: "anilistApi",
@@ -18,7 +18,15 @@ export const anilistApi = createApi({
     getAnimeById: builder.query({
       query: (id) => `/v3/anime/${id}`,
     }),
-    getAnime: builder.query({}),
+    getMangaById: builder.query({
+      query: (id) => `/v3/manga/${id}`,
+    }),
+    getContentInfo: builder.query({
+      query: (arg) => {
+        const { type, id } = arg;
+        return `/v3/${type}/${id}`;
+      },
+    }),
   }),
 });
 
@@ -26,4 +34,7 @@ export const {
   useGetUpcomingAnimeQuery,
   useGetTopAnimeQuery,
   useGetAnimeByIdQuery,
+  useGetTopMangaQuery,
+  useGetMangaByIdQuery,
+  useGetContentInfoQuery,
 } = anilistApi;

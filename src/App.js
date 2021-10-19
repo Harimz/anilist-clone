@@ -7,6 +7,7 @@ import { AnimeDetails } from "./pages/AnimeDetails";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
+import { MangaDetails } from "./pages/MangaDetails";
 
 export const App = () => {
   const { user } = useAuthListener();
@@ -18,7 +19,8 @@ export const App = () => {
         <ProtectedRoute exact path="/signup" auth={!user} component={SignUp} />
         <ProtectedRoute exact path="/login" auth={!user} component={Login} />
         <ProtectedRoute exact path="/anime" auth={user} component={Anime} />
-        <Route path="/browse/:animeId" component={AnimeDetails} />
+        <Route path="/anime/:contentId" component={AnimeDetails} />
+        <Route path="/manga/:contentId" component={MangaDetails} />
       </Switch>
     </Router>
   );

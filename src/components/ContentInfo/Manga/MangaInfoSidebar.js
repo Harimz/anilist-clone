@@ -1,11 +1,11 @@
 import React from "react";
 import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
 import { FaStar } from "react-icons/fa";
-import { SidebarItem } from "./SidebarItem";
+import { SidebarItem } from "../SidebarItem";
 import moment from "moment";
-import { getPercent } from "../../helpers";
+import { getPercent } from "../../../helpers";
 
-export const AnimeInfoSidebar = ({
+export const MangaInfoSidebar = ({
   airing,
   format,
   epDuration,
@@ -20,6 +20,10 @@ export const AnimeInfoSidebar = ({
   genres,
   source,
   highestRated,
+  favorites,
+  title_english,
+  title_japanese,
+  season,
 }) => {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
@@ -28,7 +32,7 @@ export const AnimeInfoSidebar = ({
   const genreList = genres.map((item) => item.name).join();
 
   return (
-    <Flex mt="2rem" direction="column">
+    <Flex direction="column">
       <Flex
         bgColor={isDark ? "blue.400" : "white"}
         align="center"
@@ -61,10 +65,14 @@ export const AnimeInfoSidebar = ({
           type="Start Date"
           item={moment(startDate.from).format("MMMM Do YYYY")}
         />
+        <SidebarItem type="Season" item={season} />
+
         <SidebarItem
           type="Average Score"
-          item={score ? getPercent(score) : "NA"}
+          item={score ? `${getPercent(score)}%` : "NA"}
         />
+        <SidebarItem type="Favorites" item={favorites} />
+
         <SidebarItem type="Popularity" item={popularity} />
         <SidebarItem type="Studios" item={studios[0].name} />
         <Flex mb="1rem">
@@ -81,6 +89,8 @@ export const AnimeInfoSidebar = ({
         </Flex>
         <SidebarItem type="Source" item={source} />
         <SidebarItem type="Genres" item={genreList} />
+        <SidebarItem type="English" item={title_english} />
+        <SidebarItem type="Native" item={title_japanese} />
       </Flex>
     </Flex>
   );

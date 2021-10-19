@@ -1,19 +1,18 @@
 import React from "react";
-import { useGetAnimeByIdQuery } from "../../services/anilistApi";
-import { useParams } from "react-router-dom";
+import { useGetAnimeByIdQuery } from "../../../services/anilistApi";
+import { useParams, useLocation } from "react-router-dom";
 import { Container, Flex } from "@chakra-ui/react";
-import { AnimeInfoHeader } from "./AnimInfoHeader";
+import { AnimeInfoHeader } from "../ContentInfoHeader";
 import { AnimeInfoSidebar } from "./AnimeInfoSidebar";
-import { AnimeInfoResources } from "./AnimeInfoResources";
-import moment from "moment";
+import { ContentInfoResources } from "../ContentInfoResources";
 
 export const AnimeInfo = () => {
   const params = useParams();
-  const { data, isFetching } = useGetAnimeByIdQuery(params.animeId);
+  const location = useLocation();
+  const contentType = location.pathname.split("/")[1];
+  const { data, isFetching } = useGetAnimeByIdQuery(params.contentId);
 
   if (isFetching) return "Loading...";
-
-  console.log(data);
 
   const {
     image_url,
@@ -31,15 +30,21 @@ export const AnimeInfo = () => {
     studios,
     producers,
     source,
-    broadcast,
     genres,
     status,
+    title_english,
+    title_japanese,
+    premiered,
+    related,
+    trailer_url,
   } = data;
+
+  const relations = [related.Adaptation[0], related.Prequel[0]];
 
   return (
     <Flex direction="column">
       <AnimeInfoHeader img={image_url} title={title} synopsis={synopsis} />
-      <Container maxW="container.xl">
+      <Container maxW="container.xl" mt="2rem">
         <Flex>
           <AnimeInfoSidebar
             airing={airing ? airing : status}
@@ -56,8 +61,15 @@ export const AnimeInfo = () => {
             genres={genres}
             source={source}
             highestRated={popularity}
+            title_english={title_english}
+            title_japanese={title_japanese}
+            season={premiered}
           />
-          <AnimeInfoResources />
+          <ContentInfoResources
+            related={relations}
+            trailer={trailer_url}
+            type={contentType}
+          />
         </Flex>
       </Container>
     </Flex>

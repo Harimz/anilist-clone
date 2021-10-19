@@ -45,7 +45,7 @@ export const TopAnimeCard = ({
         <Flex align="center">
           <Image src={img} h="4.5rem" w="3.5rem" mr="2rem" />
           <Text variant="link" cursor="pointer" fontWeight="bold">
-            <Link to={`/browse/${id}`}>{title}</Link>
+            <Link to={`/anime/${id}`}>{title}</Link>
           </Text>
         </Flex>
         <Grid

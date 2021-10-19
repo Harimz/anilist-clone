@@ -1,13 +1,13 @@
 import React from "react";
-import { AnimeInfo } from "../components/ContentInfo/Anime/AnimeInfo";
+import { MangaInfo } from "../components/ContentInfo/Manga/MangaInfo";
 import { Footer } from "../components/Footer/Footer";
 import { Navigation } from "../components/Navbar/Navigation";
 
-export const AnimeDetails = () => {
+export const MangaDetails = () => {
   return (
     <>
       <Navigation />
-      <AnimeInfo />
+      <MangaInfo />
       <Footer />
     </>
   );
