@@ -74,14 +74,14 @@ export const AnimeInfoSidebar = ({
         <SidebarItem type="Favorites" item={favorites} />
 
         <SidebarItem type="Popularity" item={popularity} />
-        <SidebarItem type="Studios" item={studios[0].name} />
+        <SidebarItem type="Studios" item={studios[0]?.name} />
         <Flex mb="1rem">
           <Box>
             <Text color="gray.200" fontWeight="bold">
               Producers
             </Text>
-            {names.map((item) => (
-              <Text color="gray.400" fontSize="0.85rem">
+            {names.map((item, index) => (
+              <Text color="gray.400" fontSize="0.85rem" key={index}>
                 {item}
               </Text>
             ))}

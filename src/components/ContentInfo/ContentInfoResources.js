@@ -1,13 +1,29 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Flex, HStack, Image, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  HStack,
+  Image,
+  Text,
+  useColorMode,
+  Spinner,
+} from "@chakra-ui/react";
 import { useGetContentInfoQuery } from "../../services/anilistApi";
 import { BsDot } from "react-icons/bs";
 import ReactPlayer from "react-player";
 
 export const ContentInfoResources = ({ related, trailer }) => {
-  const first = { type: related[0].type, id: related[0].mal_id };
-  const second = { type: related[1].type, id: related[1].mal_id };
+  const values = Object.values(related).flat();
+
+  const first = {
+    type: values[0]?.type || "anime",
+    id: values[0]?.mal_id || 40456,
+  };
+  const second = {
+    type: values[1]?.type || "anime",
+    id: values[1]?.mal_id || 40456,
+  };
   const { data: data1, isFetching: isFetching1 } = useGetContentInfoQuery({
     type: first.type,
     id: first.id,
@@ -16,14 +32,12 @@ export const ContentInfoResources = ({ related, trailer }) => {
     type: second.type,
     id: second.id,
   });
-  console.log(related);
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === "dark";
 
-  if (isFetching1) return "loading...";
+  if (isFetching1) return <Spinner color="white" margin="0 auto" />;
 
-  if (isFetching2) return "loading...";
-
-  console.log(data1);
-  console.log(data2);
+  if (isFetching2) return <Spinner color="white" margin="0 auto" />;
 
   return (
     <Flex w="100%" ml="3rem" direction="column">
@@ -31,10 +45,10 @@ export const ContentInfoResources = ({ related, trailer }) => {
         Relations
       </Text>
       <Flex gridGap="2rem">
-        <Flex bgColor="blue.400" w="100%">
-          <Image src={data1.image_url} h="10rem" />
+        <Flex bgColor={isDark ? "blue.400" : "white"} w="100%">
+          <Image src={data1?.image_url || ""} h="10rem" />
           <Box ml="2rem">
-            <Text color="gray.200" mt="2rem">
+            <Text color="gray.400" mt="2rem" fontWeight="semibold">
               <Link to={`/${first.type}/${data1.mal_id}`}>{data1.title}</Link>
             </Text>
             <HStack color="gray.400" mt="3rem">
@@ -44,11 +58,13 @@ export const ContentInfoResources = ({ related, trailer }) => {
             </HStack>
           </Box>
         </Flex>
-        <Flex bgColor="blue.400" w="100%">
-          <Image src={data2.image_url} h="10rem" />
+        <Flex bgColor={isDark ? "blue.400" : "white"} w="100%">
+          <Image src={data2?.image_url || ""} h="10rem" />
           <Box ml="2rem">
-            <Text color="gray.200" mt="2rem">
-              <Link to={`/${second.type}/${data2.mal_id}`}>{data2.title}</Link>
+            <Text color="gray.400" mt="2rem" fontWeight="semibold">
+              <Link to={`/${second?.type}/${data2?.mal_id || ""}`}>
+                {data2.title}
+              </Link>
             </Text>
             <HStack color="gray.400" mt="3rem">
               <Text>{data2.type}</Text>

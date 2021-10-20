@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext } from "react";
 import {
   Box,
   Button,
@@ -17,13 +17,13 @@ import { Link } from "react-router-dom";
 import { useScrollDirection } from "../../hooks";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { User } from "../Profile/User";
-import { useSelector } from "react-redux";
 
 import logo from "../../assets/images/icon.svg";
 import MenuHoverBox from "./MenuHoverBox";
+import { FirebaseContext } from "../../context/firebase";
 
 export const Navbar = () => {
-  const { firebase } = useSelector((state) => state.firebase);
+  const { firebase } = useContext(FirebaseContext);
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const user = firebase.auth().currentUser || {};

@@ -1,10 +1,10 @@
 import { Container, Grid, Text } from "@chakra-ui/layout";
 import React from "react";
-import { useGetTopMangaQuery } from "../../services/anilistApi";
+import { useGetUpcomingAnimeQuery } from "../../services/anilistApi";
 import { ContentCard } from "./ContentCard";
 
-export const BrowseManga = ({ type = "", title, amount = 100 }) => {
-  const { data, isFetching } = useGetTopMangaQuery(type);
+export const Browse = ({ type = "anime ", title, amount = 100 }) => {
+  const { data, isFetching } = useGetUpcomingAnimeQuery();
 
   if (isFetching) return "Loading...";
 
@@ -16,13 +16,13 @@ export const BrowseManga = ({ type = "", title, amount = 100 }) => {
         </Text>
 
         <Grid templateColumns="repeat(auto-fill, minmax(196px, 1fr))" gap={6}>
-          {data.top.slice(0, amount).map((manga) => (
+          {data.top.slice(0, amount).map((anime) => (
             <ContentCard
-              imgUrl={manga.image_url}
-              title={manga.title}
-              id={manga.mal_id}
-              type="manga"
-              key={manga.mal_id}
+              imgUrl={anime.image_url}
+              title={anime.title}
+              id={anime.mal_id}
+              type="anime"
+              key={anime.mal_id}
             />
           ))}
         </Grid>

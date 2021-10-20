@@ -3,7 +3,7 @@ import React from "react";
 import { useGetUpcomingAnimeQuery } from "../../services/anilistApi";
 import { ContentCard } from "./ContentCard";
 
-export const BrowseAnime = ({ type = "", title, amount = 100 }) => {
+export const BrowseAnime = ({ type = "anime ", title, amount = 100 }) => {
   const { data, isFetching } = useGetUpcomingAnimeQuery();
 
   if (isFetching) return "Loading...";
@@ -22,6 +22,7 @@ export const BrowseAnime = ({ type = "", title, amount = 100 }) => {
               title={anime.title}
               id={anime.mal_id}
               type="anime"
+              key={anime.mal_id}
             />
           ))}
         </Grid>

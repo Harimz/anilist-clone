@@ -26,7 +26,7 @@ export const TopAnime = () => {
         }}
         gap="2rem"
       >
-        {animeList.map((anime) => {
+        {animeList.map((anime, index) => {
           return (
             <>
               {!isMobile && (
@@ -45,7 +45,7 @@ export const TopAnime = () => {
               )}
               {isMobile && (
                 <TopAnimeMobileCard
-                  key={anime.mal_id}
+                  key={index}
                   img={anime.image_url}
                   rank={anime.rank}
                   title={anime.title}

@@ -39,8 +39,6 @@ export const AnimeInfo = () => {
     trailer_url,
   } = data;
 
-  const relations = [related.Adaptation[0], related.Prequel[0]];
-
   return (
     <Flex direction="column">
       <AnimeInfoHeader img={image_url} title={title} synopsis={synopsis} />
@@ -66,7 +64,7 @@ export const AnimeInfo = () => {
             season={premiered}
           />
           <ContentInfoResources
-            related={relations}
+            related={related}
             trailer={trailer_url}
             type={contentType}
           />

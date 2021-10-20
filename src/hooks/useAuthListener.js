@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useState, useEffect, useContext } from "react";
+import { FirebaseContext } from "../context/firebase";
 
 const useAuthListener = () => {
   const [user, setUser] = useState(
     JSON.parse(localStorage.getItem("authUser"))
   );
-  const { firebase } = useSelector((state) => state.firebase);
+  const { firebase } = useContext(FirebaseContext);
 
   useEffect(() => {
     const listener = firebase.auth().onAuthStateChanged((authUser) => {
@@ -19,7 +19,7 @@ const useAuthListener = () => {
     });
 
     return () => listener();
-  }, []);
+  }, [firebase]);
 
   return { user };
 };

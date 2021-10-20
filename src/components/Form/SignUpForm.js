@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Alert,
   AlertDescription,
@@ -13,11 +13,11 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { formOptions } from "../../helpers";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { FirebaseContext } from "../../context/firebase";
 
 export const SignUpForm = () => {
-  const { firebase } = useSelector((state) => state.firebase);
+  const { firebase } = useContext(FirebaseContext);
   const history = useHistory();
   const {
     handleSubmit,

@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { ProtectedRoute } from "./helpers";
+import { ProtectedRoute, ScrollToTop } from "./helpers";
 import { useAuthListener } from "./hooks";
 import { Anime } from "./pages/anime";
 import { AnimeDetails } from "./pages/AnimeDetails";
@@ -14,6 +14,7 @@ export const App = () => {
 
   return (
     <Router>
+      <ScrollToTop />
       <Switch>
         <ProtectedRoute exact path="/" auth={!user} component={Home} />
         <ProtectedRoute exact path="/signup" auth={!user} component={SignUp} />

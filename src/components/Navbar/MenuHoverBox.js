@@ -16,19 +16,19 @@ const MenuHoverBox = () => {
       <Flex align="center" p="1rem 1rem 0 1rem">
         <FaPlay size={20} style={{ color: "#A0B1C5" }} />
         <Flex direction="column" ml="1rem">
-          <Link>
+          <Link to="/">
             <Text variant="link" fontWeight="bold" mb="0.5rem">
               Anime
             </Text>
           </Link>
           <SimpleGrid gridAutoFlow="column" spacing={2}>
-            <Link>
+            <Link to="/">
               <Text variant="subLink">Top 100</Text>
             </Link>
-            <Link>
+            <Link to="/">
               <Text variant="subLink">Trending</Text>
             </Link>
-            <Link>
+            <Link to="/">
               <Text variant="subLink">Top Movies</Text>
             </Link>
           </SimpleGrid>
@@ -37,26 +37,26 @@ const MenuHoverBox = () => {
       <Flex align="center" mt="1rem" p="0 1rem 1rem 1rem">
         <FaBookOpen size={20} style={{ color: "#A0B1C5" }} />
         <Flex direction="column" ml="1rem">
-          <Link>
+          <Link to="/">
             <Text variant="link" fontWeight="bold" mb="0.5rem">
               Manga
             </Text>
           </Link>
           <SimpleGrid gridAutoFlow="column" spacing={2}>
-            <Link>
+            <Link to="/">
               <Text variant="subLink">Top 100</Text>
             </Link>
-            <Link>
+            <Link to="/">
               <Text variant="subLink">Trending</Text>
             </Link>
-            <Link>
+            <Link to="/">
               <Text variant="subLink">Top Manhwa</Text>
             </Link>
           </SimpleGrid>
         </Flex>
       </Flex>
       <SimpleGrid columns={2} spacing={3} p="0 1rem 1rem 1rem">
-        <Link>
+        <Link to="/">
           <Flex>
             <BsJoystick size={16} style={{ color: "#A0B1C5" }} />
             <Text variant="subLink" ml="1rem">
@@ -64,7 +64,7 @@ const MenuHoverBox = () => {
             </Text>
           </Flex>
         </Link>
-        <Link>
+        <Link to="/">
           <Flex>
             <FaUserAstronaut size={16} style={{ color: "#A0B1C5" }} />
             <Text variant="subLink" ml="1rem">
@@ -72,7 +72,7 @@ const MenuHoverBox = () => {
             </Text>
           </Flex>
         </Link>
-        <Link>
+        <Link to="/">
           <Flex>
             <FaStar size={16} style={{ color: "#A0B1C5" }} />
             <Text variant="subLink" ml="1rem">
@@ -80,7 +80,7 @@ const MenuHoverBox = () => {
             </Text>
           </Flex>
         </Link>
-        <Link>
+        <Link to="/">
           <Flex>
             <FaRegThumbsUp size={16} style={{ color: "#A0B1C5" }} />
             <Text variant="subLink" ml="1rem">
