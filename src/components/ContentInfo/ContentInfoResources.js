@@ -47,7 +47,7 @@ export const ContentInfoResources = ({ related, trailer }) => {
       <Flex gridGap="2rem" direction={{ base: "column", lg: "row" }}>
         <Flex bgColor={isDark ? "blue.400" : "white"} w="100%">
           <Box
-            h={{ base: "10rem", md: "100%", lg: "10rem" }}
+            h={{ base: "10rem", md: "100%", lg: "12rem" }}
             w={{ base: "7rem", md: "auto", lg: "auto" }}
           >
             <Image src={data1?.image_url || ""} h="100%" w="100%" />
@@ -75,7 +75,7 @@ export const ContentInfoResources = ({ related, trailer }) => {
         <Flex bgColor={isDark ? "blue.400" : "white"} w="100%">
           <Image
             src={data2?.image_url || ""}
-            h={{ base: "10rem", md: "100%", lg: "10rem" }}
+            h={{ base: "10rem", md: "100%", lg: "12rem" }}
             w={{ base: "7rem", md: "auto", lg: "auto" }}
           />
           <Box ml="2rem">
@@ -102,9 +102,11 @@ export const ContentInfoResources = ({ related, trailer }) => {
         </Flex>
       </Flex>
 
-      <Text color="gray.200" mt="3rem" fontSize="1.5rem">
-        Trailer
-      </Text>
+      {trailer && (
+        <Text color="gray.200" mt="3rem" fontSize="1.5rem">
+          Trailer
+        </Text>
+      )}
       <Box h={{ base: "20rem", md: "25rem", lg: "35rem" }}>
         <ReactPlayer
           controls

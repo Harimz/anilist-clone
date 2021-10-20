@@ -13,6 +13,7 @@ export const MangaInfo = () => {
   const { data, isFetching } = useGetMangaByIdQuery(params.contentId);
 
   if (isFetching) return "Loading...";
+  console.log(data);
 
   const {
     image_url,
@@ -20,57 +21,46 @@ export const MangaInfo = () => {
     synopsis,
     rank,
     popularity,
-    airing,
     type,
-    episodes,
-    duration,
-    aired,
+    volumes,
+    chapters,
+    published,
     score,
     members,
-    studios,
-    producers,
-    source,
     genres,
     status,
     title_english,
     title_japanese,
-    premiered,
     related,
     trailer_url,
+    serializations,
   } = data;
 
   const relations = related;
   console.log(relations);
+  console.log(trailer_url);
 
   return (
     <Flex direction="column">
       <AnimeInfoHeader img={image_url} title={title} synopsis={synopsis} />
       <Container maxW="container.xl" mt="2rem">
-        <Flex>
+        <Flex direction={{ base: "column", lg: "row" }}>
           <MangaInfoSidebar
-            airing={airing ? airing : status}
             format={type}
-            episodes={episodes}
-            epDuration={duration}
+            chapters={chapters}
             status={status}
-            startDate={aired}
+            startDate={published}
             rank={rank}
             popularity={members}
             score={score}
-            studios={studios}
-            producers={producers}
             genres={genres}
-            source={source}
             highestRated={popularity}
             title_english={title_english}
             title_japanese={title_japanese}
-            season={premiered}
+            volumes={volumes}
+            serializations={serializations}
           />
-          <ContentInfoResources
-            related={relations}
-            trailer={trailer_url}
-            type={contentType}
-          />
+          <ContentInfoResources related={relations} />
         </Flex>
       </Container>
     </Flex>

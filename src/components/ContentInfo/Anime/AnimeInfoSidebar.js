@@ -32,7 +32,7 @@ export const AnimeInfoSidebar = ({
   const genreList = genres.map((item) => item.name).join();
 
   return (
-    <Flex direction="column">
+    <Flex direction="column" width={{ base: "auto", lg: "20rem" }}>
       <Flex
         bgColor={isDark ? "blue.400" : "white"}
         align="center"
