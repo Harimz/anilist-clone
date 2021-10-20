@@ -43,7 +43,7 @@ export const AnimeInfo = () => {
     <Flex direction="column">
       <AnimeInfoHeader img={image_url} title={title} synopsis={synopsis} />
       <Container maxW="container.xl" mt="2rem">
-        <Flex>
+        <Flex direction={{ base: "column", lg: "row" }}>
           <AnimeInfoSidebar
             airing={airing ? airing : status}
             format={type}
