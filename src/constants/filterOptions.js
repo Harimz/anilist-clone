@@ -1,28 +1,57 @@
 export const genres = [
-  "action",
-  "adventure",
-  "comedy",
-  "drama",
-  "ecchi",
-  "fantasy",
-  "horror",
-  "mahou Shoujo",
-  "mecha",
+  "Action",
+  "Adventuer",
+  "Cars",
+  "Comedy",
+  "Avante Garde",
+  "Demons",
+  "Mystery",
+  "Drama",
+  "Ecchi",
+  "Fantasy",
+  "Game",
+  "Hentai",
+  "Historical",
+  "Horror",
+  "Kids",
+  "Martial Arts",
+  "Mecha",
+  "Music",
+  "Parody",
+  "Samurai",
+  "Romance",
+  "School",
+  "Sci Fi",
+  "Shoujo",
+  "Girls Love",
+  "Shounen",
+  "Boys Love",
+  "Space",
+  "Sports",
+  "Super Power",
+  "Vampire",
+  "Harem",
+  "Slice Of Life",
+  "Supernatural",
+  "Military",
+  "Police",
+  "Psychological",
+  "Suspense",
+  "Seinen",
+  "Josei",
 ];
 
-export const years = [
-  2022, 2021, 2020, 2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010,
-  2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999, 1998,
+export const animeFormats = ["tv", "ova", "movie", "special", "ona", "music"];
+
+export const mangaFormats = [
+  "manga",
+  "novel",
+  "oneshot",
+  "doujin",
+  "manhwa",
+  "manhua",
 ];
 
-export const seasons = ["winter", "spring", "summer", "fall"];
+export const publishingStatus = ["airing", "completed", "upcoming"];
 
-export const formats = [
-  "tv show",
-  "movie",
-  "tv short",
-  "special",
-  "ova",
-  "ona",
-  "music",
-];
+export const sort = ["ascending", "descending"];

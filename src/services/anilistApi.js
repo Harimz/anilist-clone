@@ -2,6 +2,15 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseUrl = "https://api.jikan.moe";
 
+const createSearchUrl = (content, search, genre, type, status, sort) => {
+  const searchInput = search ? search : "";
+  const typeInput = type ? `&type=${type}` : "";
+  const statusInput = status ? `&status=${status}` : "";
+  const sortInput = sort ? `&score=${sort}` : "";
+
+  return `/v3/search/${content}?q=${searchInput}&genre=${genre}${typeInput}${statusInput}${sortInput}&page=1`;
+};
+
 export const anilistApi = createApi({
   reducerPath: "anilistApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
@@ -15,6 +24,9 @@ export const anilistApi = createApi({
     getTopManga: builder.query({
       query: () => "/v3/top/manga",
     }),
+    getTopContent: builder.query({
+      query: (type) => `/v3/top/${type}`,
+    }),
     getAnimeById: builder.query({
       query: (id) => `/v3/anime/${id}`,
     }),
@@ -27,6 +39,12 @@ export const anilistApi = createApi({
         return `/v3/${type}/${id}`;
       },
     }),
+    getSearchResults: builder.query({
+      query: (arg) => {
+        const { content, search, type, genre, status, sort } = arg;
+        return createSearchUrl(content, search, genre, type, status, sort);
+      },
+    }),
   }),
 });
 
@@ -37,4 +55,5 @@ export const {
   useGetTopMangaQuery,
   useGetMangaByIdQuery,
   useGetContentInfoQuery,
+  useGetSearchResultsQuery,
 } = anilistApi;

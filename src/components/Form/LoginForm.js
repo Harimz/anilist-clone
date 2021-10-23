@@ -29,12 +29,12 @@ export const LoginForm = () => {
   const noErrors = Object.keys(errors).length === 0;
 
   const submitHandler = (data) => {
-    const { email, password, username } = data;
+    const { email, password } = data;
 
     return firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
-      .then((result) => history.push("/anime"));
+      .then(() => history.push("/search/anime"));
   };
 
   // Fix error alert message, set to close on click

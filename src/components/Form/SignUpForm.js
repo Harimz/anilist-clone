@@ -41,7 +41,7 @@ export const SignUpForm = () => {
             photoURL: Math.floor(Math.random() * 15) + 1,
           })
           .then(() => {
-            history.push("/anime");
+            history.push("/search/anime");
           })
       );
   };
