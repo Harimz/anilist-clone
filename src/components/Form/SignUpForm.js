@@ -13,12 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { formOptions } from "../../helpers";
-import { useHistory } from "react-router-dom";
 import { FirebaseContext } from "../../context/firebase";
 
 export const SignUpForm = () => {
   const { firebase } = useContext(FirebaseContext);
-  const history = useHistory();
   const {
     handleSubmit,
     register,
@@ -30,20 +28,6 @@ export const SignUpForm = () => {
 
   const submitHandler = (data) => {
     const { email, password, username } = data;
-
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then((result) =>
-        result.user
-          .updateProfile({
-            displayName: username,
-            photoURL: Math.floor(Math.random() * 15) + 1,
-          })
-          .then(() => {
-            history.push("/search/anime");
-          })
-      );
   };
 
   // Fix error alert message, set to close on click

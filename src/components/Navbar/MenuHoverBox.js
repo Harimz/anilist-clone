@@ -9,26 +9,35 @@ import {
   FaRegThumbsUp,
 } from "react-icons/fa";
 import { BsJoystick } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { setOrder, setSort } from "../../app/filterSlice";
 
 const MenuHoverBox = () => {
+  const dispatch = useDispatch();
+
+  const allAnimeHandler = () => {
+    dispatch(setOrder({ order: "members" }));
+    dispatch(setSort("desc"));
+  };
+
   return (
     <Flex direction="column">
       <Flex align="center" p="1rem 1rem 0 1rem">
         <FaPlay size={20} style={{ color: "#A0B1C5" }} />
         <Flex direction="column" ml="1rem">
-          <Link to="/">
+          <Link onClick={allAnimeHandler} to="/search/anime">
             <Text variant="link" fontWeight="bold" mb="0.5rem">
               Anime
             </Text>
           </Link>
           <SimpleGrid gridAutoFlow="column" spacing={2}>
-            <Link to="/">
+            <Link to="/search/anime">
               <Text variant="subLink">Top 100</Text>
             </Link>
-            <Link to="/">
+            <Link to="/search/anime">
               <Text variant="subLink">Trending</Text>
             </Link>
-            <Link to="/">
+            <Link to="/search/anime">
               <Text variant="subLink">Top Movies</Text>
             </Link>
           </SimpleGrid>

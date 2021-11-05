@@ -25,13 +25,15 @@ import { FirebaseContext } from "../../context/firebase";
 export const Navbar = () => {
   const { firebase } = useContext(FirebaseContext);
   const { colorMode } = useColorMode();
+
   const isDark = colorMode === "dark";
   const user = firebase.auth().currentUser || {};
   const loggedIn = Object.keys(user).length !== 0;
 
   const { scrollDirection } = useScrollDirection();
-
   const scrollingUp = scrollDirection === "UP";
+
+
 
   return (
     <Box
@@ -51,7 +53,7 @@ export const Navbar = () => {
         alignItems="center"
         p="0.5rem"
       >
-        <Link to="/">
+        <Link to={loggedIn ? "/search/anime" : "/"}>
           <Image h="4rem" src={logo} alt="logo" />
         </Link>
         <Spacer />

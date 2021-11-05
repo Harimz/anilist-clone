@@ -13,12 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { loginOptions } from "../../helpers";
-import { useHistory } from "react-router-dom";
 import { FirebaseContext } from "../../context/firebase";
 
 export const LoginForm = () => {
   const { firebase } = useContext(FirebaseContext);
-  const history = useHistory();
   const {
     handleSubmit,
     register,
@@ -28,14 +26,7 @@ export const LoginForm = () => {
   const isDark = colorMode === "dark";
   const noErrors = Object.keys(errors).length === 0;
 
-  const submitHandler = (data) => {
-    const { email, password } = data;
-
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .then(() => history.push("/search/anime"));
-  };
+  const submitHandler = (data) => {};
 
   // Fix error alert message, set to close on click
 

@@ -1,11 +1,11 @@
 import React from "react";
 import { Container, Flex, Grid, Text, useMediaQuery } from "@chakra-ui/react";
-import { useGetTopAnimeQuery } from "../../services/anilistApi";
+import { useGetTopContentQuery } from "../../services/anilistApi";
 import { TopAnimeCard } from "./TopAnimeCard";
 import { TopAnimeMobileCard } from "./TopAnimeMobileCard";
 
 export const TopAnime = () => {
-  const { data, isFetching } = useGetTopAnimeQuery("anime");
+  const { data, isFetching } = useGetTopContentQuery("anime");
   const [isMobile] = useMediaQuery("(max-width: 976px)");
 
   if (isFetching) return "Loading...";

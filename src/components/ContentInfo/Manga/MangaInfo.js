@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetMangaByIdQuery } from "../../../services/anilistApi";
+import { useGetContentInfoQuery } from "../../../services/anilistApi";
 import { useParams, useLocation } from "react-router-dom";
 import { Container, Flex } from "@chakra-ui/react";
 import { AnimeInfoHeader } from "../ContentInfoHeader";
@@ -8,9 +8,10 @@ import { ContentInfoResources } from "../ContentInfoResources";
 
 export const MangaInfo = () => {
   const params = useParams();
-  const location = useLocation();
-  const contentType = location.pathname.split("/")[1];
-  const { data, isFetching } = useGetMangaByIdQuery(params.contentId);
+  const { data, isFetching } = useGetContentInfoQuery({
+    type: "manga",
+    id: params.contentId,
+  });
 
   if (isFetching) return "Loading...";
   console.log(data);

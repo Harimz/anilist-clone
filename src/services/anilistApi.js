@@ -2,13 +2,22 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseUrl = "https://api.jikan.moe";
 
-const createSearchUrl = (content, search, genre, type, status, sort) => {
+const createSearchUrl = (
+  content,
+  search,
+  genre,
+  type,
+  status,
+  sort,
+  orderBy
+) => {
   const searchInput = search ? search : "";
   const typeInput = type ? `&type=${type}` : "";
   const statusInput = status ? `&status=${status}` : "";
   const sortInput = sort ? `&score=${sort}` : "";
+  const orderByInput = orderBy ? `&order_by=${orderBy}` : "";
 
-  return `/v3/search/${content}?q=${searchInput}&genre=${genre}${typeInput}${statusInput}${sortInput}&page=1`;
+  return `/v3/search/${content}?q=${searchInput}&genre=${genre}${typeInput}${statusInput}${sortInput}&page=1,2`;
 };
 
 export const anilistApi = createApi({
@@ -18,20 +27,8 @@ export const anilistApi = createApi({
     getUpcomingAnime: builder.query({
       query: () => `/v3/top/anime/1/upcoming`,
     }),
-    getTopAnime: builder.query({
-      query: () => `/v3/top/anime`,
-    }),
-    getTopManga: builder.query({
-      query: () => "/v3/top/manga",
-    }),
     getTopContent: builder.query({
       query: (type) => `/v3/top/${type}`,
-    }),
-    getAnimeById: builder.query({
-      query: (id) => `/v3/anime/${id}`,
-    }),
-    getMangaById: builder.query({
-      query: (id) => `/v3/manga/${id}`,
     }),
     getContentInfo: builder.query({
       query: (arg) => {
@@ -41,8 +38,16 @@ export const anilistApi = createApi({
     }),
     getSearchResults: builder.query({
       query: (arg) => {
-        const { content, search, type, genre, status, sort } = arg;
-        return createSearchUrl(content, search, genre, type, status, sort);
+        const { content, search, type, genre, status, sort, orderBy } = arg;
+        return createSearchUrl(
+          content,
+          search,
+          genre,
+          type,
+          status,
+          sort,
+          orderBy
+        );
       },
     }),
   }),
@@ -50,10 +55,7 @@ export const anilistApi = createApi({
 
 export const {
   useGetUpcomingAnimeQuery,
-  useGetTopAnimeQuery,
-  useGetAnimeByIdQuery,
-  useGetTopMangaQuery,
-  useGetMangaByIdQuery,
   useGetContentInfoQuery,
   useGetSearchResultsQuery,
+  useGetTopContentQuery,
 } = anilistApi;

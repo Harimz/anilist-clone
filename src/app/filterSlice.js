@@ -8,6 +8,7 @@ const filterSlice = createSlice({
     format: "",
     publishingStatus: "",
     sort: "",
+    orderBy: "",
   },
   reducers: {
     setSearchValue(state, action) {
@@ -42,6 +43,9 @@ const filterSlice = createSlice({
     setSort(state, action) {
       state.sort = action.payload.sort;
     },
+    setOrder(state, action) {
+      state.orderBy = action.payload.order;
+    },
   },
 });
 
@@ -52,5 +56,6 @@ export const {
   setFormat,
   setPublishingStatus,
   setSort,
+  setOrder,
 } = filterSlice.actions;
 export default filterSlice.reducer;

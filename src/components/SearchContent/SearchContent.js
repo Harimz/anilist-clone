@@ -1,13 +1,12 @@
 import React from "react";
 import { useLocation, useParams } from "react-router-dom";
 import queryString from "query-string";
-import { BrowseAnime } from "../Browse/BrowseAnime";
-import { BrowseManga } from "../Browse/BrowseManga";
 import { TopAnime } from "../TopAnime/TopAnime";
 import { useGetSearchResultsQuery } from "../../services/anilistApi";
 import { BrowseContent } from "../BrowseContent/BrowseContent";
 import { useSelector } from "react-redux";
 import { Container, Heading, Spinner } from "@chakra-ui/react";
+import { BrowseTopContent } from "../Browse/BrowseTopContent";
 
 export const SearchContent = () => {
   const { content } = useParams();
@@ -24,13 +23,11 @@ export const SearchContent = () => {
     sort: sort,
   });
 
-  console.log(searchValue.length === 0 && genres.length === 0);
-
   if (genres.length === 0 && searchValue.length === 0)
     return (
       <>
-        <BrowseAnime amount={10} title="Upcoming Anime" />
-        <BrowseManga amount={10} title="Top Manga" />
+        <BrowseTopContent type="anime" title="UPCOMING ANIME" />
+        <BrowseTopContent type="manga" title="TOP MANGA" />
         <TopAnime />
       </>
     );
