@@ -1,14 +1,14 @@
 import React from "react";
-import { useGetContentInfoQuery } from "../../../services/anilistApi";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Container, Flex } from "@chakra-ui/react";
 import { AnimeInfoHeader } from "../ContentInfoHeader";
 import { MangaInfoSidebar } from "./MangaInfoSidebar";
 import { ContentInfoResources } from "../ContentInfoResources";
+import { useContentInfoQuery } from "../../../app/services/contentApi";
 
 export const MangaInfo = () => {
   const params = useParams();
-  const { data, isFetching } = useGetContentInfoQuery({
+  const { data, isFetching } = useContentInfoQuery({
     type: "manga",
     id: params.contentId,
   });

@@ -8,6 +8,7 @@ import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { MangaDetails } from "./pages/MangaDetails";
 import { Search } from "./pages/Search";
+import { BrowseSearch } from "./components/Browse/BrowseSearch";
 
 export const App = () => {
   return (

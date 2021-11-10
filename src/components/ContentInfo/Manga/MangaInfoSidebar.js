@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
+import { Flex, Text, useColorMode } from "@chakra-ui/react";
 import { FaStar } from "react-icons/fa";
 import { SidebarItem } from "../SidebarItem";
 import moment from "moment";
