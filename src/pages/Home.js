@@ -12,8 +12,12 @@ export const Home = () => {
       <Navigation />
       <Header />
       <Filter />
-      <BrowseTopContent type="anime" title="UPCOMING ANIME" />
-      <BrowseTopContent type="manga" title="TOP MANGA" />
+      <BrowseTopContent
+        type="upcoming"
+        content="anime"
+        title="UPCOMING ANIME"
+      />
+      <BrowseTopContent type="top" content="manga" title="TOP MANGA" />
       <TopAnime />
       <Footer />
     </>

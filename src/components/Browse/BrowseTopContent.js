@@ -3,8 +3,8 @@ import { Container, Grid, Text } from "@chakra-ui/layout";
 import { ContentCard } from "./ContentCard";
 import { useTopContentQuery } from "../../app/services/contentApi";
 
-export const BrowseTopContent = ({ type, title }) => {
-  const { data, isFetching } = useTopContentQuery(type);
+export const BrowseTopContent = ({ type, content, title }) => {
+  const { data, isFetching } = useTopContentQuery({ type, content });
 
   if (isFetching) return "Loading...";
 

@@ -9,9 +9,9 @@ import {
   useColorMode,
   Spinner,
 } from "@chakra-ui/react";
-import { useGetContentInfoQuery } from "../../services/anilistApi";
 import { BsDot } from "react-icons/bs";
 import ReactPlayer from "react-player";
+import { useContentInfoQuery } from "../../app/services/contentApi";
 
 export const ContentInfoResources = ({ related, trailer }) => {
   const values = Object.values(related).flat();
@@ -24,11 +24,11 @@ export const ContentInfoResources = ({ related, trailer }) => {
     type: values[1]?.type || "anime",
     id: values[1]?.mal_id || 40456,
   };
-  const { data: data1, isFetching: isFetching1 } = useGetContentInfoQuery({
+  const { data: data1, isFetching: isFetching1 } = useContentInfoQuery({
     type: first.type,
     id: first.id,
   });
-  const { data: data2, isFetching: isFetching2 } = useGetContentInfoQuery({
+  const { data: data2, isFetching: isFetching2 } = useContentInfoQuery({
     type: second.type,
     id: second.id,
   });
@@ -59,16 +59,16 @@ export const ContentInfoResources = ({ related, trailer }) => {
               fontWeight="semibold"
               fontSize={{ base: "0.75rem", md: "1rem", lg: "1rem" }}
             >
-              <Link to={`/${first.type}/${data1.mal_id}`}>{data1.title}</Link>
+              <Link to={`/${first?.type}/${data1.mal_id}`}>{data1?.title}</Link>
             </Text>
             <HStack
               color="gray.400"
               mt="3rem"
               fontSize={{ base: "0.75rem", md: "1rem", lg: "1.25rem" }}
             >
-              <Text>{data1.type}</Text>
+              <Text>{data1?.type}</Text>
               <BsDot />
-              <Text>{data1.status}</Text>
+              <Text>{data1?.status}</Text>
             </HStack>
           </Box>
         </Flex>
@@ -86,7 +86,7 @@ export const ContentInfoResources = ({ related, trailer }) => {
               fontSize={{ base: "0.75rem", md: "1rem", lg: "1rem" }}
             >
               <Link to={`/${second?.type}/${data2?.mal_id || ""}`}>
-                {data2.title}
+                {data2?.title}
               </Link>
             </Text>
             <HStack
@@ -94,9 +94,9 @@ export const ContentInfoResources = ({ related, trailer }) => {
               mt="3rem"
               fontSize={{ base: "0.75rem", md: "1rem", lg: "1.25rem" }}
             >
-              <Text>{data2.type}</Text>
+              <Text>{data2?.type}</Text>
               <BsDot />
-              <Text>{data2.status}</Text>
+              <Text>{data2?.status}</Text>
             </HStack>
           </Box>
         </Flex>

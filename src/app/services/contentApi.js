@@ -2,37 +2,37 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const baseUrl = "https://api.jikan.moe/v3";
 
-const searchURL = (q, type, status, genre, sort, content) => {
-  if (!q || !genre) {
-    return `/top/${content}`;
-  }
-
-  return `/search/${content}`;
-};
-
 export const contentApi = createApi({
   reducerPath: "contentApi",
   baseQuery: fetchBaseQuery({ baseUrl }),
   endpoints: (builder) => ({
     search: builder.query({
       query: (arg) => {
-        const { q, genres, content, url } = arg;
+        const { q, genres, content, type, status, sort } = arg;
 
         if (!q && !genres) {
           return `/top/${content}`;
         }
 
-        if (q || genres) {
-          return url;
-        }
+        const searchInput = q ? q : "";
+        const genre = genres ? `&genre=${genres}` : "";
+        const format = type ? `&type=${type}` : "";
+        const statusInput = status ? `&status=${status}` : "";
+        const sortBy = sort ? `&sort=${sort}` : "";
+
+        return `/search/${content}?q=${searchInput}${genre}${format}${statusInput}${sortBy}`;
       },
     }),
     topContent: builder.query({
-      query: (type) => {
-        if (type === "anime") {
+      query: (arg) => {
+        const { content, type } = arg;
+        if (type === "upcoming") {
           return "/top/anime/1/upcoming";
         }
-        return "/top/manga";
+
+        if (type === "top") {
+          return `/top/${content}`;
+        }
       },
     }),
     contentInfo: builder.query({

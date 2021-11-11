@@ -38,8 +38,6 @@ export const MangaInfo = () => {
   } = data;
 
   const relations = related;
-  console.log(relations);
-  console.log(trailer_url);
 
   return (
     <Flex direction="column">

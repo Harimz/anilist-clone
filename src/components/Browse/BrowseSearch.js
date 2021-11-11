@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container, Grid, Spinner } from "@chakra-ui/react";
 import { useSearchParams, useParams, useLocation } from "react-router-dom";
 import { useSearchQuery } from "../../app/services/contentApi";
@@ -6,29 +6,21 @@ import { ContentCard } from "./ContentCard";
 
 export const BrowseSearch = () => {
   const location = useLocation();
+  const { content } = useParams();
   const [searchParams] = useSearchParams({});
-  const [filters, setFilters] = useState({});
   const { data, isFetching } = useSearchQuery({
-    q: filters.q,
-    genres: filters.genres,
-    content: filters.content,
+    q: searchParams.get("q") || "",
+    genres: searchParams.get("genres") || "",
+    type: searchParams.get("type") || "",
+    status: searchParams.get("status") || "",
+    sort: searchParams.get("sort") || "",
+    content: content,
     url: `${location.pathname}${location.search}`,
   });
-  const { content } = useParams();
-
-  useEffect(() => {
-    const q = searchParams.get("q") || "";
-    const genres = searchParams.get("genres") || "";
-    const status = searchParams.get("status") || "";
-    const type = searchParams.get("type") || "";
-    const sort = searchParams.get("sort") || "";
-
-    setFilters({ q, genres, content });
-  }, [searchParams, content]);
 
   const results = data?.top || data?.results;
 
-  if (isFetching) {
+  if (isFetching || !results) {
     return (
       <Container maxW="container.xl" mt="3rem" centerContent>
         <Spinner color="white" />
