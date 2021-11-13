@@ -9,10 +9,10 @@ import {
   FaRegThumbsUp,
 } from "react-icons/fa";
 import { BsJoystick } from "react-icons/bs";
-import { useDispatch } from "react-redux";
+import { useFilter } from "../../hooks";
 
 const MenuHoverBox = () => {
-  const dispatch = useDispatch();
+  const { topContent } = useFilter();
 
   return (
     <Flex direction="column">
@@ -25,9 +25,15 @@ const MenuHoverBox = () => {
             </Text>
           </Link>
           <SimpleGrid gridAutoFlow="column" spacing={2}>
-            <Link to="/search/anime">
-              <Text variant="subLink">Top 100</Text>
-            </Link>
+            <Text
+              variant="subLink"
+              cursor="pointer"
+              onClick={() => {
+                topContent("anime");
+              }}
+            >
+              Top 100
+            </Text>
             <Link to="/search/anime">
               <Text variant="subLink">Trending</Text>
             </Link>

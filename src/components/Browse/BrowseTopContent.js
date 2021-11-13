@@ -3,7 +3,7 @@ import { Container, Grid, Text } from "@chakra-ui/layout";
 import { ContentCard } from "./ContentCard";
 import { useTopContentQuery } from "../../app/services/contentApi";
 
-export const BrowseTopContent = ({ type, contentType, title }) => {
+export const BrowseTopContent = ({ type, contentType, title, amount = 10 }) => {
   const { data, isFetching } = useTopContentQuery({ type, contentType });
 
   if (isFetching) return "Loading...";
@@ -16,7 +16,7 @@ export const BrowseTopContent = ({ type, contentType, title }) => {
         </Text>
 
         <Grid templateColumns="repeat(auto-fill, minmax(196px, 1fr))" gap={6}>
-          {data.top.slice(0, 10).map((content) => (
+          {data.top.slice(0, amount).map((content) => (
             <ContentCard
               imgUrl={content.image_url}
               title={content.title}

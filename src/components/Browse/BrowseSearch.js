@@ -1,5 +1,5 @@
 import React from "react";
-import { Container, Grid, Spinner } from "@chakra-ui/react";
+import { Container, Grid, Heading, Spinner } from "@chakra-ui/react";
 import { useSearchParams, useParams, useLocation } from "react-router-dom";
 import { useSearchQuery } from "../../app/services/contentApi";
 import { ContentCard } from "./ContentCard";
@@ -8,12 +8,13 @@ export const BrowseSearch = () => {
   const location = useLocation();
   const { content } = useParams();
   const [searchParams] = useSearchParams({});
-  const { data, isFetching } = useSearchQuery({
+  const { data, error, isFetching } = useSearchQuery({
     q: searchParams.get("q") || "",
     genres: searchParams.get("genres") || "",
     type: searchParams.get("type") || "",
     status: searchParams.get("status") || "",
     sort: searchParams.get("sort") || "",
+    order_by: searchParams.get("order_by" || ""),
     content: content,
     url: `${location.pathname}${location.search}`,
   });
@@ -24,6 +25,14 @@ export const BrowseSearch = () => {
     return (
       <Container maxW="container.xl" mt="3rem" centerContent>
         <Spinner color="white" />
+      </Container>
+    );
+  }
+
+  if (error) {
+    return (
+      <Container maxW="container.xl" mt="3rem" centerContent>
+        <Heading>Something went wrong :(</Heading>
       </Container>
     );
   }

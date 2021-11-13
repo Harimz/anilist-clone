@@ -3,6 +3,7 @@ import { Container, Flex, Grid, Text, useMediaQuery } from "@chakra-ui/react";
 import { TopAnimeCard } from "./TopAnimeCard";
 import { TopAnimeMobileCard } from "./TopAnimeMobileCard";
 import { useTopContentQuery } from "../../app/services/contentApi";
+import { useFilter } from "../../hooks";
 
 export const TopAnime = () => {
   const { data, isFetching } = useTopContentQuery({
@@ -10,6 +11,7 @@ export const TopAnime = () => {
     contentType: "anime",
   });
   const [isMobile] = useMediaQuery("(max-width: 976px)");
+  const { topContent } = useFilter();
 
   if (isFetching) return "Loading...";
   const animeList = data.top.slice(0, 10);
@@ -20,7 +22,15 @@ export const TopAnime = () => {
         <Text fontWeight="bold" fontSize="1.25rem">
           TOP 100 ANIME
         </Text>
-        <Text variant="link">View All</Text>
+        <Text
+          variant="link"
+          cursor="pointer"
+          onClick={() => {
+            topContent("anime");
+          }}
+        >
+          View All
+        </Text>
       </Flex>
       <Grid
         gridTemplateColumns={{

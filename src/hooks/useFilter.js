@@ -1,6 +1,11 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  resetFilters,
+  setFilters as setFiltersAction,
+} from "../app/filterSlice";
 
 const useFilter = () => {
   const [filters, setFilters] = useState({});
@@ -8,8 +13,9 @@ const useFilter = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const { genres, search, type, status, sort } = useSelector(
+  const { genres, search, type, status, sort, order_by } = useSelector(
     (state) => state.filter
   );
 
@@ -19,6 +25,7 @@ const useFilter = () => {
       ...(type && { type: type }),
       ...(status && { status: status }),
       ...(sort && { sort: sort }),
+      ...(order_by && { order_by: order_by }),
     };
 
     const timeOutId = setTimeout(() => setDelayedSearch(search), 1500);
@@ -46,7 +53,17 @@ const useFilter = () => {
     }
   };
 
-  return { filterRedirect };
+  const resetFilter = () => {
+    dispatch(resetFilters);
+  };
+
+  const topContent = (contentType) => {
+    resetFilter();
+    navigate(`/search/${contentType}`);
+    dispatch(setFiltersAction({ type: "order_by", value: "score" }));
+  };
+
+  return { filterRedirect, topContent };
 };
 
 export default useFilter;

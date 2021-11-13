@@ -8,10 +8,10 @@ export const contentApi = createApi({
   endpoints: (builder) => ({
     search: builder.query({
       query: (arg) => {
-        const { q, genres, content, type, status, sort } = arg;
+        const { q, genres, content, type, status, sort, order_by } = arg;
 
-        if (!q && !genres) {
-          return `/top/${content}`;
+        if (!q && !genres && !order_by) {
+          return `/search/anime?q=&order_by=members&sort=desc&page=1`;
         }
 
         const searchInput = q ? q : "";
@@ -19,8 +19,9 @@ export const contentApi = createApi({
         const format = type ? `&type=${type}` : "";
         const statusInput = status ? `&status=${status}` : "";
         const sortBy = sort ? `&sort=${sort}` : "";
+        const orderBy = order_by ? `&order_by=${order_by}` : "";
 
-        return `/search/${content}?q=${searchInput}${genre}${format}${statusInput}${sortBy}`;
+        return `/search/${content}?q=${searchInput}${genre}${format}${statusInput}${orderBy}${sortBy}`;
       },
     }),
     topContent: builder.query({

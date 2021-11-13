@@ -103,9 +103,10 @@ export const Filter = () => {
               dispatch(setFilters({ type: "status", value: target.value }));
             }}
           >
-            {publishingStatus.map((status) => (
-              <option value={status}>{upperCase(status)}</option>
-            ))}
+            {location.pathname !== "/" &&
+              publishingStatus.map((status) => (
+                <option value={status}>{upperCase(status)}</option>
+              ))}
           </Select>
         </Box>
         <Box>
@@ -116,9 +117,10 @@ export const Filter = () => {
               dispatch(setFilters({ type: "sort", value: target.value }));
             }}
           >
-            {sort.map((type) => (
-              <option value={type}>{upperCase(type)}</option>
-            ))}
+            {location.pathname !== "/" &&
+              sort.map((type) => (
+                <option value={type}>{upperCase(type)}</option>
+              ))}
           </Select>
         </Box>
       </Grid>
