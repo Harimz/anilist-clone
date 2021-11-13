@@ -13,10 +13,8 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { formOptions } from "../../helpers";
-import { FirebaseContext } from "../../context/firebase";
 
 export const SignUpForm = () => {
-  const { firebase } = useContext(FirebaseContext);
   const {
     handleSubmit,
     register,

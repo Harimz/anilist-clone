@@ -1,2 +1,2 @@
 export { default as useScrollDirection } from "./useScrollDirection";
-export { default as useAuthListener } from "./useAuthListener";
+export { default as useFilter } from "./useFilter";

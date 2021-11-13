@@ -3,8 +3,8 @@ import { Container, Grid, Text } from "@chakra-ui/layout";
 import { ContentCard } from "./ContentCard";
 import { useTopContentQuery } from "../../app/services/contentApi";
 
-export const BrowseTopContent = ({ type, content, title }) => {
-  const { data, isFetching } = useTopContentQuery({ type, content });
+export const BrowseTopContent = ({ type, contentType, title }) => {
+  const { data, isFetching } = useTopContentQuery({ type, contentType });
 
   if (isFetching) return "Loading...";
 
@@ -21,7 +21,7 @@ export const BrowseTopContent = ({ type, content, title }) => {
               imgUrl={content.image_url}
               title={content.title}
               id={content.mal_id}
-              type={type}
+              type={contentType}
               key={content.mal_id}
             />
           ))}

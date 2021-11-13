@@ -25,13 +25,13 @@ export const contentApi = createApi({
     }),
     topContent: builder.query({
       query: (arg) => {
-        const { content, type } = arg;
+        const { contentType, type } = arg;
         if (type === "upcoming") {
           return "/top/anime/1/upcoming";
         }
 
         if (type === "top") {
-          return `/top/${content}`;
+          return `/top/${contentType}`;
         }
       },
     }),

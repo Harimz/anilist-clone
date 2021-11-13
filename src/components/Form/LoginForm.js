@@ -13,10 +13,8 @@ import {
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { loginOptions } from "../../helpers";
-import { FirebaseContext } from "../../context/firebase";
 
 export const LoginForm = () => {
-  const { firebase } = useContext(FirebaseContext);
   const {
     handleSubmit,
     register,
@@ -70,7 +68,7 @@ export const LoginForm = () => {
         <form onSubmit={handleSubmit(submitHandler)}>
           <Flex direction="column" align="center">
             <Heading size="lg" color="gray.400" textAlign="center" mb="4rem">
-              Sign up to AniClone
+              Login
             </Heading>
             <Input
               bgColor={isDark ? "blue.700" : "gray.50"}

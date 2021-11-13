@@ -14,10 +14,10 @@ export const Home = () => {
       <Filter />
       <BrowseTopContent
         type="upcoming"
-        content="anime"
+        contentType="anime"
         title="UPCOMING ANIME"
       />
-      <BrowseTopContent type="top" content="manga" title="TOP MANGA" />
+      <BrowseTopContent type="top" contentType="manga" title="TOP MANGA" />
       <TopAnime />
       <Footer />
     </>

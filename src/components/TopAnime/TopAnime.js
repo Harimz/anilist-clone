@@ -7,7 +7,7 @@ import { useTopContentQuery } from "../../app/services/contentApi";
 export const TopAnime = () => {
   const { data, isFetching } = useTopContentQuery({
     type: "top",
-    content: "anime",
+    contentType: "anime",
   });
   const [isMobile] = useMediaQuery("(max-width: 976px)");
 

@@ -1,14 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { ScrollToTop } from "./helpers";
-import { Anime } from "./pages/anime";
 import { AnimeDetails } from "./pages/AnimeDetails";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { MangaDetails } from "./pages/MangaDetails";
 import { Search } from "./pages/Search";
-import { BrowseSearch } from "./components/Browse/BrowseSearch";
 
 export const App = () => {
   return (

@@ -20,20 +20,16 @@ import { User } from "../Profile/User";
 
 import logo from "../../assets/images/icon.svg";
 import MenuHoverBox from "./MenuHoverBox";
-import { FirebaseContext } from "../../context/firebase";
 
 export const Navbar = () => {
-  const { firebase } = useContext(FirebaseContext);
   const { colorMode } = useColorMode();
 
   const isDark = colorMode === "dark";
-  const user = firebase.auth().currentUser || {};
-  const loggedIn = Object.keys(user).length !== 0;
 
   const { scrollDirection } = useScrollDirection();
   const scrollingUp = scrollDirection === "UP";
 
-
+  const loggedIn = false;
 
   return (
     <Box

@@ -4,6 +4,10 @@ const filterSlice = createSlice({
   name: "filterSlice",
   initialState: {
     genres: [],
+    search: "",
+    type: "",
+    status: "",
+    sort: "",
   },
   reducers: {
     setGenres(state, action) {
@@ -25,9 +29,16 @@ const filterSlice = createSlice({
       if (existingGenre) {
         state.genres.splice(existingGenreIndex, 1);
       }
+
+      if (action.payload.type === "REMOVE_ALL") {
+        state.genres = [];
+      }
+    },
+    setFilters(state, action) {
+      state[action.payload.type] = action.payload.value;
     },
   },
 });
 
-export const { setGenres, removeGenres } = filterSlice.actions;
+export const { setGenres, removeGenres, setFilters } = filterSlice.actions;
 export default filterSlice.reducer;
