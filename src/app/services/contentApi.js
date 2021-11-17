@@ -42,8 +42,37 @@ export const contentApi = createApi({
         return `/${type}/${id}`;
       },
     }),
+    searchTop: builder.query({
+      query: (arg) => {
+        const { content, searchType } = arg;
+
+        if (searchType === "top-100") {
+          return `/top/${content}`;
+        }
+
+        if (searchType === "top-movies") {
+          return "/top/anime/1/movie";
+        }
+
+        if (searchType === "top-manhwa") {
+          return "/top/manga/1/manhwa";
+        }
+
+        if (searchType === "trending") {
+          return "/top/anime/1/airing";
+        }
+
+        if (searchType === "upcoming") {
+          return "/top/anime/1/upcoming";
+        }
+      },
+    }),
   }),
 });
 
-export const { useSearchQuery, useTopContentQuery, useContentInfoQuery } =
-  contentApi;
+export const {
+  useSearchQuery,
+  useTopContentQuery,
+  useContentInfoQuery,
+  useSearchTopQuery,
+} = contentApi;

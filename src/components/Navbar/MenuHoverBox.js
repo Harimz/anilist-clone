@@ -9,11 +9,8 @@ import {
   FaRegThumbsUp,
 } from "react-icons/fa";
 import { BsJoystick } from "react-icons/bs";
-import { useFilter } from "../../hooks";
 
 const MenuHoverBox = () => {
-  const { topContent } = useFilter();
-
   return (
     <Flex direction="column">
       <Flex align="center" p="1rem 1rem 0 1rem">
@@ -25,19 +22,15 @@ const MenuHoverBox = () => {
             </Text>
           </Link>
           <SimpleGrid gridAutoFlow="column" spacing={2}>
-            <Text
-              variant="subLink"
-              cursor="pointer"
-              onClick={() => {
-                topContent("anime");
-              }}
-            >
-              Top 100
-            </Text>
-            <Link to="/search/anime">
+            <Link to="/search/anime/top-100">
+              <Text variant="subLink" cursor="pointer">
+                Top 100
+              </Text>
+            </Link>
+            <Link to="/search/anime/trending">
               <Text variant="subLink">Trending</Text>
             </Link>
-            <Link to="/search/anime">
+            <Link to="/search/anime/top-movies">
               <Text variant="subLink">Top Movies</Text>
             </Link>
           </SimpleGrid>
@@ -52,13 +45,13 @@ const MenuHoverBox = () => {
             </Text>
           </Link>
           <SimpleGrid gridAutoFlow="column" spacing={2}>
-            <Link to="/">
+            <Link to="/search/manga/top-100">
               <Text variant="subLink">Top 100</Text>
             </Link>
-            <Link to="/">
+            <Link to="/search/manga/trending">
               <Text variant="subLink">Trending</Text>
             </Link>
-            <Link to="/">
+            <Link to="/search/manga/top-manhwa">
               <Text variant="subLink">Top Manhwa</Text>
             </Link>
           </SimpleGrid>

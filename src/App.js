@@ -7,6 +7,7 @@ import { Login } from "./pages/Login";
 import { SignUp } from "./pages/SignUp";
 import { MangaDetails } from "./pages/MangaDetails";
 import { Search } from "./pages/Search";
+import { SearchType } from "./pages/SearchType";
 
 export const App = () => {
   return (
@@ -19,6 +20,7 @@ export const App = () => {
         <Route path="/anime/:contentId" element={<AnimeDetails />} />
         <Route path="/manga/:contentId" element={<MangaDetails />} />
         <Route path="/search/:content" element={<Search />} />
+        <Route path="/search/:content/:searchType" element={<SearchType />} />
       </Routes>
     </Router>
   );

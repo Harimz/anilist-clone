@@ -14,7 +14,6 @@ export const MangaInfo = () => {
   });
 
   if (isFetching) return "Loading...";
-  console.log(data);
 
   const {
     image_url,

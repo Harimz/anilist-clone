@@ -59,6 +59,7 @@ const useFilter = () => {
 
   const topContent = (contentType) => {
     resetFilter();
+    console.log("yo");
     navigate(`/search/${contentType}`);
     dispatch(setFiltersAction({ type: "order_by", value: "score" }));
   };
