@@ -47,7 +47,7 @@ export const Filter = () => {
           <Input
             onChange={({ target }) => {
               dispatch(setFilters({ type: "search", value: target.value }));
-              filterRedirect();
+              filterRedirect(content || "");
             }}
             min={3}
             value={userSearch}
@@ -61,7 +61,7 @@ export const Filter = () => {
             onChange={({ target }) => {
               if (target.value !== "") {
                 dispatch(setGenres({ value: target.value }));
-                filterRedirect();
+                filterRedirect(content || "");
               } else {
                 dispatch(removeGenres({ type: "REMOVE_ALL" }));
               }

@@ -3,7 +3,7 @@ import { Container, Flex, Grid, Text, useMediaQuery } from "@chakra-ui/react";
 import { TopAnimeCard } from "./TopAnimeCard";
 import { TopAnimeMobileCard } from "./TopAnimeMobileCard";
 import { useTopContentQuery } from "../../app/services/contentApi";
-import { useFilter } from "../../hooks";
+import { useNavigate } from "react-router-dom";
 
 export const TopAnime = () => {
   const { data, isFetching } = useTopContentQuery({
@@ -11,7 +11,7 @@ export const TopAnime = () => {
     contentType: "anime",
   });
   const [isMobile] = useMediaQuery("(max-width: 976px)");
-  const { topContent } = useFilter();
+  const navigate = useNavigate();
 
   if (isFetching) return "Loading...";
   const animeList = data.top.slice(0, 10);
@@ -26,7 +26,7 @@ export const TopAnime = () => {
           variant="link"
           cursor="pointer"
           onClick={() => {
-            topContent("anime");
+            navigate("/search/anime/top-100");
           }}
         >
           View All

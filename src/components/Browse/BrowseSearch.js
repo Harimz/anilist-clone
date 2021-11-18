@@ -3,6 +3,8 @@ import { Container, Grid, Heading, Spinner } from "@chakra-ui/react";
 import { useSearchParams, useParams, useLocation } from "react-router-dom";
 import { useSearchQuery } from "../../app/services/contentApi";
 import { ContentCard } from "./ContentCard";
+import { BrowseContent } from "./BrowseContent";
+import { TopAnime } from "../TopAnime/TopAnime";
 
 export const BrowseSearch = () => {
   const location = useLocation();
@@ -14,12 +16,39 @@ export const BrowseSearch = () => {
     type: searchParams.get("type") || "",
     status: searchParams.get("status") || "",
     sort: searchParams.get("sort") || "",
-    order_by: searchParams.get("order_by" || ""),
+    order_by: searchParams.get("order_by") || "",
     content: content,
     url: `${location.pathname}${location.search}`,
   });
 
   const results = data?.top || data?.results;
+
+  if (
+    !searchParams.get("q") &&
+    !searchParams.get("genres") &&
+    !searchParams.get("order_by")
+  ) {
+    return (
+      <>
+        <BrowseContent
+          type="anime"
+          searchType="trending"
+          title="TRENDING NOW"
+        />
+        <BrowseContent
+          type="anime"
+          searchType="top-100"
+          title="ALLTIME POPULAR"
+        />
+        <BrowseContent
+          type="anime"
+          searchType="upcoming"
+          title="UPCOMING ANIME"
+        />
+        <TopAnime />
+      </>
+    );
+  }
 
   if (isFetching || !results) {
     return (

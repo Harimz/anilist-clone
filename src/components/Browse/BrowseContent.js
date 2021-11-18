@@ -1,19 +1,22 @@
 import React from "react";
 import {
   Container,
+  Flex,
   Grid,
   Heading,
   Spinner,
+  Text,
   useColorMode,
 } from "@chakra-ui/react";
 import { ContentCard } from "./ContentCard";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useSearchTopQuery } from "../../app/services/contentApi";
 
 export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const params = useParams();
+  const contentType = type || params.content;
 
   const { data, isFetching } = useSearchTopQuery({
     content: params.content || type,
@@ -30,13 +33,16 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
 
   return (
     <Container maxW="container.xl">
-      <Heading
-        mb="2rem"
-        color={isDark ? "gray.150" : "gray.450"}
-        fontSize="1.25rem"
-      >
-        {title}
-      </Heading>
+      <Flex justifyContent="space-between" mb="2rem">
+        <Heading color={isDark ? "gray.150" : "gray.450"} fontSize="1.25rem">
+          {title}
+        </Heading>
+        {amount === 5 && (
+          <Link to={`/search/anime/${searchType}`}>
+            <Text variant="link">View All</Text>
+          </Link>
+        )}
+      </Flex>
 
       <Grid
         templateColumns="repeat(auto-fill, minmax(196px, 1fr))"
@@ -45,10 +51,11 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
       >
         {data.top.slice(0, amount).map((item) => (
           <ContentCard
+            key={item.mal_id}
             imgUrl={item.image_url}
             title={item.title}
             id={item.mal_id}
-            type={type}
+            type={contentType}
           />
         ))}
       </Grid>
