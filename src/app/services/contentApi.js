@@ -10,9 +10,7 @@ export const contentApi = createApi({
       query: (arg) => {
         const { q, genres, content, type, status, sort, order_by } = arg;
 
-        // if (!q && !genres && !order_by) {
-        //   return `/search/anime?q=&order_by=members&sort=desc&page=1`;
-        // }
+        // if (!q) return;
 
         const searchInput = q ? q : "";
         const genre = genres ? `&genre=${genres}` : "";

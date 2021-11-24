@@ -12,6 +12,9 @@ import { ContentCard } from "./ContentCard";
 import { Link, useParams } from "react-router-dom";
 import { useSearchTopQuery } from "../../app/services/contentApi";
 
+import { ContentViews } from "./ContentViews";
+import { DisplayContent } from "./DisplayContent";
+
 export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
@@ -37,14 +40,21 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
         <Heading color={isDark ? "gray.150" : "gray.450"} fontSize="1.25rem">
           {title}
         </Heading>
-        {amount === 5 && (
-          <Link to={`/search/anime/${searchType}`}>
+        {amount === 5 ? (
+          <Link to={`/search/${type}/${searchType}`}>
             <Text variant="link">View All</Text>
           </Link>
+        ) : (
+          <ContentViews />
         )}
       </Flex>
 
-      <Grid
+      <DisplayContent
+        data={data.top.slice(0, amount)}
+        type={contentType}
+        amount={amount}
+      />
+      {/* <Grid
         templateColumns="repeat(auto-fill, minmax(196px, 1fr))"
         gap={6}
         mb="3rem"
@@ -58,7 +68,7 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
             type={contentType}
           />
         ))}
-      </Grid>
+      </Grid> */}
     </Container>
   );
 };

@@ -3,8 +3,10 @@ import { Container, Grid, Heading, Spinner } from "@chakra-ui/react";
 import { useSearchParams, useParams, useLocation } from "react-router-dom";
 import { useSearchQuery } from "../../app/services/contentApi";
 import { ContentCard } from "./ContentCard";
-import { BrowseContent } from "./BrowseContent";
-import { TopAnime } from "../TopAnime/TopAnime";
+import { DefaultAnimeView } from "./DefaultViews/DefaultAnimeView";
+import { DefaultMangaView } from "./DefaultViews/DefaultMangaView";
+import { ContentViews } from "./ContentViews";
+import { DisplayContent } from "./DisplayContent";
 
 export const BrowseSearch = () => {
   const location = useLocation();
@@ -30,22 +32,8 @@ export const BrowseSearch = () => {
   ) {
     return (
       <>
-        <BrowseContent
-          type="anime"
-          searchType="trending"
-          title="TRENDING NOW"
-        />
-        <BrowseContent
-          type="anime"
-          searchType="top-100"
-          title="ALLTIME POPULAR"
-        />
-        <BrowseContent
-          type="anime"
-          searchType="upcoming"
-          title="UPCOMING ANIME"
-        />
-        <TopAnime />
+        {content === "anime" && <DefaultAnimeView />}
+        {content === "manga" && <DefaultMangaView />}
       </>
     );
   }
@@ -67,8 +55,10 @@ export const BrowseSearch = () => {
   }
 
   return (
-    <Container maxW="container.xl" mt="3rem">
-      <Grid templateColumns="repeat(auto-fill, minmax(196px, 1fr))" gap={6}>
+    <Container maxW="container.xl">
+      <ContentViews />
+      <DisplayContent data={results} />
+      {/* <Grid templateColumns="repeat(auto-fill, minmax(196px, 1fr))" gap={6}>
         {results.map((result) => (
           <ContentCard
             imgUrl={result.image_url}
@@ -78,7 +68,7 @@ export const BrowseSearch = () => {
             key={result.mal_id}
           />
         ))}
-      </Grid>
+      </Grid> */}
     </Container>
   );
 };
