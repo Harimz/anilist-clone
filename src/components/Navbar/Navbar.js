@@ -20,6 +20,7 @@ import { User } from "../Profile/User";
 
 import logo from "../../assets/images/icon.svg";
 import MenuHoverBox from "./MenuHoverBox";
+import { useAuth } from "../../hooks/useAuth";
 
 export const Navbar = () => {
   const { colorMode } = useColorMode();
@@ -29,7 +30,7 @@ export const Navbar = () => {
   const { scrollDirection } = useScrollDirection();
   const scrollingUp = scrollDirection === "UP";
 
-  const loggedIn = false;
+  const { user } = useAuth();
 
   return (
     <Box
@@ -49,7 +50,7 @@ export const Navbar = () => {
         alignItems="center"
         p="0.5rem"
       >
-        <Link to={loggedIn ? "/search/anime" : "/"}>
+        <Link to={user ? "/search/anime" : "/"}>
           <Image h="4rem" src={logo} alt="logo" />
         </Link>
         <Spacer />
@@ -72,14 +73,14 @@ export const Navbar = () => {
                 <MenuHoverBox />
               </MenuList>
             </Menu>
-            {loggedIn && (
-              <Link>
+            {user && (
+              <Link to="/profile">
                 <Text variant="link">Profile</Text>
               </Link>
             )}
           </SimpleGrid>
           <Flex align="center">
-            {!loggedIn && (
+            {!user && (
               <>
                 <Text variant="link">
                   <Link to="/login">Login</Link>
@@ -91,10 +92,10 @@ export const Navbar = () => {
                 </Link>
               </>
             )}
-            {loggedIn && (
+            {user && (
               <>
                 <FaSearch style={{ color: "gray" }} size={22} />
-                <User />
+                <User user={user} />
                 <FaChevronDown style={{ color: "gray" }} />
               </>
             )}

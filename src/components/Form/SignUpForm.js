@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import {
   Alert,
   AlertDescription,
@@ -9,12 +9,19 @@ import {
   Flex,
   Heading,
   Input,
+  Spinner,
   useColorMode,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { formOptions } from "../../helpers";
+import { useRegisterMutation } from "../../app/services/userApi";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../app/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export const SignUpForm = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     handleSubmit,
     register,
@@ -23,9 +30,25 @@ export const SignUpForm = () => {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const noErrors = Object.keys(errors).length === 0;
+  const [registerUser, { isLoading }] = useRegisterMutation();
 
-  const submitHandler = (data) => {
-    const { email, password, username } = data;
+  const submitHandler = async (data) => {
+    const { email, password, username, confirmPassword } = data;
+
+    const response = await registerUser({
+      email,
+      password,
+      username,
+      confirmPassword,
+    });
+
+    console.log(response);
+
+    dispatch(
+      setCredentials({ token: response.data.token, user: response.data.user })
+    );
+
+    navigate("/search/anime");
   };
 
   // Fix error alert message, set to close on click
@@ -111,7 +134,7 @@ export const SignUpForm = () => {
               mb="4rem"
             />
             <Button variant="form" type="submit">
-              Sign up
+              {isLoading ? <Spinner color="white" /> : "Sign Up"}
             </Button>
           </Flex>
         </form>

@@ -15,7 +15,7 @@ export const AnimeInfo = () => {
     id: params.contentId,
   });
 
-  if (isFetching) return "Loading...";
+  if (isFetching || !data) return "Loading...";
 
   const {
     image_url,

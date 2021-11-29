@@ -9,10 +9,15 @@ import {
   Flex,
   Heading,
   Input,
+  Spinner,
   useColorMode,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { loginOptions } from "../../helpers";
+import { useLoginMutation } from "../../app/services/userApi";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../app/userSlice";
+import { useNavigate } from "react-router";
 
 export const LoginForm = () => {
   const {
@@ -23,8 +28,19 @@ export const LoginForm = () => {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const noErrors = Object.keys(errors).length === 0;
+  const [loginUser, { isLoading }] = useLoginMutation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const submitHandler = (data) => {};
+  const submitHandler = async (data) => {
+    const { email, password } = data;
+
+    const user = await loginUser({ email, password });
+
+    dispatch(setCredentials({ token: user.data.token, user: user.data.user }));
+
+    navigate("/search/anime");
+  };
 
   // Fix error alert message, set to close on click
 
@@ -92,7 +108,7 @@ export const LoginForm = () => {
             />
 
             <Button variant="form" type="submit">
-              Login
+              {isLoading ? <Spinner /> : "Login"}
             </Button>
           </Flex>
         </form>

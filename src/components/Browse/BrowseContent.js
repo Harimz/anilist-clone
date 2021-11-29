@@ -2,13 +2,11 @@ import React from "react";
 import {
   Container,
   Flex,
-  Grid,
   Heading,
   Spinner,
   Text,
   useColorMode,
 } from "@chakra-ui/react";
-import { ContentCard } from "./ContentCard";
 import { Link, useParams } from "react-router-dom";
 import { useSearchTopQuery } from "../../app/services/contentApi";
 
