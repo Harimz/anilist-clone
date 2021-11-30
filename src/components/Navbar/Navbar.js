@@ -4,6 +4,7 @@ import {
   Button,
   Container,
   Flex,
+  Icon,
   Image,
   Menu,
   MenuButton,
@@ -17,10 +18,12 @@ import { Link } from "react-router-dom";
 import { useScrollDirection } from "../../hooks";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
 import { User } from "../Profile/User";
+import defaultAvatar from "../../assets/profileImages/default.png";
 
 import logo from "../../assets/images/icon.svg";
 import MenuHoverBox from "./MenuHoverBox";
 import { useAuth } from "../../hooks/useAuth";
+import { UserHoverBox } from "../Profile/UserHoverBox";
 
 export const Navbar = () => {
   const { colorMode } = useColorMode();
@@ -61,7 +64,7 @@ export const Navbar = () => {
             placeItems="center"
             mr="8rem"
           >
-            <Menu>
+            <Menu placement="bottom">
               <MenuButton>
                 <Text variant="link">Browse</Text>
               </MenuButton>
@@ -94,9 +97,21 @@ export const Navbar = () => {
             )}
             {user && (
               <>
-                <FaSearch style={{ color: "gray" }} size={22} />
-                <User user={user} />
-                <FaChevronDown style={{ color: "gray" }} />
+                <Flex align="center">
+                  <FaSearch style={{ color: "gray" }} />
+
+                  <Menu placement="bottom">
+                    <MenuButton>
+                      <Flex align="center">
+                        <Image src={defaultAvatar} h="3rem" mx="0.75rem" />
+                        <FaChevronDown style={{ color: "gray" }} />
+                      </Flex>
+                    </MenuButton>
+                    <MenuList p={0} border="none">
+                      <UserHoverBox user={user} />
+                    </MenuList>
+                  </Menu>
+                </Flex>
               </>
             )}
           </Flex>

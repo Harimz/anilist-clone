@@ -1,16 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
   Button,
-  CloseButton,
   Container,
   Flex,
   Heading,
   Input,
   Spinner,
+  Text,
   useColorMode,
+  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { loginOptions } from "../../helpers";
@@ -18,6 +16,8 @@ import { useLoginMutation } from "../../app/services/userApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../app/userSlice";
 import { useNavigate } from "react-router";
+import { ErrorBox } from "./ErrorBox";
+import { VscError } from "react-icons/vsc";
 
 export const LoginForm = () => {
   const {
@@ -31,48 +31,45 @@ export const LoginForm = () => {
   const [loginUser, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toast = useToast();
+  const [serverError, setServerError] = useState("");
 
   const submitHandler = async (data) => {
-    const { email, password } = data;
+    try {
+      const { email, password } = data;
 
-    const user = await loginUser({ email, password });
+      const user = await loginUser({ email, password });
 
-    dispatch(setCredentials({ token: user.data.token, user: user.data.user }));
+      if (user.error) {
+        console.log(user);
+        throw new Error(user.error.data.message);
+      }
 
-    navigate("/search/anime");
+      dispatch(
+        setCredentials({ token: user.data.token, user: user.data.user })
+      );
+
+      navigate("/search/anime");
+    } catch (error) {
+      console.log(error);
+      setServerError(error);
+    }
   };
 
   // Fix error alert message, set to close on click
 
   return (
     <>
-      <Alert
-        status="error"
-        display="flex"
-        position="fixed"
-        left="50%"
-        transform={`translate(-50%, ${noErrors ? "-10rem" : "2rem"})`}
-        maxW="35rem"
-        bgColor="red.100"
-        color="red.200"
-        fontWeight="bold"
-        borderRadius="0.5rem"
-        transition="all 0.3s ease"
-      >
-        <AlertIcon />
-        <Flex direction="column">
-          <AlertDescription>{errors.email?.message}</AlertDescription>
-          <AlertDescription>{errors.username?.message}</AlertDescription>
-          <AlertDescription>{errors.password?.message}</AlertDescription>
-          <AlertDescription>{errors.confirmPassword?.message}</AlertDescription>
-        </Flex>
-        <CloseButton
-          position="absolute"
-          top="50%"
-          transform="translateY(-50%)"
-          right="1rem"
-        />
-      </Alert>
+      {!noErrors &&
+        toast({
+          position: "top",
+          render: () => (
+            <ErrorBox>
+              <Text>{errors.email?.message}</Text>
+              <Text>{errors.password?.message}</Text>
+            </ErrorBox>
+          ),
+        })}
 
       <Container
         maxW="30rem"
