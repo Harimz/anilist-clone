@@ -1,15 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  Alert,
-  AlertDescription,
-  AlertIcon,
   Button,
-  CloseButton,
   Container,
   Flex,
   Heading,
   Input,
   Spinner,
+  Text,
   useColorMode,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
@@ -18,6 +15,7 @@ import { useRegisterMutation } from "../../app/services/userApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../app/userSlice";
 import { useNavigate } from "react-router-dom";
+import { ErrorBox } from "./ErrorBox";
 
 export const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -26,62 +24,59 @@ export const SignUpForm = () => {
     handleSubmit,
     register,
     formState: { errors },
+    clearErrors,
   } = useForm(formOptions);
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
-  const noErrors = Object.keys(errors).length === 0;
   const [registerUser, { isLoading }] = useRegisterMutation();
+  const [serverError, setServerError] = useState("");
 
   const submitHandler = async (data) => {
-    const { email, password, username, confirmPassword } = data;
+    try {
+      const { email, password, username, confirmPassword } = data;
 
-    const response = await registerUser({
-      email,
-      password,
-      username,
-      confirmPassword,
-    });
+      const user = await registerUser({
+        email,
+        password,
+        username,
+        confirmPassword,
+      });
 
-    console.log(response);
+      if (user.error) {
+        throw new Error(user.error.data.message);
+      }
 
-    dispatch(
-      setCredentials({ token: response.data.token, user: response.data.user })
-    );
+      dispatch(
+        setCredentials({ token: user.data.token, user: user.data.user })
+      );
 
-    navigate("/search/anime");
+      navigate("/search/anime");
+    } catch (error) {
+      setServerError(error.message);
+    }
   };
-
-  // Fix error alert message, set to close on click
 
   return (
     <>
-      <Alert
-        status="error"
-        display="flex"
-        position="fixed"
-        left="50%"
-        transform={`translate(-50%, ${noErrors ? "-10rem" : "2rem"})`}
-        maxW="35rem"
-        bgColor="red.100"
-        color="red.200"
-        fontWeight="bold"
-        borderRadius="0.5rem"
-        transition="all 0.3s ease"
-      >
-        <AlertIcon />
-        <Flex direction="column">
-          <AlertDescription>{errors.email?.message}</AlertDescription>
-          <AlertDescription>{errors.username?.message}</AlertDescription>
-          <AlertDescription>{errors.password?.message}</AlertDescription>
-          <AlertDescription>{errors.confirmPassword?.message}</AlertDescription>
-        </Flex>
-        <CloseButton
-          position="absolute"
-          top="50%"
-          transform="translateY(-50%)"
-          right="1rem"
-        />
-      </Alert>
+      {
+        <ErrorBox error={serverError} closeError={() => setServerError("")}>
+          <Text color="red.200">{serverError}</Text>
+        </ErrorBox>
+      }
+
+      {
+        <ErrorBox
+          error={Object.keys(errors).length !== 0}
+          closeError={() => {
+            clearErrors();
+          }}
+        >
+          <Text color="red.200">{errors.email?.message}</Text>
+          <Text color="red.200">{errors.username?.message}</Text>
+          <Text color="red.200">{errors.password?.message}</Text>
+          <Text color="red.200">{errors.confirmPassword?.message}</Text>
+        </ErrorBox>
+      }
 
       <Container
         maxW="30rem"

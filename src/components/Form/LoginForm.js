@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -8,7 +8,6 @@ import {
   Spinner,
   Text,
   useColorMode,
-  useToast,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import { loginOptions } from "../../helpers";
@@ -17,31 +16,27 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "../../app/userSlice";
 import { useNavigate } from "react-router";
 import { ErrorBox } from "./ErrorBox";
-import { VscError } from "react-icons/vsc";
 
 export const LoginForm = () => {
   const {
     handleSubmit,
     register,
     formState: { errors },
+    clearErrors,
   } = useForm(loginOptions);
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
-  const noErrors = Object.keys(errors).length === 0;
   const [loginUser, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const toast = useToast();
   const [serverError, setServerError] = useState("");
 
   const submitHandler = async (data) => {
     try {
       const { email, password } = data;
-
       const user = await loginUser({ email, password });
 
       if (user.error) {
-        console.log(user);
         throw new Error(user.error.data.message);
       }
 
@@ -51,25 +46,29 @@ export const LoginForm = () => {
 
       navigate("/search/anime");
     } catch (error) {
-      console.log(error);
-      setServerError(error);
+      setServerError(error.message);
     }
   };
 
-  // Fix error alert message, set to close on click
-
   return (
     <>
-      {!noErrors &&
-        toast({
-          position: "top",
-          render: () => (
-            <ErrorBox>
-              <Text>{errors.email?.message}</Text>
-              <Text>{errors.password?.message}</Text>
-            </ErrorBox>
-          ),
-        })}
+      {
+        <ErrorBox error={serverError} closeError={() => setServerError("")}>
+          <Text color="red.200">{serverError}</Text>
+        </ErrorBox>
+      }
+
+      {
+        <ErrorBox
+          error={Object.keys(errors).length !== 0}
+          closeError={() => {
+            clearErrors();
+          }}
+        >
+          <Text color="red.200">{errors.email?.message}</Text>
+          <Text color="red.200">{errors.password?.message}</Text>
+        </ErrorBox>
+      }
 
       <Container
         maxW="30rem"
