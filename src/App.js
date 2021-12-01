@@ -5,7 +5,7 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { ScrollToTop } from "./helpers";
+import { ScrollToTop } from "./utils/ScrollToTop";
 import { AnimeDetails } from "./pages/AnimeDetails";
 import { Home } from "./pages/Home";
 import { Login } from "./pages/Login";

@@ -10,7 +10,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { loginOptions } from "../../helpers";
+import loginOptions from "../../utils/LoginOptions";
 import { useLoginMutation } from "../../app/services/userApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../app/userSlice";

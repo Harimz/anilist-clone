@@ -10,7 +10,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
-import { formOptions } from "../../helpers";
+import signupOptions from "../../utils/SignUpOptions";
 import { useRegisterMutation } from "../../app/services/userApi";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "../../app/userSlice";
@@ -25,7 +25,7 @@ export const SignUpForm = () => {
     register,
     formState: { errors },
     clearErrors,
-  } = useForm(formOptions);
+  } = useForm(signupOptions);
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
   const [registerUser, { isLoading }] = useRegisterMutation();

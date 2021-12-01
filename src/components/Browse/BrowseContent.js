@@ -47,26 +47,7 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
         )}
       </Flex>
 
-      <DisplayContent
-        data={data.top.slice(0, amount)}
-        type={contentType}
-        amount={amount}
-      />
-      {/* <Grid
-        templateColumns="repeat(auto-fill, minmax(196px, 1fr))"
-        gap={6}
-        mb="3rem"
-      >
-        {data.top.slice(0, amount).map((item) => (
-          <ContentCard
-            key={item.mal_id}
-            imgUrl={item.image_url}
-            title={item.title}
-            id={item.mal_id}
-            type={contentType}
-          />
-        ))}
-      </Grid> */}
+      <DisplayContent data={data.top.slice(0, amount)} type={contentType} />
     </Container>
   );
 };
