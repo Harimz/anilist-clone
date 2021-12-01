@@ -4,17 +4,19 @@ import { colorByPercent, getPercent } from "../../../helpers";
 import { FiSmile } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
-export const LargeCard = ({ data }) => {
-  const type = data.episodes ? "" : "";
+export const LargeCard = ({ data, type }) => {
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
+
+  const episodes = data?.episodes ? "episodes" : "";
+  const volumes = data?.volumes ? "volumes" : "";
 
   return (
     <Flex
       h={{ base: "15rem", md: "auto" }}
       bgColor={isDark ? "blue.300" : "white"}
     >
-      <Link to={`/${data.type}/${data.mal_id}`}>
+      <Link to={`/${type}/${data.mal_id}`}>
         <Box position="relative">
           <Image
             w={{ base: "9rem", md: "12rem", lg: "14rem" }}
@@ -44,8 +46,8 @@ export const LargeCard = ({ data }) => {
       <Box p="1rem" w="65%" overflowY={{ base: "scroll", md: "visible" }}>
         <Flex justify="space-between">
           <Text color="gray.200" fontWeight="semibold">
-            {data?.episodes || data?.volumes || ""}{" "}
-            {data?.episodes ? "episodes" : "volumes"}
+            {data?.episodes || data?.volumes || "Unavailable"}{" "}
+            {episodes || volumes}
           </Text>
           <Flex align="center">
             <FiSmile

@@ -3,39 +3,12 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { ContentCard } from "./Cards/ContentCard";
 import { LargeCard } from "./Cards/LargeCard";
+import { ListCard } from "./Cards/ListCard";
 
 export const DisplayContent = ({ data, type }) => {
   const { view } = useSelector((state) => state.views);
 
-  console.log(data);
-  console.log(view);
-  const viewMode = () => {
-    if (view === "grid") return "196px";
-    if (view === "card") return "300px";
-    if (view === "list") return "100%";
-  };
-
-  if (data.length === 5) {
-    return (
-      <Grid
-        templateColumns="repeat(auto-fill, minmax(196px, 1fr))"
-        gap={6}
-        mb="3rem"
-      >
-        {data.map((item) => (
-          <ContentCard
-            key={item.mal_id}
-            imgUrl={item.image_url}
-            title={item.title}
-            id={item.mal_id}
-            type={type}
-          />
-        ))}
-      </Grid>
-    );
-  }
-
-  if (view === "grid") {
+  if (data.length === 5 || view === "grid") {
     return (
       <Grid
         templateColumns="repeat(auto-fill, minmax(196px, 1fr))"
@@ -66,22 +39,16 @@ export const DisplayContent = ({ data, type }) => {
         gap={6}
       >
         {data.map((item) => (
-          <LargeCard data={item} />
+          <LargeCard key={item.mal_id} data={item} type={type} />
         ))}
       </Grid>
     );
   }
 
   return (
-    <Grid templateColumns={`repeat(auto-fill, minmax(220px, 1fr))`} gap={6}>
+    <Grid templateColumns={`repeat(1, 1fr)`} gap={6}>
       {data.map((item) => (
-        <ContentCard
-          key={item.mal_id}
-          imgUrl={item.image_url}
-          title={item.title}
-          id={item.mal_id}
-          type={type}
-        />
+        <ListCard key={item.mal_id} data={item} type={type} />
       ))}
     </Grid>
   );
