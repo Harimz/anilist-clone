@@ -15,7 +15,7 @@ export const ContentViews = () => {
         cursor="pointer"
         size={25}
         style={{
-          color: `${view === "grid" ? "white" : "#647380"}`,
+          color: `${view === "grid" ? "#C9D7E3" : "#647380"}`,
           _hover: "red",
         }}
         onClick={() => dispatch(setView({ view: "grid" }))}
@@ -24,7 +24,7 @@ export const ContentViews = () => {
         cursor="pointer"
         size={25}
         style={{
-          color: `${view === "card" ? "white" : "#647380"}`,
+          color: `${view === "card" ? "#C9D7E3" : "#647380"}`,
           _hover: "red",
         }}
         onClick={() => dispatch(setView({ view: "card" }))}
@@ -33,7 +33,7 @@ export const ContentViews = () => {
         cursor="pointer"
         size={25}
         style={{
-          color: `${view === "list" ? "white" : "#647380"}`,
+          color: `${view === "list" ? "#C9D7E3" : "#647380"}`,
           _hover: "red",
         }}
         onClick={() => dispatch(setView({ view: "list" }))}

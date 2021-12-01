@@ -45,23 +45,23 @@ export const contentApi = createApi({
         const { content, searchType } = arg;
 
         if (searchType === "top-100") {
-          return `/top/${content}`;
+          return `/search/${content}?q=&order_by=score&sort=desc&page=1`;
         }
 
         if (searchType === "top-movies") {
-          return "/top/anime/1/movie";
+          return "/search/anime?q=&order_by=score&type=movie&sort=desc&page=1";
         }
 
         if (searchType === "top-manhwa") {
-          return "/top/manga/1/manhwa";
+          return "/search/manga?q=&type=manhwa&order_by=members";
         }
 
         if (searchType === "trending") {
-          return "/top/anime/1/airing";
+          return "/search/anime?q=&order_by=score&sort=desc&status=airing&page=1";
         }
 
         if (searchType === "upcoming") {
-          return "/top/anime/1/upcoming";
+          return "/search/anime?q=&order_by=members&sort=desc&status=tba&page=1";
         }
       },
     }),

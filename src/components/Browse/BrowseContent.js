@@ -19,15 +19,25 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
   const params = useParams();
   const contentType = type || params.content;
 
-  const { data, isFetching } = useSearchTopQuery({
+  const { data, isFetching, isError } = useSearchTopQuery({
     content: params.content || type,
     searchType: params.searchType || searchType,
   });
+
+  console.log(data);
 
   if (isFetching || !data) {
     return (
       <Container centerContent>
         <Spinner color={isDark ? "white" : "black"} />
+      </Container>
+    );
+  }
+
+  if (isError) {
+    return (
+      <Container centerContent>
+        <Heading color="white">Something went wrong, please refresh</Heading>
       </Container>
     );
   }
@@ -47,7 +57,7 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
         )}
       </Flex>
 
-      <DisplayContent data={data.top.slice(0, amount)} type={contentType} />
+      <DisplayContent data={data.results.slice(0, amount)} type={contentType} />
     </Container>
   );
 };
