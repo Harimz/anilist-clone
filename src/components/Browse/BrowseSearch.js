@@ -7,6 +7,7 @@ import { DefaultAnimeView } from "./DefaultViews/DefaultAnimeView";
 import { DefaultMangaView } from "./DefaultViews/DefaultMangaView";
 import { ContentViews } from "./ContentViews";
 import { DisplayContent } from "./DisplayContent";
+import { ErrorMessage } from "../Error/ErrorMessage";
 
 export const BrowseSearch = () => {
   const location = useLocation();
@@ -47,11 +48,7 @@ export const BrowseSearch = () => {
   }
 
   if (error) {
-    return (
-      <Container maxW="container.xl" mt="3rem" centerContent>
-        <Heading>Something went wrong :(</Heading>
-      </Container>
-    );
+    return <ErrorMessage />;
   }
 
   return (

@@ -4,7 +4,6 @@ import {
   Button,
   Container,
   Flex,
-  Icon,
   Image,
   Menu,
   MenuButton,
@@ -17,7 +16,6 @@ import {
 import { Link } from "react-router-dom";
 import { useScrollDirection } from "../../hooks";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
-import { User } from "../Profile/User";
 import defaultAvatar from "../../assets/profileImages/default.png";
 
 import logo from "../../assets/images/icon.svg";
@@ -103,7 +101,7 @@ export const Navbar = () => {
                   <Menu placement="bottom">
                     <MenuButton>
                       <Flex align="center">
-                        <Image src={defaultAvatar} h="3rem" mx="0.75rem" />
+                        <Image src={user.pic} h="3rem" mx="0.75rem" />
                         <FaChevronDown style={{ color: "gray" }} />
                       </Flex>
                     </MenuButton>

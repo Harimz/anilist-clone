@@ -11,9 +11,10 @@ import { TopAnimeCard } from "./TopAnimeCard";
 import { TopAnimeMobileCard } from "./TopAnimeMobileCard";
 import { useTopContentQuery } from "../../app/services/contentApi";
 import { useNavigate } from "react-router-dom";
+import { ErrorMessage } from "../Error/ErrorMessage";
 
 export const TopAnime = () => {
-  const { data, isFetching } = useTopContentQuery({
+  const { data, isFetching, isError } = useTopContentQuery({
     type: "top",
     contentType: "anime",
   });
@@ -27,6 +28,10 @@ export const TopAnime = () => {
       </Container>
     );
   const animeList = data.top.slice(0, 10);
+
+  if (isError) {
+    return <ErrorMessage />;
+  }
 
   return (
     <Container maxW="container.xl" mt="4rem">

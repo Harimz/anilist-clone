@@ -12,6 +12,7 @@ import { useSearchTopQuery } from "../../app/services/contentApi";
 
 import { ContentViews } from "./ContentViews";
 import { DisplayContent } from "./DisplayContent";
+import { ErrorMessage } from "../Error/ErrorMessage";
 
 export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
   const { colorMode } = useColorMode();
@@ -35,11 +36,7 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
   }
 
   if (isError) {
-    return (
-      <Container centerContent>
-        <Heading color="white">Something went wrong, please refresh</Heading>
-      </Container>
-    );
+    return <ErrorMessage />;
   }
 
   return (

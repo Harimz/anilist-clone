@@ -44,7 +44,14 @@ export const AnimeInfo = () => {
 
   return (
     <Flex direction="column">
-      <AnimeInfoHeader img={image_url} title={title} synopsis={synopsis} />
+      <AnimeInfoHeader
+        img={image_url}
+        title={title}
+        synopsis={synopsis}
+        image={image_url}
+        id={params.contentId}
+        type="anime"
+      />
       <Container maxW="container.xl" mt="2rem">
         <Flex direction={{ base: "column", lg: "row" }}>
           <AnimeInfoSidebar

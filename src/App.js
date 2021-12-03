@@ -14,6 +14,7 @@ import { MangaDetails } from "./pages/MangaDetails";
 import { Search } from "./pages/Search";
 import { SearchType } from "./pages/SearchType";
 import { useAuth } from "./hooks/useAuth";
+import { Profile } from "./pages/Profile";
 
 export const App = () => {
   const { user } = useAuth();
@@ -38,6 +39,10 @@ export const App = () => {
         <Route path="/manga/:contentId" element={<MangaDetails />} />
         <Route path="/search/:content" element={<Search />} />
         <Route path="/search/:content/:searchType" element={<SearchType />} />
+        <Route
+          path="/user/:username"
+          element={user ? <Profile /> : <Navigate to="/login" />}
+        />
       </Routes>
     </Router>
   );

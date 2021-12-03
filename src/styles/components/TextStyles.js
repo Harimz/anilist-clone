@@ -5,6 +5,7 @@ export const TextStyles = {
     link: (props) => ({
       color: "gray.400",
       transition: "color 0.3s ease",
+      cursor: "pointer",
       _hover: {
         color: "gray.100",
       },
