@@ -4,7 +4,7 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     user: JSON.parse(localStorage.getItem("user")) || null,
-    token: localStorage.getItem("token") || null,
+    token: JSON.parse(localStorage.getItem("token")) || null,
     contentEntry: {
       status: "",
       score: 0,

@@ -97,9 +97,10 @@ export const AddContentForm = ({ type }) => {
         <Box>
           <Text color="gray.400">Start Date</Text>
           <DatePicker
-            onChange={(date) =>
-              dispatch(setAnimeEntry({ type: "startDate", value: date }))
-            }
+            onChange={(date) => {
+              console.log(date.toString());
+              dispatch(setAnimeEntry({ type: "startDate", value: date }));
+            }}
             customInput={<Input color="gray.500" />}
           />
         </Box>

@@ -21,7 +21,7 @@ export const userApi = createApi({
         method: "POST",
         body: credentials,
       }),
-      invalidatesTags: ["Anime"],
+      invalidatesTags: ["Anime", "Manga"],
     }),
     login: builder.mutation({
       query: (credentials) => ({
@@ -29,7 +29,7 @@ export const userApi = createApi({
         method: "POST",
         body: credentials,
       }),
-      invalidatesTags: ["Anime"],
+      invalidatesTags: ["Anime", "Manga"],
     }),
     addAnime: builder.mutation({
       query: (anime) => ({
@@ -50,6 +50,10 @@ export const userApi = createApi({
     getAnime: builder.query({
       query: () => "/api/anime",
       providesTags: ["Anime"],
+    }),
+    getManga: builder.query({
+      query: () => "/api/manga",
+      providesTags: ["Manga"],
     }),
   }),
 });

@@ -6,15 +6,17 @@ import {
   Routes,
 } from "react-router-dom";
 import { ScrollToTop } from "./utils/ScrollToTop";
-import { AnimeDetails } from "./pages/AnimeDetails";
 import { Home } from "./pages/Home";
-import { Login } from "./pages/Login";
-import { SignUp } from "./pages/SignUp";
-import { MangaDetails } from "./pages/MangaDetails";
 import { Search } from "./pages/Search";
 import { SearchType } from "./pages/SearchType";
 import { useAuth } from "./hooks/useAuth";
-import { Profile } from "./pages/Profile";
+import { Navigation } from "./components/Navbar/Navigation";
+import { Footer } from "./components/Footer/Footer";
+import { LoginForm } from "./components/Form/LoginForm";
+import { SignUpForm } from "./components/Form/SignUpForm";
+import { AnimeInfo } from "./components/ContentInfo/Anime/AnimeInfo";
+import { MangaInfo } from "./components/ContentInfo/Manga/MangaInfo";
+import { ProfilePage } from "./components/Profile/ProfilePage";
 
 export const App = () => {
   const { user } = useAuth();
@@ -22,6 +24,7 @@ export const App = () => {
   return (
     <Router>
       <ScrollToTop />
+      <Navigation />
       <Routes>
         <Route
           path="/"
@@ -29,21 +32,22 @@ export const App = () => {
         />
         <Route
           path="/signup"
-          element={user ? <Navigate to="/search/anime" /> : <SignUp />}
+          element={user ? <Navigate to="/search/anime" /> : <SignUpForm />}
         />
         <Route
           path="/login"
-          element={user ? <Navigate to="/search/anime" /> : <Login />}
+          element={user ? <Navigate to="/search/anime" /> : <LoginForm />}
         />
-        <Route path="/anime/:contentId" element={<AnimeDetails />} />
-        <Route path="/manga/:contentId" element={<MangaDetails />} />
+        <Route path="/anime/:contentId" element={<AnimeInfo />} />
+        <Route path="/manga/:contentId" element={<MangaInfo />} />
         <Route path="/search/:content" element={<Search />} />
         <Route path="/search/:content/:searchType" element={<SearchType />} />
         <Route
           path="/user/:username"
-          element={user ? <Profile /> : <Navigate to="/login" />}
+          element={user ? <ProfilePage /> : <Navigate to="/login" />}
         />
       </Routes>
+      <Footer />
     </Router>
   );
 };
