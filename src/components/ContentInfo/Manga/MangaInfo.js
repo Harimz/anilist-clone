@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { Container, Flex } from "@chakra-ui/react";
-import { AnimeInfoHeader } from "../ContentInfoHeader";
+import { ContentInfoHeader } from "../ContentInfoHeader";
 import { MangaInfoSidebar } from "./MangaInfoSidebar";
 import { ContentInfoResources } from "../ContentInfoResources";
 import { useContentInfoQuery } from "../../../app/services/contentApi";
@@ -40,7 +40,13 @@ export const MangaInfo = () => {
 
   return (
     <Flex direction="column">
-      <AnimeInfoHeader img={image_url} title={title} synopsis={synopsis} />
+      <ContentInfoHeader
+        img={image_url}
+        title={title}
+        synopsis={synopsis}
+        type="manga"
+        id={params.contentId}
+      />
       <Container maxW="container.xl" mt="2rem">
         <Flex direction={{ base: "column", lg: "row" }}>
           <MangaInfoSidebar

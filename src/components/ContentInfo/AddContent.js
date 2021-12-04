@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -9,10 +9,55 @@ import {
   Text,
 } from "@chakra-ui/react";
 
+import "react-datepicker/dist/react-datepicker.css";
+
 import banner from "../../assets/images/anime-banner.png";
 import { FaTimes } from "react-icons/fa";
+import { AddContentForm } from "./AddContentForm";
+import {
+  useAddAnimeMutation,
+  useAddMangaMutation,
+} from "../../app/services/userApi";
+import { useSelector } from "react-redux";
 
 export const AddContent = ({ onClose, image, id, type, title }) => {
+  const { contentEntry } = useSelector((state) => state.user);
+  const [addAnime, { isLoading: loadingAnime, isError: animeError }] =
+    useAddAnimeMutation();
+  const [addManga, { isLoading: loadingManga, isError: mangaError }] =
+    useAddMangaMutation();
+
+  console.log(type);
+
+  const addToListHandler = async () => {
+    try {
+      if (type === "anime") {
+        const result = await addAnime({
+          ...contentEntry,
+          animeID: id,
+          image,
+          title,
+        });
+
+        console.log(result);
+      }
+
+      if (type === "manga") {
+        const result = await addManga({
+          ...contentEntry,
+          image,
+          title,
+          mangaID: id,
+        });
+
+        console.log(id);
+        console.log(result);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <ModalContent position="relative">
       <FaTimes
@@ -44,14 +89,23 @@ export const AddContent = ({ onClose, image, id, type, title }) => {
         }}
       >
         <Flex mt="2rem" w="100%" align="flex-end" p="2rem">
-          <Image h="11rem" src={image} zIndex="10" mr="2rem" />
+          <Image
+            h={{ base: "7rem", md: "11rem" }}
+            src={image}
+            zIndex="10"
+            mr="2rem"
+            transform="translateY(4rem)"
+          />
           <Text fontWeight="semibold" color="white">
             {title}
           </Text>
           <Spacer />
-          <Button variant="primary">Save</Button>
+          <Button variant="form" onClick={addToListHandler}>
+            Save
+          </Button>
         </Flex>
       </Box>
+      <AddContentForm type={type} />
     </ModalContent>
   );
 };

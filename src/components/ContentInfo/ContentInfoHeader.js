@@ -16,12 +16,14 @@ import { AiFillHeart } from "react-icons/ai";
 import { useAuth } from "../../hooks/useAuth";
 import { AddContent } from "./AddContent";
 
-export const AnimeInfoHeader = ({ img, title, synopsis, image, id, type }) => {
+export const ContentInfoHeader = ({ img, title, synopsis, id, type }) => {
   const { colorMode } = useColorMode();
   const [isMobile] = useMediaQuery("(max-width: 550px)");
   const isDark = colorMode === "dark";
   const { user } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  console.log("Header", type);
 
   return (
     <>
@@ -29,7 +31,7 @@ export const AnimeInfoHeader = ({ img, title, synopsis, image, id, type }) => {
         <ModalOverlay />
         <AddContent
           onClose={onClose}
-          image={image}
+          image={img}
           id={id}
           type={type}
           title={title}

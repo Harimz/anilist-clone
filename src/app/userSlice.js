@@ -5,6 +5,17 @@ const userSlice = createSlice({
   initialState: {
     user: JSON.parse(localStorage.getItem("user")) || null,
     token: localStorage.getItem("token") || null,
+    contentEntry: {
+      status: "",
+      score: 0,
+      episodeProgress: 0,
+      volumesRead: 0,
+      startDate: "",
+      finishDate: "",
+      totalRewatches: 0,
+      totalRereads: 0,
+      notes: "",
+    },
   },
   reducers: {
     setCredentials(state, action) {
@@ -24,9 +35,12 @@ const userSlice = createSlice({
       localStorage.removeItem("user");
       localStorage.removeItem("token");
     },
+    setAnimeEntry(state, action) {
+      state.contentEntry[action.payload.type] = action.payload.value;
+    },
   },
 });
 
-export const { setCredentials, logout } = userSlice.actions;
+export const { setCredentials, logout, setAnimeEntry } = userSlice.actions;
 
 export default userSlice.reducer;

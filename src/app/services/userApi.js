@@ -4,6 +4,14 @@ export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5000",
+    prepareHeaders: (headers, { getState }) => {
+      const token = getState().user.token;
+
+      if (token) {
+        headers.set("authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ["User", "Anime", "Manga"],
   endpoints: (builder) => ({
@@ -31,6 +39,14 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Anime"],
     }),
+    addManga: builder.mutation({
+      query: (manga) => ({
+        url: "/api/manga",
+        method: "POST",
+        body: manga,
+      }),
+      invalidatesTags: ["Manga"],
+    }),
     getAnime: builder.query({
       query: () => "/api/anime",
       providesTags: ["Anime"],
@@ -38,5 +54,9 @@ export const userApi = createApi({
   }),
 });
 
-export const { useRegisterMutation, useLoginMutation, useAddAnimeMutation } =
-  userApi;
+export const {
+  useRegisterMutation,
+  useLoginMutation,
+  useAddAnimeMutation,
+  useAddMangaMutation,
+} = userApi;
