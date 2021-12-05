@@ -20,7 +20,15 @@ import {
 } from "../../app/services/userApi";
 import { useSelector } from "react-redux";
 
-export const AddContent = ({ onClose, image, id, type, title }) => {
+export const AddContent = ({
+  onClose,
+  image,
+  id,
+  type,
+  title,
+  episodes,
+  volumes,
+}) => {
   const { contentEntry } = useSelector((state) => state.user);
   const [addAnime, { isLoading: loadingAnime, isError: animeError }] =
     useAddAnimeMutation();
@@ -37,6 +45,7 @@ export const AddContent = ({ onClose, image, id, type, title }) => {
           animeID: id,
           image,
           title,
+          episodeCount: episodes,
         });
 
         console.log(result);
@@ -48,6 +57,7 @@ export const AddContent = ({ onClose, image, id, type, title }) => {
           image,
           title,
           mangaID: id,
+          volumeCount: volumes,
         });
 
         console.log(id);

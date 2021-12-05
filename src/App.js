@@ -16,7 +16,9 @@ import { LoginForm } from "./components/Form/LoginForm";
 import { SignUpForm } from "./components/Form/SignUpForm";
 import { AnimeInfo } from "./components/ContentInfo/Anime/AnimeInfo";
 import { MangaInfo } from "./components/ContentInfo/Manga/MangaInfo";
-import { ProfilePage } from "./components/Profile/ProfilePage";
+import { AnimeList } from "./pages/AnimeList";
+import { OverView } from "./pages/OverView";
+import { MangaList } from "./pages/MangaList";
 
 export const App = () => {
   const { user } = useAuth();
@@ -44,7 +46,15 @@ export const App = () => {
         <Route path="/search/:content/:searchType" element={<SearchType />} />
         <Route
           path="/user/:username"
-          element={user ? <ProfilePage /> : <Navigate to="/login" />}
+          element={user ? <OverView /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/user/:username/animelist"
+          element={user ? <AnimeList /> : <Navigate to="/login" />}
+        />
+        <Route
+          path="/user/:username/mangalist"
+          element={user ? <MangaList /> : <Navigate to="/login" />}
         />
       </Routes>
       <Footer />

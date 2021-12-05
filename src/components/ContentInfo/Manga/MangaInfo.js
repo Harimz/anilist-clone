@@ -46,6 +46,7 @@ export const MangaInfo = () => {
         synopsis={synopsis}
         type="manga"
         id={params.contentId}
+        volumes={volumes}
       />
       <Container maxW="container.xl" mt="2rem">
         <Flex direction={{ base: "column", lg: "row" }}>

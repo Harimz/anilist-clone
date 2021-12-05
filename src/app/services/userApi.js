@@ -63,4 +63,6 @@ export const {
   useLoginMutation,
   useAddAnimeMutation,
   useAddMangaMutation,
+  useGetAnimeQuery,
+  useGetMangaQuery,
 } = userApi;

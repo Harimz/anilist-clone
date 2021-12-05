@@ -51,6 +51,7 @@ export const AnimeInfo = () => {
         image={image_url}
         id={params.contentId}
         type="anime"
+        episodes={episodes}
       />
       <Container maxW="container.xl" mt="2rem">
         <Flex direction={{ base: "column", lg: "row" }}>

@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Flex, Heading } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 
-export const Header = ({ user }) => {
+export const Banner = ({ user }) => {
   return (
     <Flex bgColor="rgba(42, 25, 54, 0.47)">
       <Container maxW="container.xl" mt="5rem">
