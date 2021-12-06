@@ -149,7 +149,7 @@ export const AddContentForm = ({ type }) => {
           size="lg"
           color="gray.500"
           onChange={({ target }) =>
-            dispatch(setAnimeEntry({ type: "notes", value: target.value }))
+            dispatch(setAnimeEntry({ type: "note", value: target.value }))
           }
         />
       </Box>

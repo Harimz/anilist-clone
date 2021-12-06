@@ -26,16 +26,16 @@ export const AddContent = ({
   id,
   type,
   title,
-  episodes,
-  volumes,
+  episodeCount,
+  volumeCount,
+  animeType,
+  mangaType,
 }) => {
   const { contentEntry } = useSelector((state) => state.user);
   const [addAnime, { isLoading: loadingAnime, isError: animeError }] =
     useAddAnimeMutation();
   const [addManga, { isLoading: loadingManga, isError: mangaError }] =
     useAddMangaMutation();
-
-  console.log(type);
 
   const addToListHandler = async () => {
     try {
@@ -45,10 +45,9 @@ export const AddContent = ({
           animeID: id,
           image,
           title,
-          episodeCount: episodes,
+          animeType,
+          episodeCount: +episodeCount,
         });
-
-        console.log(result);
       }
 
       if (type === "manga") {
@@ -56,12 +55,10 @@ export const AddContent = ({
           ...contentEntry,
           image,
           title,
+          mangaType,
           mangaID: id,
-          volumeCount: volumes,
+          volumeCount: volumeCount,
         });
-
-        console.log(id);
-        console.log(result);
       }
     } catch (error) {
       console.log(error);

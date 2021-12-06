@@ -52,6 +52,7 @@ export const AnimeInfo = () => {
         id={params.contentId}
         type="anime"
         episodes={episodes}
+        animeType={type}
       />
       <Container maxW="container.xl" mt="2rem">
         <Flex direction={{ base: "column", lg: "row" }}>

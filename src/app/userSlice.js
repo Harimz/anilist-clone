@@ -14,7 +14,7 @@ const userSlice = createSlice({
       finishDate: "",
       totalRewatches: 0,
       totalRereads: 0,
-      notes: "",
+      note: "",
     },
   },
   reducers: {

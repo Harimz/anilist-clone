@@ -1,10 +1,13 @@
 import React from "react";
 import { useGetAnimeQuery } from "../../../app/services/userApi";
-import { Container, Grid } from "@chakra-ui/layout";
+import { Box, Container, Grid, Text } from "@chakra-ui/layout";
 import { useSelector } from "react-redux";
 import { Spinner } from "@chakra-ui/spinner";
 import { ListCard } from "../Cards/ListCard";
 import { ListHeader } from "./ListHeader";
+import { SmallListCard } from "../Cards/SmallListCard";
+import { ContentCard } from "../Cards/ContentCard";
+import { Image } from "@chakra-ui/image";
 
 export const UserAnimeList = () => {
   const { data, isFetching } = useGetAnimeQuery();
@@ -18,7 +21,7 @@ export const UserAnimeList = () => {
     );
   }
 
-  console.log(data);
+  console.log(userView);
 
   if (userView === "list") {
     return (
@@ -33,5 +36,32 @@ export const UserAnimeList = () => {
     );
   }
 
-  return <Container maxW="container.xl"></Container>;
+  if (userView === "no-pic-list") {
+    return (
+      <Container maxW="container.xl" mb="30rem">
+        <ListHeader />
+        <Grid gridTemplateColumns="repeat(1,1fr)">
+          {data.map((anime) => (
+            <SmallListCard key={anime.animeID} anime={anime} />
+          ))}
+        </Grid>
+      </Container>
+    );
+  }
+
+  return (
+    <Container maxW="container.xl">
+      <Text color="gray.400" fontSize="1.5rem" mb="1rem ">
+        Watching
+      </Text>
+      <Grid
+        gridTemplateColumns="repeat(auto-fit, minmax(146px, 1fr))"
+        border="2px solid red"
+      >
+        {data.map((anime) => (
+          <ContentCard anime={anime} />
+        ))}
+      </Grid>
+    </Container>
+  );
 };

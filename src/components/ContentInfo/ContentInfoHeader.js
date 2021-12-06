@@ -16,7 +16,17 @@ import { AiFillHeart } from "react-icons/ai";
 import { useAuth } from "../../hooks/useAuth";
 import { AddContent } from "./AddContent";
 
-export const ContentInfoHeader = ({ img, title, synopsis, id, type }) => {
+export const ContentInfoHeader = ({
+  img,
+  title,
+  synopsis,
+  id,
+  type,
+  episodes,
+  volumes,
+  animeType,
+  mangaType,
+}) => {
   const { colorMode } = useColorMode();
   const [isMobile] = useMediaQuery("(max-width: 550px)");
   const isDark = colorMode === "dark";
@@ -35,6 +45,10 @@ export const ContentInfoHeader = ({ img, title, synopsis, id, type }) => {
           id={id}
           type={type}
           title={title}
+          episodeCount={episodes}
+          volumeCount={volumes}
+          animeType={animeType}
+          mangaType={mangaType}
         />
       </Modal>
 

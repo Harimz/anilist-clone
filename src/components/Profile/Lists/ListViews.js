@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Flex } from "@chakra-ui/layout";
-import { BsFillGrid3X3GapFill, BsFillGridFill } from "react-icons/bs";
-import { FaThList } from "react-icons/fa";
+import { BsFillGridFill } from "react-icons/bs";
+import { FaListUl, FaThList } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { setUserView } from "../../../app/viewSlice";
@@ -27,13 +27,13 @@ export const ListViews = () => {
             cursor="pointer"
             onClick={() => dispatch(setUserView({ view: "list" }))}
           />
-          <BsFillGridFill
+          <FaListUl
             size={22}
             color={userView === "no-pic-list" ? "#A0B1C5" : "#516170"}
             cursor="pointer"
             onClick={() => dispatch(setUserView({ view: "no-pic-list" }))}
           />
-          <BsFillGrid3X3GapFill
+          <BsFillGridFill
             size={22}
             color={userView === "card" ? "#A0B1C5" : "#516170"}
             cursor="pointer"
