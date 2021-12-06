@@ -4,6 +4,7 @@ import { Box } from "@chakra-ui/layout";
 
 export const ContentCard = ({ anime, manga }) => {
   console.log("We in here");
+  console.log('This is a test');
 
   return (
     <Box h="15rem">
