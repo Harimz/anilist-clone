@@ -66,7 +66,7 @@ export const ListCard = ({ anime, manga }) => {
         </Text>
 
         <Text display={{ base: "none", md: "block" }}>
-          {anime?.animeType || manga?.managType}
+          {anime?.animeType || manga?.mangaType}
         </Text>
       </Grid>
 

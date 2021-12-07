@@ -13,7 +13,7 @@ export const userApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ["User", "Anime", "Manga"],
+  tagTypes: ["User", "Anime", "Manga", "Status"],
   endpoints: (builder) => ({
     register: builder.mutation({
       query: (credentials) => ({
@@ -55,6 +55,14 @@ export const userApi = createApi({
       query: () => "/api/manga",
       providesTags: ["Manga"],
     }),
+    addStatus: builder.mutation({
+      query: (message) => ({
+        url: "/api/status/",
+        method: "POST",
+        body: message,
+      }),
+      invalidatesTags: ["Status"],
+    }),
   }),
 });
 
@@ -65,4 +73,5 @@ export const {
   useAddMangaMutation,
   useGetAnimeQuery,
   useGetMangaQuery,
+  useAddStatusMutation,
 } = userApi;
