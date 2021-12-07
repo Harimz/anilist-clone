@@ -55,8 +55,8 @@ export const UserAnimeList = () => {
         Watching
       </Text>
       <Grid
-        gridTemplateColumns="repeat(auto-fit, minmax(146px, 1fr))"
-        border="2px solid red"
+        gridTemplateColumns="repeat(auto-fill, minmax(156px, 1fr))"
+        gap="1rem"
       >
         {data.map((anime) => (
           <ContentCard anime={anime} />

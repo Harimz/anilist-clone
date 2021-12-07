@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Flex, Spacer, Text } from "@chakra-ui/layout";
+import { Box, Flex, Grid, Spacer, Text } from "@chakra-ui/layout";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { BsFillChatFill } from "react-icons/bs";
 
@@ -20,7 +20,7 @@ export const SmallListCard = ({ anime, manga }) => {
     >
       <Text>{anime?.title || manga?.title}</Text>
       {(anime?.note || manga?.note) && (
-        <Box pos="relative">
+        <Box pos="relative" display={{ base: "none", md: "block" }}>
           <BsFillChatFill
             size={18}
             color="#A0B1C5"
@@ -42,14 +42,28 @@ export const SmallListCard = ({ anime, manga }) => {
         </Box>
       )}
       <Spacer />
-      <Flex gridGap={{ base: "4rem", md: "7rem" }}>
-        <Text>{anime?.score || manga?.score}</Text>
+      <Grid
+        gridTemplateColumns="repeat(3, 3rem)"
+        gridGap={{ base: "3rem", md: "6.5rem" }}
+        placeItems="center"
+      >
+        <Text display={{ base: "none", md: "block" }}>
+          {anime?.score || manga?.score}
+        </Text>
+
+        <Text display={{ base: "block", md: "none" }} ml="1rem">
+          Progress
+        </Text>
+
         <Text>
           {anime?.episodeProgress.toString() || manga?.volumesRead.toString()}/
           {anime?.episodeCount.toString() || manga?.volumeCount.toString()}
         </Text>
-        <Text>{anime?.animeType || manga?.mangaType}</Text>
-      </Flex>
+
+        <Text display={{ base: "none", md: "block" }}>
+          {anime?.animeType || manga?.mangaType}
+        </Text>
+      </Grid>
     </Flex>
   );
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Spacer, Text, useColorMode } from "@chakra-ui/react";
+import { Flex, Spacer, Text, useColorMode, Grid } from "@chakra-ui/react";
 
 export const ListHeader = () => {
   const { colorMode } = useColorMode();
@@ -15,14 +15,19 @@ export const ListHeader = () => {
         p={{ base: "1rem", md: "1rem 4rem" }}
         color="gray.400"
         fontWeight="semibold"
+        display={{ base: "none", md: "flex" }}
       >
         <Text>Title</Text>
         <Spacer />
-        <Flex gridGap={{ base: "1rem", md: "5rem" }}>
+        <Grid
+          gridTemplateColumns="repeat(3, 4rem)"
+          gridGap={{ base: "1rem", md: "5rem" }}
+          placeItems="center"
+        >
           <Text>Score</Text>
           <Text>Progress</Text>
           <Text>Type</Text>
-        </Flex>
+        </Grid>
       </Flex>
     </>
   );
