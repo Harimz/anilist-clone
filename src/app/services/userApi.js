@@ -21,7 +21,7 @@ export const userApi = createApi({
         method: "POST",
         body: credentials,
       }),
-      invalidatesTags: ["Anime", "Manga"],
+      invalidatesTags: ["Anime", "Manga", "Status"],
     }),
     login: builder.mutation({
       query: (credentials) => ({
@@ -29,7 +29,7 @@ export const userApi = createApi({
         method: "POST",
         body: credentials,
       }),
-      invalidatesTags: ["Anime", "Manga"],
+      invalidatesTags: ["Anime", "Manga", "Status"],
     }),
     addAnime: builder.mutation({
       query: (anime) => ({
@@ -63,6 +63,25 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Status"],
     }),
+    getMessages: builder.query({
+      query: () => "/api/status",
+      providesTags: ["Status"],
+    }),
+    deleteMessage: builder.mutation({
+      query: (id) => ({
+        url: `/api/status/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Status"],
+    }),
+    editMessage: builder.mutation({
+      query: (status) => ({
+        url: `/api/status/${status.id}`,
+        method: "PUT",
+        body: status,
+      }),
+      invalidatesTags: ["Status"],
+    }),
   }),
 });
 
@@ -74,4 +93,7 @@ export const {
   useGetAnimeQuery,
   useGetMangaQuery,
   useAddStatusMutation,
+  useGetMessagesQuery,
+  useDeleteMessageMutation,
+  useEditMessageMutation,
 } = userApi;
