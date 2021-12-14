@@ -10,8 +10,6 @@ export const contentApi = createApi({
       query: (arg) => {
         const { q, genres, content, type, status, sort, order_by } = arg;
 
-        // if (!q) return;
-
         const searchInput = q ? q : "";
         const genre = genres ? `&genre=${genres}` : "";
         const format = type ? `&type=${type}` : "";

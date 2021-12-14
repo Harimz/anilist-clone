@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Box, Flex, Grid, Spacer, Text } from "@chakra-ui/layout";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { BsFillChatFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export const SmallListCard = ({ anime, manga }) => {
   const { colorMode } = useColorMode();
   const [showNote, setShowNote] = useState(false);
   const isDark = colorMode === "dark";
-  const [isHovering, setIsHovering] = useState(false);
 
   return (
     <Flex
@@ -15,10 +15,10 @@ export const SmallListCard = ({ anime, manga }) => {
       color="gray.400"
       p={{ base: "0.5rem", md: "0.5rem 4rem" }}
       flexDirection={{ base: "column", md: "row" }}
-      onMouseOver={() => setIsHovering(true)}
-      onMouseOut={() => setIsHovering(false)}
     >
-      <Text>{anime?.title || manga?.title}</Text>
+      <Link to={anime ? `/anime/${anime.animeID}` : `/manga/${manga.mangaID}`}>
+        <Text variant="link">{anime?.title || manga?.title}</Text>
+      </Link>
       {(anime?.note || manga?.note) && (
         <Box pos="relative" display={{ base: "none", md: "block" }}>
           <BsFillChatFill
@@ -56,8 +56,8 @@ export const SmallListCard = ({ anime, manga }) => {
         </Text>
 
         <Text>
-          {anime?.episodeProgress.toString() || manga?.volumesRead.toString()}/
-          {anime?.episodeCount.toString() || manga?.volumeCount.toString()}
+          {anime?.episodeProgress || manga?.volumesRead}/
+          {anime?.episodeCount || manga?.volumeCount}
         </Text>
 
         <Text display={{ base: "none", md: "block" }}>

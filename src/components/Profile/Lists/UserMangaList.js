@@ -20,6 +20,8 @@ export const UserMangaList = () => {
     );
   }
 
+  console.log(data);
+
   if (userView === "list") {
     return (
       <Container maxW="container.xl" mb="30rem">

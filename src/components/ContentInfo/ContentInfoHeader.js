@@ -14,7 +14,8 @@ import {
 } from "@chakra-ui/react";
 import { AiFillHeart } from "react-icons/ai";
 import { useAuth } from "../../hooks/useAuth";
-import { AddContent } from "./AddContent";
+import { AddContent } from "./Modals/AddContent";
+import { useCheckList } from "../../hooks";
 
 export const ContentInfoHeader = ({
   img,
@@ -33,24 +34,23 @@ export const ContentInfoHeader = ({
   const { user } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  console.log("Header", type);
+  const { content } = useCheckList(type, id);
 
   return (
     <>
-      <Modal isOpen={isOpen} size="5xl" closeOnOverlayClick={false}>
-        <ModalOverlay />
-        <AddContent
-          onClose={onClose}
-          image={img}
-          id={id}
-          type={type}
-          title={title}
-          episodeCount={episodes}
-          volumeCount={volumes}
-          animeType={animeType}
-          mangaType={mangaType}
-        />
-      </Modal>
+      <AddContent
+        onClose={onClose}
+        image={img}
+        id={id}
+        type={type}
+        title={title}
+        episodeCount={episodes}
+        volumeCount={volumes}
+        animeType={animeType}
+        mangaType={mangaType}
+        isOpen={isOpen}
+        content={content}
+      />
 
       <Flex bgColor={isDark ? "blue.400" : "white"} p="1rem">
         <Container
@@ -81,7 +81,7 @@ export const ContentInfoHeader = ({
                 _hover={{}}
                 onClick={onOpen}
               >
-                Add to List
+                {content ? content.status : "Add to List"}
               </Button>
               <IconButton
                 bgColor="red.300"

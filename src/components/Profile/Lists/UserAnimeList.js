@@ -59,7 +59,7 @@ export const UserAnimeList = () => {
         gap="1rem"
       >
         {data.map((anime) => (
-          <ContentCard anime={anime} />
+          <ContentCard key={anime.animeID} anime={anime} />
         ))}
       </Grid>
     </Container>

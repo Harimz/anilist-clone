@@ -3,12 +3,15 @@ import { Image } from "@chakra-ui/image";
 import { Box, Flex, Grid, Spacer, Text } from "@chakra-ui/layout";
 import { useColorMode } from "@chakra-ui/color-mode";
 import { BsFillChatFill } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 export const ListCard = ({ anime, manga }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [showNote, setShowNote] = useState(false);
   const { colorMode } = useColorMode();
   const isDark = colorMode === "dark";
+
+  console.log(manga);
 
   return (
     <Flex
@@ -23,7 +26,11 @@ export const ListCard = ({ anime, manga }) => {
     >
       <Flex align="center">
         <Image src={anime?.image || manga?.image} h="4rem" mr="1rem" />
-        <Text>{anime?.title || manga?.title}</Text>
+        <Link
+          to={anime ? `/anime/${anime.animeID}` : `/manga/${manga.mangaID}`}
+        >
+          <Text variant="link">{anime?.title || manga?.title}</Text>
+        </Link>
       </Flex>
       {(anime?.note || manga?.note) && (
         <Box pos="relative" display={{ base: "none", md: "block" }}>
@@ -61,8 +68,8 @@ export const ListCard = ({ anime, manga }) => {
           Progress
         </Text>
         <Text>
-          {anime?.episodeProgress.toString() || manga?.volumesRead.toString()}/
-          {anime?.episodeCount.toString() || manga?.volumeCount.toString()}
+          {anime?.episodeProgress || manga?.volumesRead || "0"}/
+          {anime?.episodeCount || manga?.volumeCount || "0"}
         </Text>
 
         <Text display={{ base: "none", md: "block" }}>

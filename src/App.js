@@ -19,9 +19,11 @@ import { MangaInfo } from "./components/ContentInfo/Manga/MangaInfo";
 import { AnimeList } from "./pages/AnimeList";
 import { OverView } from "./pages/OverView";
 import { MangaList } from "./pages/MangaList";
+import { useStoreList } from "./hooks";
 
 export const App = () => {
   const { user } = useAuth();
+  useStoreList();
 
   return (
     <Router>

@@ -82,6 +82,22 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Status"],
     }),
+    updateAnime: builder.mutation({
+      query: (info) => ({
+        url: `/api/anime/${info.id}`,
+        method: "PUT",
+        body: info.updatedInfo,
+      }),
+      invalidatesTags: ["Anime"],
+    }),
+    updateManga: builder.mutation({
+      query: (info) => ({
+        url: `/api/manga/${info.id}`,
+        method: "PUT",
+        body: info.updatedInfo,
+      }),
+      invalidatesTags: ["Manga"],
+    }),
   }),
 });
 
@@ -96,4 +112,6 @@ export const {
   useGetMessagesQuery,
   useDeleteMessageMutation,
   useEditMessageMutation,
+  useUpdateAnimeMutation,
+  useUpdateMangaMutation,
 } = userApi;

@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Text, Image, Flex } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 export const ContentCard = ({ anime, manga }) => {
   return (
@@ -16,12 +17,16 @@ export const ContentCard = ({ anime, manga }) => {
         flexDirection="column"
         justify="space-between"
       >
-        <Text color="white" fontSize="0.85rem">
-          {anime?.title || manga?.title}
-        </Text>
+        <Link
+          to={anime ? `/anime/${anime.animeID}` : `/manga/${manga.mangaID}`}
+        >
+          <Text variant="link" fontSize="0.85rem">
+            {anime?.title || manga?.title}
+          </Text>
+        </Link>
         <Text color="gray.500">
-          {anime?.episodeProgress.toString() || manga?.volumesRead.toString()}/
-          {anime?.episodeCount.toString() || manga?.volumeCount.toString()}
+          {anime?.episodeProgress || manga?.volumesRead || ""}/
+          {anime?.episodeCount || manga?.volumeCount || ""}
         </Text>
       </Flex>
     </Box>
