@@ -14,8 +14,6 @@ export const EntryModalHeader = ({
   const { addToList } = useAddToList(onClose, userInputs, type);
   const { updateEntry } = useUpdateEntry(onClose, userInputs, type);
 
-  console.log(contentInfo);
-
   return (
     <>
       <FaTimes

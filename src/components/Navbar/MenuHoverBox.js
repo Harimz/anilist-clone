@@ -1,14 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Flex, SimpleGrid, Text } from "@chakra-ui/react";
-import {
-  FaPlay,
-  FaBookOpen,
-  FaUserAstronaut,
-  FaStar,
-  FaRegThumbsUp,
-} from "react-icons/fa";
-import { BsJoystick } from "react-icons/bs";
+import { FaPlay, FaBookOpen } from "react-icons/fa";
 
 const MenuHoverBox = () => {
   return (
@@ -55,40 +48,6 @@ const MenuHoverBox = () => {
           </SimpleGrid>
         </Flex>
       </Flex>
-      <SimpleGrid columns={2} spacing={3} p="0 1rem 1rem 1rem">
-        <Link to="/">
-          <Flex>
-            <BsJoystick size={16} style={{ color: "#A0B1C5" }} />
-            <Text variant="subLink" ml="1rem">
-              Staff
-            </Text>
-          </Flex>
-        </Link>
-        <Link to="/">
-          <Flex>
-            <FaUserAstronaut size={16} style={{ color: "#A0B1C5" }} />
-            <Text variant="subLink" ml="1rem">
-              Characters
-            </Text>
-          </Flex>
-        </Link>
-        <Link to="/">
-          <Flex>
-            <FaStar size={16} style={{ color: "#A0B1C5" }} />
-            <Text variant="subLink" ml="1rem">
-              Reviews
-            </Text>
-          </Flex>
-        </Link>
-        <Link to="/">
-          <Flex>
-            <FaRegThumbsUp size={16} style={{ color: "#A0B1C5" }} />
-            <Text variant="subLink" ml="1rem">
-              Recommendations
-            </Text>
-          </Flex>
-        </Link>
-      </SimpleGrid>
     </Flex>
   );
 };

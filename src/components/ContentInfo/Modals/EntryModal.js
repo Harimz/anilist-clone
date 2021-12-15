@@ -57,8 +57,6 @@ export const EntryModal = ({
     }
   }, [content]);
 
-  console.log(content);
-
   return (
     <Modal isOpen={isOpen} size="5xl">
       <ModalOverlay />

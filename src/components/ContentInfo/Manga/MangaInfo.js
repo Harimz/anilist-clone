@@ -33,7 +33,6 @@ export const MangaInfo = () => {
     title_english,
     title_japanese,
     related,
-    trailer_url,
     serializations,
   } = data;
 

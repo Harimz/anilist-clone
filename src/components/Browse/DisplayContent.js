@@ -12,7 +12,7 @@ export const DisplayContent = ({ data, type }) => {
     return (
       <Grid
         templateColumns="repeat(auto-fill, minmax(196px, 1fr))"
-        gap={6}
+        gap={{ base: 0, md: 6 }}
         mb="3rem"
       >
         {data.map((item) => (

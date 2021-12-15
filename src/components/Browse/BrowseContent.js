@@ -19,8 +19,6 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
     searchType: params.searchType || searchType,
   });
 
-  console.log(data);
-
   if (isFetching || !data) {
     return <Loading />;
   }

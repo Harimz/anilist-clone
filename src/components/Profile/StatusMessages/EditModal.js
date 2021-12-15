@@ -16,12 +16,10 @@ export const EditModal = ({ isOpen, onClose, id, initialValue }) => {
   const { user } = useAuth();
   const { isDark } = useIsDark();
   const [updatedMessage, setUpdatedMessage] = useState(initialValue);
-  const [editMessage, { isLoading }] = useEditMessageMutation();
+  const [editMessage] = useEditMessageMutation();
 
   const editHandler = async () => {
-    const res = await editMessage({ id, updatedMessage });
-
-    console.log(res);
+    await editMessage({ id, updatedMessage });
   };
 
   return (

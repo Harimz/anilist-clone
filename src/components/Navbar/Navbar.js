@@ -14,8 +14,7 @@ import {
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useIsDark, useScrollDirection } from "../../hooks";
-import { FaChevronDown, FaSearch } from "react-icons/fa";
-import defaultAvatar from "../../assets/profileImages/default.png";
+import { FaChevronDown } from "react-icons/fa";
 
 import logo from "../../assets/images/icon.svg";
 import MenuHoverBox from "./MenuHoverBox";
@@ -41,6 +40,7 @@ export const Navbar = () => {
       transform={scrollingUp ? "translateY(0)" : "translateY(-10rem)"}
       transition="transform 0.3s ease-in-out"
       zIndex="999"
+      display={{ base: "none", md: "block" }}
     >
       <Container
         maxW="container.xl"
@@ -72,7 +72,7 @@ export const Navbar = () => {
               </MenuList>
             </Menu>
             {user && (
-              <Link to="/profile">
+              <Link to={`/user/${user.username}`}>
                 <Text variant="link">Profile</Text>
               </Link>
             )}
@@ -93,8 +93,6 @@ export const Navbar = () => {
             {user && (
               <>
                 <Flex align="center">
-                  <FaSearch style={{ color: "gray" }} />
-
                   <Menu placement="bottom">
                     <MenuButton>
                       <Flex align="center">

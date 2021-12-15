@@ -1,6 +1,5 @@
-import { Box, Flex, Spacer, Text } from "@chakra-ui/layout";
+import { Box, Flex, Spacer } from "@chakra-ui/layout";
 import React from "react";
-import { VscError } from "react-icons/vsc";
 import { GiCancel } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
 

@@ -1,18 +1,16 @@
 import React from "react";
-import { Container, Flex, Grid, Text, useMediaQuery } from "@chakra-ui/react";
-import { TopAnimeCard } from "./TopAnimeCard";
-import { TopAnimeMobileCard } from "./TopAnimeMobileCard";
+import { Container, Flex, Grid, Text } from "@chakra-ui/react";
 import { useTopContentQuery } from "../../app/services/contentApi";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "../Error/ErrorMessage";
 import { Loading } from "../Loading/Loading";
+import { LargeCard } from "./LargeCard";
 
 export const TopAnime = () => {
   const { data, isFetching, isError } = useTopContentQuery({
     type: "top",
     contentType: "anime",
   });
-  const [isMobile] = useMediaQuery("(max-width: 976px)");
   const navigate = useNavigate();
 
   if (isFetching || !data) return <Loading />;
@@ -45,34 +43,8 @@ export const TopAnime = () => {
         }}
         gap="2rem"
       >
-        {animeList.map((anime, index) => {
-          return (
-            <>
-              {!isMobile && (
-                <TopAnimeCard
-                  key={anime.mal_id}
-                  rank={anime.rank}
-                  id={anime.mal_id}
-                  title={anime.title}
-                  img={anime.image_url}
-                  rating={anime.score}
-                  type={anime.type}
-                  users={anime.members}
-                  finished={anime.end_date}
-                  episodes={anime.episodes}
-                />
-              )}
-              {isMobile && (
-                <TopAnimeMobileCard
-                  key={index}
-                  img={anime.image_url}
-                  rank={anime.rank}
-                  title={anime.title}
-                  id={anime.mal_id}
-                />
-              )}
-            </>
-          );
+        {animeList.map((anime) => {
+          return <LargeCard key={anime.mal_id} anime={anime} />;
         })}
       </Grid>
     </Container>

@@ -13,7 +13,6 @@ const useFilter = () => {
   );
 
   useEffect(() => {
-    console.log("Component Mount");
     const queryObj = {
       ...(genres.length !== 0 && { genres: genres.toString() }),
       ...(type && { type: type }),
@@ -32,7 +31,6 @@ const useFilter = () => {
     }
 
     return () => {
-      console.log("Component Unmount");
       clearTimeout(timeOutId);
     };
   }, [

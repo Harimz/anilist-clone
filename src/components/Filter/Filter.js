@@ -66,7 +66,9 @@ export const Filter = () => {
             }}
           >
             {genres.map((genre, i) => (
-              <option value={i + 1}>{genre}</option>
+              <option key={i} value={i + 1}>
+                {genre}
+              </option>
             ))}
           </Select>
         </Box>
@@ -85,11 +87,15 @@ export const Filter = () => {
           >
             {content === "anime" &&
               animeFormats.map((format) => (
-                <option value={format}>{upperCase(format)}</option>
+                <option key={format} value={format}>
+                  {upperCase(format)}
+                </option>
               ))}
             {content === "manga" &&
               mangaFormats.map((format) => (
-                <option value={format}>{upperCase(format)}</option>
+                <option key={format} value={format}>
+                  {upperCase(format)}
+                </option>
               ))}
           </Select>
         </Box>
@@ -103,7 +109,9 @@ export const Filter = () => {
           >
             {location.pathname !== "/" &&
               publishingStatus.map((status) => (
-                <option value={status}>{upperCase(status)}</option>
+                <option key={status} value={status}>
+                  {upperCase(status)}
+                </option>
               ))}
           </Select>
         </Box>
@@ -117,7 +125,9 @@ export const Filter = () => {
           >
             {location.pathname !== "/" &&
               sort.map((type) => (
-                <option value={type}>{upperCase(type)}</option>
+                <option key={type} value={type}>
+                  {upperCase(type)}
+                </option>
               ))}
           </Select>
         </Box>

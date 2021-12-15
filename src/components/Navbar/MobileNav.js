@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   IconButton,
   useDisclosure,
@@ -9,22 +9,32 @@ import {
 } from "@chakra-ui/react";
 import {
   FaBars,
-  FaUsers,
   FaSearch,
   FaUserPlus,
   FaSignInAlt,
   FaTimes,
+  FaUser,
+  FaSignOutAlt,
 } from "react-icons/fa";
-import { BsFillChatFill } from "react-icons/bs";
 import { MobileNavItem } from "./MobileNavItem";
 import { useIsDark } from "../../hooks";
+import { useAuth } from "../../hooks/useAuth";
+import { useDispatch } from "react-redux";
+import { logout } from "../../app/userSlice";
 
 export const MobileNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const { isDark } = useIsDark();
+  const { user } = useAuth();
 
-  console.log(isOpen);
+  const logoutHandler = () => {
+    dispatch(logout());
+
+    navigate("/");
+  };
 
   return (
     <>
@@ -38,6 +48,7 @@ export const MobileNav = () => {
           size="lg"
           onClick={onOpen}
           zIndex={999}
+          display={{ base: "flex", md: "none" }}
         />
       )}
 
@@ -50,25 +61,47 @@ export const MobileNav = () => {
           w="15rem"
         >
           <SimpleGrid columns={3} spacing={6} p="1.5rem">
-            <Link to="/forum">
-              <MobileNavItem icon={BsFillChatFill} text="forum" />
+            {user && (
+              <Link to={`/user/${user.username}`}>
+                <MobileNavItem icon={FaUser} text="profile" onClick={onClose} />
+              </Link>
+            )}
+
+            <Link to="/search/anime">
+              <MobileNavItem icon={FaSearch} text="search" onClick={onClose} />
             </Link>
 
-            <Link to="/social">
-              <MobileNavItem icon={FaUsers} text="social" />
-            </Link>
+            {user && (
+              <MobileNavItem
+                icon={FaSignOutAlt}
+                text="logout"
+                onClick={() => {
+                  logoutHandler();
+                  onClose();
+                }}
+                cursor="pointer"
+              />
+            )}
 
-            <Link to="/anime/search">
-              <MobileNavItem icon={FaSearch} text="search" />
-            </Link>
+            {!user && (
+              <Link to="/signup">
+                <MobileNavItem
+                  icon={FaUserPlus}
+                  text="sign up"
+                  onClick={onClose}
+                />
+              </Link>
+            )}
 
-            <Link to="/signup">
-              <MobileNavItem icon={FaUserPlus} text="sign up" />
-            </Link>
-
-            <Link to="/login">
-              <MobileNavItem icon={FaSignInAlt} text="login" />
-            </Link>
+            {!user && (
+              <Link to="/login">
+                <MobileNavItem
+                  icon={FaSignInAlt}
+                  text="login"
+                  onClick={onClose}
+                />
+              </Link>
+            )}
 
             <MobileNavItem icon={FaTimes} onClick={onClose} cursor="pointer" />
           </SimpleGrid>

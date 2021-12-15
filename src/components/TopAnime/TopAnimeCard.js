@@ -6,24 +6,14 @@ import { Link } from "react-router-dom";
 import { FiSmile } from "react-icons/fi";
 import { useIsDark } from "../../hooks";
 
-export const TopAnimeCard = ({
-  id,
-  title,
-  img,
-  rank,
-  finished,
-  type,
-  users,
-  rating,
-  episodes,
-}) => {
+export const TopAnimeCard = ({ anime }) => {
   const { isDark } = useIsDark();
 
   return (
-    <Flex mb="2rem">
+    <Flex mb="2rem" display={{ base: "none", md: "none", lg: "flex" }}>
       <Flex w="5%" justify="center" align="center" mr="2rem">
         <Heading color="gray.500" fontSize="2rem">
-          #{rank}
+          #{anime.rank}
         </Heading>
       </Flex>
       <Flex
@@ -35,9 +25,9 @@ export const TopAnimeCard = ({
         boxShadow={isDark ? "" : " 0 14px 30px #C9D7E3AA,0 4px 4px #C9D7E3AA"}
       >
         <Flex align="center">
-          <Image src={img} h="4.5rem" w="3.5rem" mr="2rem" />
+          <Image src={anime?.image_url} h="4.5rem" w="3.5rem" mr="2rem" />
           <Text variant="link" cursor="pointer" fontWeight="bold">
-            <Link to={`/anime/${id}`}>{title}</Link>
+            <Link to={`/anime/${anime.mal_id}`}>{anime?.title}</Link>
           </Text>
         </Flex>
         <Grid
@@ -50,21 +40,23 @@ export const TopAnimeCard = ({
           </Box>
           <Box>
             <Text variant="link" fontWeight="bold">
-              {getPercent(rating)}%
+              {getPercent(anime?.score)}%
             </Text>
-            <Text variant="subLink">{users} users</Text>
+            <Text variant="subLink">{anime?.members} users</Text>
           </Box>
           <Box>
             <Text variant="link" fontWeight="bold">
-              {type}
+              {anime?.type}
             </Text>
-            <Text variant="subLink">{episodes} episode(s)</Text>
+            <Text variant="subLink">{anime?.episodes} episode(s)</Text>
           </Box>
           <Box>
             <Text variant="link" fontWeight="bold">
-              {finished ? finished : "airing"}
+              {anime?.end_date ? anime?.end_date : "airing"}
             </Text>
-            <Text variant="subLink">{finished ? "finished" : "airing"}</Text>
+            <Text variant="subLink">
+              {anime?.end_date ? "finished" : "airing"}
+            </Text>
           </Box>
         </Grid>
       </Flex>

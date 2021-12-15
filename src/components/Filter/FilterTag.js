@@ -17,7 +17,6 @@ export const FilterTag = ({ genre, tagId }) => {
   };
 
   const removeHandler = () => {
-    console.log(tagId);
     dispatch(removeGenres({ genre: tagId }));
   };
 

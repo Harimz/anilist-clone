@@ -1,9 +1,13 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
 
-export const TopAnimeMobileCard = ({ img, title, rank, id }) => {
+export const TopAnimeMobileCard = ({ anime }) => {
   return (
-    <Flex direction="column" position="relative">
+    <Flex
+      direction="column"
+      position="relative"
+      display={{ base: "block", md: "block", lg: "none" }}
+    >
       <Flex
         bgColor="blue.200"
         borderRadius="50%"
@@ -16,11 +20,11 @@ export const TopAnimeMobileCard = ({ img, title, rank, id }) => {
         top="-1rem"
       >
         <Text color="white" fontWeight="bold">
-          #{rank}
+          #{anime.rank}
         </Text>
       </Flex>
-      <Image src={img} alt={title} height="15rem" />
-      <Text color="gray.400">{title}</Text>
+      <Image src={anime.image_url} alt={anime.title} height="15rem" w="100%" />
+      <Text color="gray.400">{anime.title}</Text>
     </Flex>
   );
 };
