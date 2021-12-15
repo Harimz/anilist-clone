@@ -1,9 +1,10 @@
 import React from "react";
-import { Box, Flex, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Flex, Text } from "@chakra-ui/react";
 import { FaStar } from "react-icons/fa";
 import { SidebarItem } from "../SidebarItem";
 import moment from "moment";
 import { getPercent } from "../../../helpers";
+import { useIsDark } from "../../../hooks";
 
 export const AnimeInfoSidebar = ({
   airing,
@@ -25,8 +26,7 @@ export const AnimeInfoSidebar = ({
   title_japanese,
   season,
 }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   const names = producers.map((item) => item.name);
   const genreList = genres.map((item) => item.name).join();

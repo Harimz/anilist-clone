@@ -4,7 +4,6 @@ import {
   Flex,
   Image,
   Text,
-  useColorMode,
   Spacer,
   Popover,
   PopoverTrigger,
@@ -17,10 +16,10 @@ import { FiEdit2 } from "react-icons/fi";
 import { FaTimes } from "react-icons/fa";
 import { DeleteModal } from "./DeleteModal";
 import { EditModal } from "./EditModal";
+import { useIsDark } from "../../../hooks";
 
 export const StatusMessage = ({ pic, username, statusMessage, id }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
   const [editHover, setEditHover] = useState(false);
   const [deleteHover, setDeleteHover] = useState(false);
   const {

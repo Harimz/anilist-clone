@@ -7,7 +7,6 @@ import {
   Input,
   Select,
   Text,
-  useColorMode,
 } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { removeGenres, setFilters, setGenres } from "../../app/filterSlice";
@@ -22,7 +21,7 @@ import { FilterTag } from "./FilterTag";
 import { FaTags } from "react-icons/fa";
 import { upperCase } from "../../helpers";
 import { useParams, useLocation } from "react-router-dom";
-import { useFilter } from "../../hooks";
+import { useFilter, useIsDark } from "../../hooks";
 
 export const Filter = () => {
   const dispatch = useDispatch();
@@ -30,10 +29,9 @@ export const Filter = () => {
   const { genres: filteredGenres, search: userSearch } = useSelector(
     (state) => state.filter
   );
-  const { colorMode } = useColorMode();
   const { filterRedirect } = useFilter();
   const location = useLocation();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   return (
     <Container maxW="container.xl" mt="4rem">

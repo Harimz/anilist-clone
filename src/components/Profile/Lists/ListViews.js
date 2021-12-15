@@ -3,13 +3,12 @@ import { Container, Flex } from "@chakra-ui/layout";
 import { BsFillGridFill } from "react-icons/bs";
 import { FaListUl, FaThList } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { useColorMode } from "@chakra-ui/color-mode";
 import { setUserView } from "../../../app/viewSlice";
+import { useIsDark } from "../../../hooks";
 
 export const ListViews = () => {
   const dispatch = useDispatch();
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
   const { userView } = useSelector((state) => state.views);
 
   return (

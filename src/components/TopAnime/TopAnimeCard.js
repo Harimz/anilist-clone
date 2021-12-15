@@ -1,17 +1,10 @@
 import React from "react";
 
-import {
-  Box,
-  Flex,
-  Grid,
-  Heading,
-  Image,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Box, Flex, Grid, Heading, Image, Text } from "@chakra-ui/react";
 import { getPercent } from "../../helpers/";
 import { Link } from "react-router-dom";
 import { FiSmile } from "react-icons/fi";
+import { useIsDark } from "../../hooks";
 
 export const TopAnimeCard = ({
   id,
@@ -24,8 +17,7 @@ export const TopAnimeCard = ({
   rating,
   episodes,
 }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   return (
     <Flex mb="2rem">

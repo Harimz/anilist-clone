@@ -11,10 +11,9 @@ import {
   SimpleGrid,
   Spacer,
   Text,
-  useColorMode,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
-import { useScrollDirection } from "../../hooks";
+import { useIsDark, useScrollDirection } from "../../hooks";
 import { FaChevronDown, FaSearch } from "react-icons/fa";
 import defaultAvatar from "../../assets/profileImages/default.png";
 
@@ -24,9 +23,7 @@ import { useAuth } from "../../hooks/useAuth";
 import { UserHoverBox } from "../Profile/UserHoverBox";
 
 export const Navbar = () => {
-  const { colorMode } = useColorMode();
-
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   const { scrollDirection } = useScrollDirection();
   const scrollingUp = scrollDirection === "UP";

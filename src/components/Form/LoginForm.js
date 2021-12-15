@@ -7,7 +7,6 @@ import {
   Input,
   Spinner,
   Text,
-  useColorMode,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import loginOptions from "../../utils/LoginOptions";
@@ -16,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "../../app/userSlice";
 import { useNavigate } from "react-router";
 import { ErrorBox } from "./ErrorBox";
+import { useIsDark } from "../../hooks";
 
 export const LoginForm = () => {
   const {
@@ -24,8 +24,7 @@ export const LoginForm = () => {
     formState: { errors },
     clearErrors,
   } = useForm(loginOptions);
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
   const [loginUser, { isLoading }] = useLoginMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();

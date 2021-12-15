@@ -1,13 +1,13 @@
 import React from "react";
-import { Container, Grid, Heading, Spinner } from "@chakra-ui/react";
+import { Container } from "@chakra-ui/react";
 import { useSearchParams, useParams, useLocation } from "react-router-dom";
 import { useSearchQuery } from "../../app/services/contentApi";
-import { ContentCard } from "./Cards/ContentCard";
 import { DefaultAnimeView } from "./DefaultViews/DefaultAnimeView";
 import { DefaultMangaView } from "./DefaultViews/DefaultMangaView";
 import { ContentViews } from "./ContentViews";
 import { DisplayContent } from "./DisplayContent";
 import { ErrorMessage } from "../Error/ErrorMessage";
+import { Loading } from "../Loading/Loading";
 
 export const BrowseSearch = () => {
   const location = useLocation();
@@ -40,11 +40,7 @@ export const BrowseSearch = () => {
   }
 
   if (isFetching || !results) {
-    return (
-      <Container maxW="container.xl" mt="3rem" centerContent>
-        <Spinner color="white" />
-      </Container>
-    );
+    return <Loading />;
   }
 
   if (error) {

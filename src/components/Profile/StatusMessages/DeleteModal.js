@@ -7,16 +7,15 @@ import {
   Text,
   Button,
   Spacer,
-  useColorMode,
   useToast,
 } from "@chakra-ui/react";
 import { FaTimes } from "react-icons/fa";
 import { useDeleteMessageMutation } from "../../../app/services/userApi";
+import { useIsDark } from "../../../hooks";
 
 export const DeleteModal = ({ isOpen, onClose, id }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
-  const [deleteMessage, { isLoading }] = useDeleteMessageMutation();
+  const { isDark } = useIsDark();
+  const [deleteMessage] = useDeleteMessageMutation();
   const toast = useToast();
 
   const deleteHandler = async () => {

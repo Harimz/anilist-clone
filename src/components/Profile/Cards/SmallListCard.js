@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Box, Flex, Grid, Spacer, Text } from "@chakra-ui/layout";
-import { useColorMode } from "@chakra-ui/color-mode";
 import { BsFillChatFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { numToString } from "../../../helpers";
+import { useIsDark } from "../../../hooks";
 
 export const SmallListCard = ({ anime, manga }) => {
-  const { colorMode } = useColorMode();
   const [showNote, setShowNote] = useState(false);
-  const isDark = colorMode === "dark";
+
+  const { isDark } = useIsDark();
 
   return (
     <Flex
@@ -56,8 +57,9 @@ export const SmallListCard = ({ anime, manga }) => {
         </Text>
 
         <Text>
-          {anime?.episodeProgress || manga?.volumesRead}/
-          {anime?.episodeCount || manga?.volumeCount}
+          {numToString(anime?.episodeProgress) ||
+            numToString(manga?.volumesRead)}
+          /{numToString(anime?.episodeCount) || numToString(manga?.volumeCount)}
         </Text>
 
         <Text display={{ base: "none", md: "block" }}>

@@ -4,18 +4,15 @@ import {
   Flex,
   Text,
   Image,
-  useColorMode,
   Button,
   IconButton,
   useMediaQuery,
-  Modal,
-  ModalOverlay,
   useDisclosure,
 } from "@chakra-ui/react";
 import { AiFillHeart } from "react-icons/ai";
 import { useAuth } from "../../hooks/useAuth";
-import { AddContent } from "./Modals/AddContent";
-import { useCheckList } from "../../hooks";
+import { EntryModal } from "./Modals/EntryModal";
+import { useCheckList, useIsDark } from "../../hooks";
 
 export const ContentInfoHeader = ({
   img,
@@ -28,9 +25,8 @@ export const ContentInfoHeader = ({
   animeType,
   mangaType,
 }) => {
-  const { colorMode } = useColorMode();
   const [isMobile] = useMediaQuery("(max-width: 550px)");
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
   const { user } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -38,7 +34,7 @@ export const ContentInfoHeader = ({
 
   return (
     <>
-      <AddContent
+      <EntryModal
         onClose={onClose}
         image={img}
         id={id}

@@ -7,7 +7,6 @@ import {
   Input,
   Spinner,
   Text,
-  useColorMode,
 } from "@chakra-ui/react";
 import { useForm } from "react-hook-form";
 import signupOptions from "../../utils/SignUpOptions";
@@ -16,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { setCredentials } from "../../app/userSlice";
 import { useNavigate } from "react-router-dom";
 import { ErrorBox } from "./ErrorBox";
+import { useIsDark } from "../../hooks";
 
 export const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -26,8 +26,7 @@ export const SignUpForm = () => {
     formState: { errors },
     clearErrors,
   } = useForm(signupOptions);
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
   const [registerUser, { isLoading }] = useRegisterMutation();
   const [serverError, setServerError] = useState("");
 

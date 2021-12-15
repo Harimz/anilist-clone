@@ -1,16 +1,15 @@
 import React from "react";
 import { Flex, SimpleGrid, Text } from "@chakra-ui/layout";
 import { FaSignOutAlt, FaUser } from "react-icons/fa";
-import { useColorMode } from "@chakra-ui/color-mode";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from "../../app/userSlice";
+import { useIsDark } from "../../hooks";
 
 export const UserHoverBox = ({ user }) => {
-  const { colorMode } = useColorMode();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   const logoutHandler = () => {
     dispatch(logout());

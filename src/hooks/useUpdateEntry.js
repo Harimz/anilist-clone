@@ -12,7 +12,17 @@ const useUpdateEntry = (onClose, userInputs, type) => {
   const updateEntry = async (id, info) => {
     try {
       if (type === "anime") {
-        await updateAnime({ id, updatedInfo: userInputs });
+        await updateAnime({
+          id,
+          updatedInfo: {
+            status: userInputs.status,
+            score: userInputs.score,
+            episodeProgress: userInputs.episodeProgress,
+            totalRewatches: userInputs.totalRewatches,
+            startDate: userInputs.startDate,
+            endDate: userInputs.endDate,
+          },
+        });
 
         onClose();
 
@@ -26,7 +36,17 @@ const useUpdateEntry = (onClose, userInputs, type) => {
       }
 
       if (type === "manga") {
-        await updateManga({ id, updatedInfo: userInputs });
+        await updateManga({
+          id,
+          updatedInfo: {
+            status: userInputs.status,
+            score: userInputs.score,
+            volumesRead: userInputs.volumesRead,
+            totalRereads: userInputs.totalRereads,
+            startDate: userInputs.startDate,
+            endDate: userInputs.endDate,
+          },
+        });
 
         onClose();
 

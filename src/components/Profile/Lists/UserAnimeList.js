@@ -1,27 +1,20 @@
 import React from "react";
 import { useGetAnimeQuery } from "../../../app/services/userApi";
-import { Box, Container, Grid, Text } from "@chakra-ui/layout";
+import { Container, Grid, Text } from "@chakra-ui/layout";
 import { useSelector } from "react-redux";
-import { Spinner } from "@chakra-ui/spinner";
 import { ListCard } from "../Cards/ListCard";
 import { ListHeader } from "./ListHeader";
 import { SmallListCard } from "../Cards/SmallListCard";
 import { ContentCard } from "../Cards/ContentCard";
-import { Image } from "@chakra-ui/image";
+import { Loading } from "../../Loading/Loading";
 
 export const UserAnimeList = () => {
   const { data, isFetching } = useGetAnimeQuery();
   const { userView } = useSelector((state) => state.views);
 
   if (isFetching || !data) {
-    return (
-      <Container>
-        <Spinner />
-      </Container>
-    );
+    return <Loading />;
   }
-
-  console.log(userView);
 
   if (userView === "list") {
     return (

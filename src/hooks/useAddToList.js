@@ -45,7 +45,7 @@ const useAddToList = (onClose, userInputs, type) => {
         onClose();
 
         toast({
-          title: `${info.title} has been added to your anime list!`,
+          title: `${info.title} has been added to your manga list!`,
           isClosable: true,
           status: "success",
           variant: "subtle",

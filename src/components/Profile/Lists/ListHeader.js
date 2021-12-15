@@ -1,9 +1,9 @@
 import React from "react";
-import { Flex, Spacer, Text, useColorMode, Grid } from "@chakra-ui/react";
+import { Flex, Spacer, Text, Grid } from "@chakra-ui/react";
+import { useIsDark } from "../../../hooks";
 
 export const ListHeader = () => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   return (
     <>

@@ -5,6 +5,7 @@ import { ContentInfoHeader } from "../ContentInfoHeader";
 import { MangaInfoSidebar } from "./MangaInfoSidebar";
 import { ContentInfoResources } from "../ContentInfoResources";
 import { useContentInfoQuery } from "../../../app/services/contentApi";
+import { Loading } from "../../Loading/Loading";
 
 export const MangaInfo = () => {
   const params = useParams();
@@ -13,7 +14,7 @@ export const MangaInfo = () => {
     id: params.contentId,
   });
 
-  if (isFetching) return "Loading...";
+  if (isFetching) return <Loading />;
 
   const {
     image_url,

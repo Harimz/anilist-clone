@@ -1,17 +1,15 @@
 import React, { useState } from "react";
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Grid, Spacer, Text } from "@chakra-ui/layout";
-import { useColorMode } from "@chakra-ui/color-mode";
 import { BsFillChatFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useIsDark } from "../../../hooks";
 
 export const ListCard = ({ anime, manga }) => {
   const [isHovering, setIsHovering] = useState(false);
   const [showNote, setShowNote] = useState(false);
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
 
-  console.log(manga);
+  const { isDark } = useIsDark();
 
   return (
     <Flex

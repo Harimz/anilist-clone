@@ -2,25 +2,19 @@ import React from "react";
 import { useGetMangaQuery } from "../../../app/services/userApi";
 import { Container, Grid, Text } from "@chakra-ui/layout";
 import { useSelector } from "react-redux";
-import { Spinner } from "@chakra-ui/spinner";
 import { ListCard } from "../Cards/ListCard";
 import { ListHeader } from "./ListHeader";
 import { SmallListCard } from "../Cards/SmallListCard";
 import { ContentCard } from "../Cards/ContentCard";
+import { Loading } from "../../Loading/Loading";
 
 export const UserMangaList = () => {
   const { data, isFetching } = useGetMangaQuery();
   const { userView } = useSelector((state) => state.views);
 
   if (isFetching || !data) {
-    return (
-      <Container>
-        <Spinner />
-      </Container>
-    );
+    return <Loading />;
   }
-
-  console.log(data);
 
   if (userView === "list") {
     return (
@@ -28,7 +22,7 @@ export const UserMangaList = () => {
         <ListHeader />
         <Grid gridTemplateColumns="repeat(1,1fr)">
           {data.map((manga) => (
-            <ListCard manga={manga} />
+            <ListCard key={manga.mangaID} manga={manga} />
           ))}
         </Grid>
       </Container>
@@ -41,7 +35,7 @@ export const UserMangaList = () => {
         <ListHeader />
         <Grid gridTemplateColumns="repeat(1,1fr)">
           {data.map((manga) => (
-            <SmallListCard key={manga.animeID} manga={manga} />
+            <SmallListCard key={manga.mangaID} manga={manga} />
           ))}
         </Grid>
       </Container>

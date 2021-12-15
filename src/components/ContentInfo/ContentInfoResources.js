@@ -1,17 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Box,
-  Flex,
-  HStack,
-  Image,
-  Text,
-  useColorMode,
-  Spinner,
-} from "@chakra-ui/react";
+import { Box, Flex, HStack, Image, Text, Spinner } from "@chakra-ui/react";
 import { BsDot } from "react-icons/bs";
 import ReactPlayer from "react-player";
 import { useContentInfoQuery } from "../../app/services/contentApi";
+import { useIsDark } from "../../hooks";
 
 export const ContentInfoResources = ({ related, trailer }) => {
   const values = Object.values(related).flat();
@@ -32,8 +25,8 @@ export const ContentInfoResources = ({ related, trailer }) => {
     type: second.type,
     id: second.id,
   });
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+
+  const { isDark } = useIsDark();
 
   if (isFetching1) return <Spinner color="white" margin="0 auto" />;
 

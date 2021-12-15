@@ -1,17 +1,11 @@
 import React from "react";
-import {
-  Container,
-  Flex,
-  Grid,
-  Spinner,
-  Text,
-  useMediaQuery,
-} from "@chakra-ui/react";
+import { Container, Flex, Grid, Text, useMediaQuery } from "@chakra-ui/react";
 import { TopAnimeCard } from "./TopAnimeCard";
 import { TopAnimeMobileCard } from "./TopAnimeMobileCard";
 import { useTopContentQuery } from "../../app/services/contentApi";
 import { useNavigate } from "react-router-dom";
 import { ErrorMessage } from "../Error/ErrorMessage";
+import { Loading } from "../Loading/Loading";
 
 export const TopAnime = () => {
   const { data, isFetching, isError } = useTopContentQuery({
@@ -21,12 +15,7 @@ export const TopAnime = () => {
   const [isMobile] = useMediaQuery("(max-width: 976px)");
   const navigate = useNavigate();
 
-  if (isFetching || !data)
-    return (
-      <Container centerContent>
-        <Spinner color="white" />
-      </Container>
-    );
+  if (isFetching || !data) return <Loading />;
   const animeList = data.top.slice(0, 10);
 
   if (isError) {

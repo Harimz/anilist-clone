@@ -1,21 +1,13 @@
 import React from "react";
 
-import {
-  Box,
-  Flex,
-  Grid,
-  Image,
-  Spacer,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Box, Flex, Grid, Image, Spacer, Text } from "@chakra-ui/react";
 import { colorByPercent, getPercent } from "../../../helpers/index";
 import { Link } from "react-router-dom";
 import { FiSmile } from "react-icons/fi";
+import { useIsDark } from "../../../hooks";
 
 export const ListCard = ({ data, type }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   const episodes = data?.episodes ? "episodes" : "";
   const volumes = data?.volumes ? "volumes" : "";

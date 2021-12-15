@@ -1,12 +1,12 @@
 import React from "react";
-import { Box, Flex, Image, Text, useColorMode } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { colorByPercent, getPercent } from "../../../helpers";
 import { FiSmile } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { useIsDark } from "../../../hooks";
 
 export const LargeCard = ({ data, type }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   const episodes = data?.episodes ? "episodes" : "";
   const volumes = data?.volumes ? "volumes" : "";

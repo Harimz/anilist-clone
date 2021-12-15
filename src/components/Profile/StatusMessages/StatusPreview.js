@@ -1,9 +1,9 @@
 import React from "react";
-import { Box, Text, Flex, Image, useColorMode } from "@chakra-ui/react";
+import { Box, Text, Flex, Image } from "@chakra-ui/react";
+import { useIsDark } from "../../../hooks";
 
 export const StatusPreview = ({ pic, username, status }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   return (
     <Box>

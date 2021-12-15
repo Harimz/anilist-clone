@@ -4,18 +4,17 @@ import {
   Input,
   ModalOverlay,
   ModalContent,
-  useColorMode,
   Button,
   Flex,
 } from "@chakra-ui/react";
 import { StatusPreview } from "./StatusPreview";
 import { useAuth } from "../../../hooks/useAuth";
 import { useEditMessageMutation } from "../../../app/services/userApi";
+import { useIsDark } from "../../../hooks";
 
 export const EditModal = ({ isOpen, onClose, id, initialValue }) => {
   const { user } = useAuth();
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
   const [updatedMessage, setUpdatedMessage] = useState(initialValue);
   const [editMessage, { isLoading }] = useEditMessageMutation();
 

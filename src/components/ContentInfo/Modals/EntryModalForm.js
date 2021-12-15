@@ -12,19 +12,11 @@ import { Select } from "@chakra-ui/select";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
-import { useColorMode } from "@chakra-ui/color-mode";
 import * as addOptions from "../../../constants/addOptions";
+import { useIsDark } from "../../../hooks";
 
-export const AddContentForm = ({
-  type,
-  content,
-  setUserInputs,
-  startDate,
-  finishDate,
-  userInputs,
-}) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+export const EntryModalForm = ({ type, setUserInputs, userInputs }) => {
+  const { isDark } = useIsDark();
 
   const options = type === "anime" ? addOptions.anime : addOptions.manga;
 

@@ -1,14 +1,13 @@
 import React from "react";
-import { Container, Flex, Text, useColorMode } from "@chakra-ui/react";
+import { Container, Flex, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 import { Banner } from "./Banner";
-import { ListViews } from "./Lists/ListViews";
+import { useIsDark } from "../../hooks";
 
 export const ProfileHeader = () => {
   const { user } = useAuth();
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   return (
     <>

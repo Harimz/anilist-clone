@@ -1,15 +1,5 @@
 import React, { useState } from "react";
-import {
-  Container,
-  Input,
-  Text,
-  Flex,
-  Button,
-  Box,
-  Image,
-  useColorMode,
-  Spinner,
-} from "@chakra-ui/react";
+import { Container, Input, Text, Box } from "@chakra-ui/react";
 import { useAuth } from "../../hooks/useAuth";
 import {
   useAddStatusMutation,
@@ -18,13 +8,12 @@ import {
 import { StatusPreview } from "./StatusMessages/StatusPreview";
 import { StatusSubmit } from "./StatusMessages/StatusSubmit";
 import { StatusMessage } from "./StatusMessages/StatusMessage";
+import { Loading } from "../Loading/Loading";
 
 export const Status = () => {
   const [writeStatus, setWriteStatus] = useState(false);
   const [status, setStatus] = useState("");
-  const { colorMode } = useColorMode();
   const { user } = useAuth();
-  const isDark = colorMode === "dark";
   const [postStatus, { isLoading }] = useAddStatusMutation();
   const { data, isFetching } = useGetMessagesQuery();
 
@@ -38,7 +27,7 @@ export const Status = () => {
   };
 
   if (isFetching) {
-    return "Loading...";
+    return <Loading />;
   }
 
   return (

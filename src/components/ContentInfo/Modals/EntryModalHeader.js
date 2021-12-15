@@ -4,7 +4,7 @@ import { Box, Flex, Image, Text, Spacer, Button } from "@chakra-ui/react";
 import banner from "../../../assets/images/anime-banner.png";
 import { useAddToList, useUpdateEntry } from "../../../hooks";
 
-export const ModalHeader = ({
+export const EntryModalHeader = ({
   onClose,
   contentInfo,
   userInputs,
@@ -62,7 +62,6 @@ export const ModalHeader = ({
             variant="form"
             onClick={() => {
               if (content) {
-                console.log("This worked atleast");
                 updateEntry(content._id, { title: content.title });
               }
 

@@ -1,24 +1,18 @@
 import React from "react";
-import {
-  Container,
-  Flex,
-  Heading,
-  Spinner,
-  Text,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Container, Flex, Heading, Text } from "@chakra-ui/react";
 import { Link, useParams } from "react-router-dom";
 import { useSearchTopQuery } from "../../app/services/contentApi";
 
 import { ContentViews } from "./ContentViews";
 import { DisplayContent } from "./DisplayContent";
 import { ErrorMessage } from "../Error/ErrorMessage";
+import { useIsDark } from "../../hooks";
+import { Loading } from "../Loading/Loading";
 
 export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
   const params = useParams();
   const contentType = type || params.content;
+  const { isDark } = useIsDark();
 
   const { data, isFetching, isError } = useSearchTopQuery({
     content: params.content || type,
@@ -28,11 +22,7 @@ export const BrowseContent = ({ amount = 5, type, title, searchType }) => {
   console.log(data);
 
   if (isFetching || !data) {
-    return (
-      <Container centerContent>
-        <Spinner color={isDark ? "white" : "black"} />
-      </Container>
-    );
+    return <Loading />;
   }
 
   if (isError) {

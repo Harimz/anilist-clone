@@ -98,6 +98,20 @@ export const userApi = createApi({
       }),
       invalidatesTags: ["Manga"],
     }),
+    deleteAnime: builder.mutation({
+      query: (id) => ({
+        url: `/api/anime/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Anime"],
+    }),
+    deleteManga: builder.mutation({
+      query: (id) => ({
+        url: `/api/manga/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["Manga"],
+    }),
   }),
 });
 
@@ -114,4 +128,6 @@ export const {
   useEditMessageMutation,
   useUpdateAnimeMutation,
   useUpdateMangaMutation,
+  useDeleteAnimeMutation,
+  useDeleteMangaMutation,
 } = userApi;

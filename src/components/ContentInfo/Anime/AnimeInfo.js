@@ -5,6 +5,7 @@ import { ContentInfoHeader } from "../ContentInfoHeader";
 import { AnimeInfoSidebar } from "./AnimeInfoSidebar";
 import { ContentInfoResources } from "../ContentInfoResources";
 import { useContentInfoQuery } from "../../../app/services/contentApi";
+import { Loading } from "../../Loading/Loading";
 
 export const AnimeInfo = () => {
   const params = useParams();
@@ -15,7 +16,7 @@ export const AnimeInfo = () => {
     id: params.contentId,
   });
 
-  if (isFetching || !data) return "Loading...";
+  if (isFetching || !data) return <Loading />;
 
   const {
     image_url,

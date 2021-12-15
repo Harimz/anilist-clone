@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from "react";
-import { Modal, ModalContent, ModalOverlay } from "@chakra-ui/react";
+import {
+  Flex,
+  Modal,
+  ModalContent,
+  ModalOverlay,
+  Button,
+} from "@chakra-ui/react";
 
 import "react-datepicker/dist/react-datepicker.css";
 
-import { AddContentForm } from "./AddContentForm";
+import { EntryModalForm } from "./EntryModalForm";
+import { EntryModalHeader } from "./EntryModalHeader";
+import { useDeleteEntry, useIsDark } from "../../../hooks";
+import { setDate } from "../../../helpers";
 
-import { ModalHeader } from "./ModalHeader";
-
-export const AddContent = ({
+export const EntryModal = ({
   onClose,
   image,
   id,
@@ -31,14 +38,8 @@ export const AddContent = ({
     totalRereads: 0,
     note: "",
   });
-
-  const setDate = (date) => {
-    if (date) {
-      return new Date(date);
-    } else {
-      return null;
-    }
-  };
+  const { isDark } = useIsDark();
+  const { deleteEntry } = useDeleteEntry(onClose, type);
 
   useEffect(() => {
     if (content) {
@@ -56,11 +57,13 @@ export const AddContent = ({
     }
   }, [content]);
 
+  console.log(content);
+
   return (
     <Modal isOpen={isOpen} size="5xl">
       <ModalOverlay />
       <ModalContent position="relative">
-        <ModalHeader
+        <EntryModalHeader
           onClose={onClose}
           contentInfo={{
             title,
@@ -75,12 +78,28 @@ export const AddContent = ({
           type={type}
           content={content}
         />
-        <AddContentForm
+        <EntryModalForm
           type={type}
           content={content}
           setUserInputs={setUserInputs}
           userInputs={userInputs}
         />
+        {content && (
+          <Flex
+            p="0rem 2rem 1rem 2rem"
+            justify="flex-end"
+            bgColor={isDark ? "blue.500" : "white"}
+          >
+            <Button
+              bgColor="red.300"
+              color="white"
+              _hover={{}}
+              onClick={() => deleteEntry(content._id, content.title)}
+            >
+              Delete
+            </Button>
+          </Flex>
+        )}
       </ModalContent>
     </Modal>
   );

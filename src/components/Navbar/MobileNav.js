@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   IconButton,
-  useColorMode,
   useDisclosure,
   Modal,
   ModalContent,
@@ -18,11 +17,12 @@ import {
 } from "react-icons/fa";
 import { BsFillChatFill } from "react-icons/bs";
 import { MobileNavItem } from "./MobileNavItem";
+import { useIsDark } from "../../hooks";
 
 export const MobileNav = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+
+  const { isDark } = useIsDark();
 
   console.log(isOpen);
 

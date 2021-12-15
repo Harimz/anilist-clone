@@ -1,9 +1,10 @@
 import React from "react";
-import { Flex, Text, useColorMode } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 import { FaStar } from "react-icons/fa";
 import { SidebarItem } from "../SidebarItem";
 import moment from "moment";
 import { getPercent } from "../../../helpers";
+import { useIsDark } from "../../../hooks";
 
 export const MangaInfoSidebar = ({
   format,
@@ -21,8 +22,7 @@ export const MangaInfoSidebar = ({
   volumes,
   serializations,
 }) => {
-  const { colorMode } = useColorMode();
-  const isDark = colorMode === "dark";
+  const { isDark } = useIsDark();
 
   const producers = serializations.map((item) => item.name);
   const genreList = genres.map((item) => item.name).join();
