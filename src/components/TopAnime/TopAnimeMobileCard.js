@@ -1,5 +1,6 @@
 import { Flex, Image, Text } from "@chakra-ui/react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const TopAnimeMobileCard = ({ anime }) => {
   return (
@@ -23,7 +24,14 @@ export const TopAnimeMobileCard = ({ anime }) => {
           #{anime.rank}
         </Text>
       </Flex>
-      <Image src={anime.image_url} alt={anime.title} height="15rem" w="100%" />
+      <Link to={`/anime/${anime.mal_id}`}>
+        <Image
+          src={anime.image_url}
+          alt={anime.title}
+          height="15rem"
+          w="100%"
+        />
+      </Link>
       <Text color="gray.400">{anime.title}</Text>
     </Flex>
   );
