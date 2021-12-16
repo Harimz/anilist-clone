@@ -4,28 +4,29 @@ This application was built using React and an express server and is a recreation
 
 Website URL: https://aniclone.netlify.app/
 
-## Screenshots
-
-![App Screenshot](https://res.cloudinary.com/di4rxo1gs/image/upload/v1639679504/anilist-home_k4crbu.png)
-
-## Installation
-
-    1. Run the server found [here](https://github.com/Harimz/anilist-clone-server)
-
-    2. Create a .env
-
-    Should look like this
-
-    REACT_APP_BACKEND_API=http://localhost:5000
-
-    3. Install dependancies
-
-    4. npm start
-
-    5. App should be running in http://localhost:3000
-
 ## Tech Stack
 
 **Client:** React, Redux Toolkit, RTK Query, React Router, Chakra UI, React Hook Form
 
 **Server:** Node, Express
+
+## Screenshots
+
+![App Screenshot](https://res.cloudinary.com/di4rxo1gs/image/upload/v1639679504/anilist-home_k4crbu.png)
+![App Screenshot](https://res.cloudinary.com/di4rxo1gs/image/upload/v1639686825/anilist-profile_pnor8n.png)
+
+## Installation
+
+1. Run the server found [here](https://github.com/Harimz/anilist-clone-server)
+
+2. Create a .env
+
+   Should look like this
+
+   REACT_APP_BACKEND_API=http://localhost:5000
+
+3. Install dependancies
+
+4. npm start
+
+5. App should be running in http://localhost:3000

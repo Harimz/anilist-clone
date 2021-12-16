@@ -43,8 +43,8 @@ export const UserAnimeList = () => {
   }
 
   return (
-    <Container maxW="container.xl">
-      <Text color="gray.400" fontSize="1.5rem" mb="1rem ">
+    <Container maxW="container.xl" mb="30rem">
+      <Text color="gray.400" fontSize="1.5rem" mb="1rem">
         Watching
       </Text>
       <Grid
