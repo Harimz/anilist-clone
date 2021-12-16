@@ -14,6 +14,8 @@ export const EntryModalHeader = ({
   const { addToList } = useAddToList(onClose, userInputs, type);
   const { updateEntry } = useUpdateEntry(onClose, userInputs, type);
 
+  const saved = Object.keys(content).length !== 0;
+
   return (
     <>
       <FaTimes
@@ -59,11 +61,11 @@ export const EntryModalHeader = ({
           <Button
             variant="form"
             onClick={() => {
-              if (content) {
+              if (saved) {
                 updateEntry(content._id, { title: content.title });
               }
 
-              if (!content) {
+              if (!saved) {
                 addToList({
                   id: contentInfo.id,
                   title: contentInfo.title,

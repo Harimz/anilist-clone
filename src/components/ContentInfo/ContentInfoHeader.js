@@ -30,7 +30,9 @@ export const ContentInfoHeader = ({
   const { user } = useAuth();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const { content } = useCheckList(type, id);
+  const { content } = useCheckList(type, id, user);
+
+  const saved = Object.keys(content).length !== 0;
 
   return (
     <>
@@ -77,7 +79,7 @@ export const ContentInfoHeader = ({
                 _hover={{}}
                 onClick={onOpen}
               >
-                {content ? content.status : "Add to List"}
+                {saved ? content.status : "Add to List"}
               </Button>
               <IconButton
                 bgColor="red.300"

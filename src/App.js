@@ -23,7 +23,7 @@ import { useStoreList } from "./hooks";
 
 export const App = () => {
   const { user } = useAuth();
-  useStoreList();
+  useStoreList(user);
 
   return (
     <Router>
