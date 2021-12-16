@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Text, Image, Flex } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import { numToString } from "../../../helpers";
 
 export const ContentCard = ({ anime, manga }) => {
   return (
@@ -25,8 +26,9 @@ export const ContentCard = ({ anime, manga }) => {
           </Text>
         </Link>
         <Text color="gray.500">
-          {anime?.episodeProgress || manga?.volumesRead || ""}/
-          {anime?.episodeCount || manga?.volumeCount || ""}
+          {numToString(anime?.episodeProgress) ||
+            numToString(manga?.volumesRead)}
+          /{numToString(anime?.episodeCount) || numToString(manga?.volumeCount)}
         </Text>
       </Flex>
     </Box>

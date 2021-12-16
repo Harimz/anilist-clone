@@ -11,10 +11,12 @@ export const DisplayContent = ({ data, type }) => {
   if (data.length === 5 || view === "grid") {
     return (
       <Grid
-        templateColumns="repeat(auto-fill, minmax(196px, 1fr))"
+        templateColumns={{
+          base: "repeat(auto-fit, minmax(156px, 1fr))",
+          md: "repeat(auto-fit, minmax(196px, 1fr))",
+        }}
         gap={{ base: 0, md: 6 }}
         mb="3rem"
-        placeItems="center"
       >
         {data.map((item) => (
           <ContentCard
