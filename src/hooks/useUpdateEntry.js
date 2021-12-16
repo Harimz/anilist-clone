@@ -21,6 +21,7 @@ const useUpdateEntry = (onClose, userInputs, type) => {
             totalRewatches: userInputs.totalRewatches,
             startDate: userInputs.startDate,
             endDate: userInputs.endDate,
+            note: userInputs.note,
           },
         });
 
@@ -45,6 +46,7 @@ const useUpdateEntry = (onClose, userInputs, type) => {
             totalRereads: userInputs.totalRereads,
             startDate: userInputs.startDate,
             endDate: userInputs.endDate,
+            note: userInputs.note,
           },
         });
 
