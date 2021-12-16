@@ -13,7 +13,12 @@ Website URL: https://aniclone.netlify.app/
 ## Screenshots
 
 ![App Screenshot](https://res.cloudinary.com/di4rxo1gs/image/upload/v1639679504/anilist-home_k4crbu.png)
+
 ![App Screenshot](https://res.cloudinary.com/di4rxo1gs/image/upload/v1639686825/anilist-profile_pnor8n.png)
+
+## Issues
+
+Data fetching is limited to 2 requests per second so timing out is common when filtering and searching
 
 ## Installation
 
