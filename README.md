@@ -18,7 +18,7 @@ Website URL: https://aniclone.netlify.app/
 
 ## Issues
 
-Data fetching is limited to 2 requests per second so timing out is common when filtering and searching
+Data fetching is limited to 2 requests per second so getting rate limited is common when filtering and searching
 
 ## Installation
 
