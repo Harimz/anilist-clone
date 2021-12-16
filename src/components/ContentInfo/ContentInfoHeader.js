@@ -68,25 +68,18 @@ export const ContentInfoHeader = ({
               h={{ base: "8rem", sm: "12rem", md: "14rem", lg: "auto" }}
               margin={{ base: "", lg: "auto" }}
             />
-            <Flex mt="1.5rem" w={{ base: "100%", lg: "" }}>
+            <Flex mt="1.5rem" justify="center" w="100%">
               <Button
-                mr="1rem"
-                w={{ base: "100%", lg: "" }}
                 fontWeight="normal"
                 bgColor="blue.150"
                 color="white"
                 disabled={user ? false : true}
                 _hover={{}}
                 onClick={onOpen}
+                w="100%"
               >
                 {saved ? content.status : "Add to List"}
               </Button>
-              <IconButton
-                bgColor="red.300"
-                icon={<AiFillHeart style={{ color: "white" }} />}
-                disabled={user ? false : true}
-                _hover={{}}
-              />
             </Flex>
           </Flex>
           <Flex

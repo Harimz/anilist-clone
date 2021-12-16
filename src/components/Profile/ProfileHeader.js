@@ -49,14 +49,6 @@ export const ProfileHeader = () => {
                 Manga List
               </Text>
             </Link>
-
-            <Text
-              variant="link"
-              fontWeight="semibold"
-              fontSize={{ base: "0.75rem", md: "1rem" }}
-            >
-              Favorites
-            </Text>
           </Flex>
         </Container>
       </Flex>

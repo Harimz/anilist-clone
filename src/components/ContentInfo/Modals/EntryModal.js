@@ -41,6 +41,8 @@ export const EntryModal = ({
   const { isDark } = useIsDark();
   const { deleteEntry } = useDeleteEntry(onClose, type);
 
+  const saved = Object.keys(content).length !== 0;
+
   useEffect(() => {
     if (content) {
       setUserInputs(() => ({
@@ -82,7 +84,7 @@ export const EntryModal = ({
           setUserInputs={setUserInputs}
           userInputs={userInputs}
         />
-        {content && (
+        {saved && (
           <Flex
             p="0rem 2rem 1rem 2rem"
             justify="flex-end"

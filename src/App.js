@@ -20,6 +20,7 @@ import { AnimeList } from "./pages/AnimeList";
 import { OverView } from "./pages/OverView";
 import { MangaList } from "./pages/MangaList";
 import { useStoreList } from "./hooks";
+import { NotFound } from "./pages/NotFound";
 
 export const App = () => {
   const { user } = useAuth();
@@ -30,6 +31,11 @@ export const App = () => {
       <ScrollToTop />
       <Navigation />
       <Routes>
+        <Route path="*" element={<NotFound />} />
+        <Route path="/anime/:contentId" element={<AnimeInfo />} />
+        <Route path="/manga/:contentId" element={<MangaInfo />} />
+        <Route path="/search/:content" element={<Search />} />
+        <Route path="/search/:content/:searchType" element={<SearchType />} />
         <Route
           path="/"
           element={user ? <Navigate to="/search/anime" /> : <Home />}
@@ -42,10 +48,6 @@ export const App = () => {
           path="/login"
           element={user ? <Navigate to="/search/anime" /> : <LoginForm />}
         />
-        <Route path="/anime/:contentId" element={<AnimeInfo />} />
-        <Route path="/manga/:contentId" element={<MangaInfo />} />
-        <Route path="/search/:content" element={<Search />} />
-        <Route path="/search/:content/:searchType" element={<SearchType />} />
         <Route
           path="/user/:username"
           element={user ? <OverView /> : <Navigate to="/login" />}
