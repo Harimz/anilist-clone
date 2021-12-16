@@ -14,6 +14,7 @@ export const DisplayContent = ({ data, type }) => {
         templateColumns="repeat(auto-fill, minmax(196px, 1fr))"
         gap={{ base: 0, md: 6 }}
         mb="3rem"
+        placeItems="center"
       >
         {data.map((item) => (
           <ContentCard

@@ -11,7 +11,7 @@ export const ContentCard = ({ imgUrl, title, id, type }) => {
           h="20rem"
           mb="1rem"
           borderRadius="0.5rem"
-          w="100%"
+          w={{ base: "15rem", md: "100%" }}
         />
         <Text color="gray.500" fontSize="0.75rem" fontWeight="bold">
           {title}
