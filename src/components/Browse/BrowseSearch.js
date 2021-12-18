@@ -50,7 +50,7 @@ export const BrowseSearch = () => {
   return (
     <Container maxW="container.xl">
       <ContentViews />
-      <DisplayContent data={results} />
+      <DisplayContent data={results} type={content} />
     </Container>
   );
 };

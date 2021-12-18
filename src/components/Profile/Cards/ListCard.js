@@ -45,7 +45,7 @@ export const ListCard = ({ anime, manga }) => {
             p="0.5rem"
             left="3rem"
             top="0"
-            w="20rem"
+            w="25rem"
             display={showNote ? "block" : "none"}
           >
             <Text>{anime?.note || manga?.note}</Text>
